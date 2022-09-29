@@ -1,56 +1,99 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+
 import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavbarText,
-  Row,
-  Col,
-  Button,
-} from 'reactstrap';
+  AppBar,
+  Toolbar,
+  CssBaseline,
+  Typography,
+  makeStyles,
+  Avatar,
+} from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
 import { logoutUserAsync } from '../../redux/actions/userActions';
 
-function MyNavbar() {
-  const [isOpen, setIsOpen] = useState(false);
+const useStyles = makeStyles((theme) => ({
+  navlinks: {
+    marginLeft: theme.spacing(4),
+    display: 'flex',
+  },
+  logo: {
+    flexGrow: '1',
+    cursor: 'pointer',
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'white',
+    fontSize: '20px',
+    marginLeft: theme.spacing(20),
+    '&:hover': {
+      color: 'yellow',
+      borderBottom: '1px solid white',
+    },
+  },
+}));
 
-  const toggle = () => setIsOpen(!isOpen);
+function MyNavbar() {
+  const classes = useStyles();
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
-  const links = user.id ? ['posts', 'effects', 'admin']
-    : ['login', 'signup'];
+  const url = 'https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg';
 
   return (
-    <Row>
-      <Col>
-        <Navbar>
-          <NavbarBrand href="/">RELOAD</NavbarBrand>
-          <NavbarToggler onClick={toggle} />
-          <Collapse isOpen={isOpen} navbar>
-            <Nav className="me-auto" navbar>
-              {links.map((link) => (
-                <NavItem key={link}>
-                  <NavLink to={`/${link}`}>{link}</NavLink>
-                </NavItem>
-              ))}
-              {user.id && (
-              <NavItem key="logout">
-                <Button onClick={() => dispatch(logoutUserAsync())}>Logout</Button>
-              </NavItem>
-              )}
-            </Nav>
-            <NavbarText>{user.name ? `Hello, ${user.name}` : 'Not authed'}</NavbarText>
-          </Collapse>
-        </Navbar>
-      </Col>
-    </Row>
+    <AppBar
+      position="static"
+      style={{
+        background: '#2E3B55',
+
+      }}
+    >
+      <CssBaseline />
+      <Toolbar>
+        <Avatar
+          className={classes.rounded}
+          variant="circle"
+          alt="Logo image"
+          src={url}
+          style={{
+            width: 80,
+            height: 80,
+            marginRight: 20,
+          }}
+        />
+        <Typography variant="h5" className={classes.logo}>
+          My Wishlist
+        </Typography>
+        <div className={classes.navlinks}>
+          <Link to="/" className={classes.link}>
+            Главная
+          </Link>
+          {!user.id ? (
+            <>
+              {' '}
+              <Link to="/login" className={classes.link}>
+                Регистрация
+              </Link>
+              <Link to="/signup" className={classes.link}>
+                Войти
+              </Link>
+            </>
+          ) : (
+            <>
+              {' '}
+              <div>
+                Hello,
+                {user}
+                !
+              </div>
+              <Button onClick={() => dispatch(logoutUserAsync())}>Выйти</Button>
+            </>
+          )}
+        </div>
+      </Toolbar>
+    </AppBar>
   );
 }
-
 export default MyNavbar;
