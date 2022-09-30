@@ -1,5 +1,6 @@
 server/sessions/
-
+.DS_Store
+client/public/video.mp4
 # Logs
 logs
 *.log

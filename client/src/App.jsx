@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import AddWish from './components/AddWish';
 import HomePage from './components/HomePage';
 import Login from './components/Login';
 import MyNavbar from './components/MyNavbar';
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/add-wish" element={<AddWish />} />
       </Routes>
     </>
   );
