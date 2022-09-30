@@ -65,7 +65,9 @@ function MyNavbar() {
           }}
         />
         <Typography variant="h5" className={classes.logo}>
-          My Wishlist
+          <Link to="/mypage" className={classes.link}>
+            Мой список
+          </Link>
         </Typography>
         <div className={classes.navlinks}>
           <Link to="/" className={classes.link}>
