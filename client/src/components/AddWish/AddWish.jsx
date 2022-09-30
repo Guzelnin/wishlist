@@ -4,7 +4,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 
-const cats = ['cat11', 'cat12', 'cat13', 'cat14'];
+// const cats = ['cat11', 'cat12', 'cat13', 'cat14'];
 
 export default function AddWish() {
   return (

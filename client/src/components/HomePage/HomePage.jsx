@@ -1,11 +1,9 @@
-
-import React from 'react';
-import OneWishCard from '../OneWishCard';
 import {
-  Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography,
+  Button, Card, CardActions, CardContent, CardMedia, Grid, Typography,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';
+// import OneWishCard from '../OneWishCard';
 import { getWishesAsync } from '../../redux/actions/wishesActions';
 
 export default function HomePage() {

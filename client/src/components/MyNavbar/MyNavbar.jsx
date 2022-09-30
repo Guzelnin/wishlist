@@ -55,7 +55,7 @@ function MyNavbar() {
       <Toolbar>
         <Avatar
           className={classes.rounded}
-          variant="circle"
+          variant="circular"
           alt="Logo image"
           src={url}
           style={{
@@ -76,10 +76,10 @@ function MyNavbar() {
           {!user.id ? (
             <>
               {' '}
-              <Link to="/login" className={classes.link}>
+              <Link to="/signup" className={classes.link}>
                 Регистрация
               </Link>
-              <Link to="/signup" className={classes.link}>
+              <Link to="/login" className={classes.link}>
                 Войти
               </Link>
             </>
@@ -88,7 +88,7 @@ function MyNavbar() {
               {' '}
               <div>
                 Hello,
-                {user}
+                {user.name}
                 !
               </div>
               <Button onClick={() => dispatch(logoutUserAsync())}>Выйти</Button>
