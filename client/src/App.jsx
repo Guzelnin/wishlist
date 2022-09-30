@@ -29,7 +29,7 @@ function App() {
         <Route path="/mypage" element={<UserPage />} />
         <Route path="/add-wish" element={<AddWish />} />
       </Routes>
-      <MyFooter />
+      {/* <MyFooter /> */}
 
     </>
   );
