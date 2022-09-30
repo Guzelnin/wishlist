@@ -1,14 +1,45 @@
 import {
-  Button, FormControl, FormControlLabel,
-  FormHelperText, FormLabel, Grid, Radio, RadioGroup, TextField,
+  Box,
+  Button, Checkbox, FormControl, Grid,
+  InputLabel, MenuItem, Select, TextField,
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategoriesAsync } from '../../redux/actions/categoriesAcrions';
 
-// const cats = ['cat11', 'cat12', 'cat13', 'cat14'];
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 export default function AddWish() {
+  const categories = useSelector((state) => state.categories);
+  const [priv, setPriv] = useState(false);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCategoriesAsync());
+  }, []);
+  const [inputs, setInputs] = useState({
+    name: '', link: '', photo: '', categoryId: '', description: '', date: '', private: false,
+  });
+  const changeHandler = (e) => {
+    if (e.target.name === 'private') {
+      setInputs((prev) => ({
+        ...prev,
+        private: !prev.private,
+      }));
+      return;
+    }
+    setInputs((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(inputs);
+  };
+  // console.log(priv);
+  console.log(inputs);
   return (
-    <>
+    <form onSubmit={submitHandler} autoComplete="off">
       <Grid
         container
         spacing={2}
@@ -17,66 +48,105 @@ export default function AddWish() {
         alignItems="center"
       >
         <Grid item>
-          <TextField id="outlined-basic" label="Wish Name" variant="outlined" required />
+          <TextField
+            id="outlined-basic"
+            label="Название желания"
+            variant="outlined"
+            required
+            name="name"
+            onChange={changeHandler}
+            value={inputs.name}
+          />
         </Grid>
         <Grid item>
-          <TextField id="outlined-basic" label="Link" variant="outlined" required />
+          <TextField
+            id="outlined-basic"
+            label="Ссылка"
+            variant="outlined"
+            required
+            name="link"
+            onChange={changeHandler}
+            value={inputs.link}
+          />
         </Grid>
         <Grid item>
-          <TextField id="outlined-basic" label="Photo" variant="outlined" required />
+          <TextField
+            id="outlined-basic"
+            label="Фото"
+            variant="outlined"
+            required
+            name="photo"
+            onChange={changeHandler}
+            value={inputs.photo}
+          />
+        </Grid>
+        <Box sx={{ minWidth: 120 }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Категория</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              name="categoryId"
+              onChange={changeHandler}
+              value={inputs.categoryId}
+              label="Category"
+            >
+              {categories && categories?.map((el) => (
+                <MenuItem
+                  key={el.id}
+                  value={el.id}
+                >
+                  {el.title}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+        <Grid item>
+          <TextField
+            id="outlined-basic"
+            label="Описание"
+            variant="outlined"
+            required
+            name="description"
+            onChange={changeHandler}
+            value={inputs.description}
+          />
         </Grid>
         <Grid item>
-          <TextField id="outlined-basic" label="Category" variant="outlined" required />
+          <label htmlFor="start">
+            Дедлайн желания
+            <input
+              type="date"
+              name="date"
+              onChange={changeHandler}
+              value={inputs.date}
+            />
+          </label>
         </Grid>
         <Grid item>
-          <TextField id="outlined-basic" label="Description" variant="outlined" required />
+          <Checkbox
+            {...label}
+            name="private"
+            checked={priv === true}
+            onChange={changeHandler}
+            onClick={() => setPriv(!priv)}
+            value={priv === true}
+          />
+          Приватное желание
         </Grid>
         <Grid item>
-          <TextField id="outlined-basic" label="Data" variant="outlined" required />
+          <Button variant="contained" type="submit">Добавить желание</Button>
         </Grid>
+        {/* !!!!!!!!!!!!!!!!!!!!!!!!  shitcode   !!!!!!!!!!!!!!!!!!!!!!!! */}
         <Grid item>
-          <TextField id="outlined-basic" label="Private" variant="outlined" required />
+          <br />
+          <br />
+          <br />
+          <br />
         </Grid>
-        <Grid item>
-          <Button type="submit">Добавить желание</Button>
-        </Grid>
+        {/* !!!!!!!!!!!!!!!!!!!!!!!!  shitcode   !!!!!!!!!!!!!!!!!!!!!!!! */}
       </Grid>
-      <FormControl
-        component="fieldset"
-        variant="filled"
-        disabled
-      >
-        <FormLabel
-          component="legend"
-          htmlFor="residence-type-radio"
-        >
-          Residence
-        </FormLabel>
-        <RadioGroup
-          aria-label="residence"
-          id="residence-type-radio"
-          defaultValue="homeowner"
-          name="radio-buttons-group"
-        >
-          <FormControlLabel
-            value="homeowner"
-            control={<Radio />}
-            label="Homeowner"
-          />
-          <FormControlLabel
-            value="renter"
-            control={<Radio />}
-            label="Renter"
-          />
-          <FormControlLabel
-            value="nomad"
-            control={<Radio />}
-            label="Nomad"
-          />
-        </RadioGroup>
-        <FormHelperText>Disabled</FormHelperText>
-      </FormControl>
-
-    </>
+    </form>
   );
 }
