@@ -5,6 +5,7 @@ import { Grid } from '@material-ui/core';
 import FilterHdrIcon from '@mui/icons-material/FilterHdr';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import HomeIcon from '@mui/icons-material/Home';
+import TelegramIcon from '@mui/icons-material/Telegram';
 
 import socialMedia from './socialMedia';
 
@@ -27,7 +28,7 @@ function Social({ color }) {
   const classes = useStyles();
 
   const {
-    instagram, github, elbrus, homepage,
+    instagram, github, elbrus, telegram, homepage,
   } = socialMedia;
 
   return (
@@ -68,7 +69,18 @@ function Social({ color }) {
           color={color ? 'primary' : 'secondary'}
         />
       </Grid>
-      {/* add social media */}
+      <Grid
+        item
+        component="a"
+        target="_blank"
+        rel="noreferrer noopener"
+        href={telegram}
+      >
+        <TelegramIcon
+          className={classes.snsIcon}
+          color={color ? 'primary' : 'secondary'}
+        />
+      </Grid>
     </Grid>
   );
 }
