@@ -44,6 +44,39 @@ export default function SignUp() {
               Password
             </Label>
           </FormGroup>
+          <FormGroup floating>
+            <Input
+              id="examplePassword"
+              name="photo"
+              placeholder="Photo"
+              type="text"
+            />
+            <Label for="examplePassword">
+              Photo
+            </Label>
+          </FormGroup>
+          <FormGroup floating>
+            <Input
+              id="examplePassword"
+              name="bday"
+              placeholder="Birthday"
+              type="text"
+            />
+            <Label for="examplePassword">
+              Bday
+            </Label>
+          </FormGroup>
+          <FormGroup floating>
+            <Input
+              id="examplePassword"
+              name="description"
+              placeholder="Description"
+              type="text"
+            />
+            <Label for="examplePassword">
+              Description
+            </Label>
+          </FormGroup>
           <Button>
             Signup
           </Button>

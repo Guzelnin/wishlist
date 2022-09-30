@@ -1,6 +1,6 @@
 const express = require('express');
 const {
-  Wish, Owner, Category, User,
+  Wish, Owner, Category, User, Gift,
 } = require('../db/models');
 
 const router = express.Router();
@@ -21,7 +21,16 @@ router.get('/', async (req, res) => {
 router.get('/mypage', async (req, res) => {
   try {
     const currUser = await User.findOne({ where: { id: req.session.user.id } });
-    const myWishes = await Wish.findAll({ where: { user_id: currUser.id } });
+    const myWishes = await Owner.findAll({
+      where: { user_id: currUser.id },
+      include: [{
+        model: Wish,
+      },
+      {
+        model: Gift,
+      }],
+    });
+    console.log(myWishes);
     res.send(myWishes);
   } catch (error) {
     console.log(error);
