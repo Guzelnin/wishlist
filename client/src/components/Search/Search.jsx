@@ -1,8 +1,8 @@
 import { alpha, InputBase, makeStyles } from '@material-ui/core';
 import SearchIcon from '@mui/icons-material/Search';
 import React, { useState } from 'react';
-import Scroll from './Scroll';
-import SearchList from './SearchList';
+// import Scroll from './Scroll';
+// import SearchList from './SearchList';
 
 const useStyles = makeStyles((theme) => ({
   search: {

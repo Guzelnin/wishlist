@@ -12,7 +12,7 @@ import HttpsIcon from '@mui/icons-material/Https';
 
 export default function OneWishCard() {
   const status = true;
-  const wish = [];
+  // const wish = [];
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
