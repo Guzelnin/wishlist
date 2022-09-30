@@ -11,3 +11,4 @@ export const GET_CATEGORIES = 'GET_CATEGORIES';
 
 // My wishes
 export const GET_MY_WISHES = 'GET_MY_WISHES';
+export const ADD_WISH = 'ADD_WISH';

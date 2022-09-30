@@ -6,6 +6,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategoriesAsync } from '../../redux/actions/categoriesAcrions';
+import { addWishAsync } from '../../redux/actions/myWishesAction';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -17,13 +18,13 @@ export default function AddWish() {
     dispatch(getCategoriesAsync());
   }, []);
   const [inputs, setInputs] = useState({
-    name: '', link: '', photo: '', categoryId: '', description: '', date: '', private: false,
+    name: '', link: '', photo: '', categoryId: '', description: '', date: '', privateWish: false,
   });
   const changeHandler = (e) => {
-    if (e.target.name === 'private') {
+    if (e.target.name === 'privateWish') {
       setInputs((prev) => ({
         ...prev,
-        private: !prev.private,
+        privateWish: !prev.privateWish,
       }));
       return;
     }
@@ -35,9 +36,8 @@ export default function AddWish() {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log(inputs);
+    dispatch(addWishAsync(inputs));
   };
-  // console.log(priv);
-  console.log(inputs);
   return (
     <form onSubmit={submitHandler} autoComplete="off">
       <Grid
@@ -127,7 +127,7 @@ export default function AddWish() {
         <Grid item>
           <Checkbox
             {...label}
-            name="private"
+            name="privateWish"
             checked={priv === true}
             onChange={changeHandler}
             onClick={() => setPriv(!priv)}
@@ -138,14 +138,6 @@ export default function AddWish() {
         <Grid item>
           <Button variant="contained" type="submit">Добавить желание</Button>
         </Grid>
-        {/* !!!!!!!!!!!!!!!!!!!!!!!!  shitcode   !!!!!!!!!!!!!!!!!!!!!!!! */}
-        <Grid item>
-          <br />
-          <br />
-          <br />
-          <br />
-        </Grid>
-        {/* !!!!!!!!!!!!!!!!!!!!!!!!  shitcode   !!!!!!!!!!!!!!!!!!!!!!!! */}
       </Grid>
     </form>
   );

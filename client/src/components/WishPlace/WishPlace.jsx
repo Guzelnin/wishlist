@@ -12,15 +12,13 @@ export default function WishPlace() {
   return (
     <div className="row">
       <div className="col">
-        {
-      myWish && myWish?.map((el) => (
-        <OneWishCard
-          myWish={el}
-          key={el.id}
-          id={el.id}
-        />
-      ))
-  }
+        {myWish && myWish?.map((el) => (
+          <OneWishCard
+            myWish={el}
+            key={el.id}
+            id={el.id}
+          />
+        ))}
       </div>
     </div>
   );
