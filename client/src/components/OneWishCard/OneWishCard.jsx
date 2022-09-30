@@ -10,6 +10,7 @@ import HttpsIcon from '@mui/icons-material/Https';
 // import { pink } from '@mui/material/colors';
 
 export default function OneWishCard({ myWish, id }) {
+  console.log(myWish);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -27,7 +28,7 @@ export default function OneWishCard({ myWish, id }) {
       <CardActions>
         <Button size="small">Открыть</Button>
         <Button size="small">Уже подарили</Button>
-        {myWish.Gift.wish_status
+        {myWish.Gifts.wish_status
           ? <Button disabled>Забронировано</Button>
           : <Button size="small">Удалить</Button>}
       </CardActions>
