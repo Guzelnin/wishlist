@@ -28,11 +28,11 @@ function Social({ color }) {
   const classes = useStyles();
 
   const {
-    instagram, github, elbrus, telegram, homepage,
+    github, elbrus, telegram, homepage,
   } = socialMedia;
 
   return (
-    <Grid item container spacing={2} justify="center">
+    <Grid item container spacing={2} justifyContent="center">
       <Grid
         item
         component="a"
