@@ -6,28 +6,35 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+// import BlockIcon from '@mui/icons-material/Block';
+import HttpsIcon from '@mui/icons-material/Https';
+// import { pink } from '@mui/material/colors';
 
 export default function OneWishCard() {
+  const status = true;
+  const wish = [];
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
-        alt="green iguana"
+        image="https://animal.tden.ru/wp-content/uploads/2014/10/1.jpg"
+        alt="фото желания"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          Название желания
+          <HttpsIcon style={{ marginLeft: '30px' }} />
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size="small">Открыть</Button>
+        <Button size="small">Уже подарили</Button>
+        {status
+          ? <Button disabled>Забронировано</Button>
+          : <Button size="small">Удалить</Button>}
+
+        {/* <BlockIcon sx={{ color: pink[500] }} /> */}
       </CardActions>
     </Card>
   );

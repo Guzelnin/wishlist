@@ -5,6 +5,7 @@ import HomePage from './components/HomePage';
 import Login from './components/Login';
 import MyNavbar from './components/MyNavbar';
 import SignUp from './components/SignUp';
+import UserPage from './components/UserPage/UserPage';
 import { checkAuth } from './redux/actions/userActions';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/mypage" element={<UserPage />} />
       </Routes>
     </>
   );
