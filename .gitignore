@@ -1,5 +1,5 @@
 server/sessions/
-
+.DS_Store
 # Logs
 logs
 *.log

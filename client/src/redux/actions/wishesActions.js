@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { SET_WISHES } from '../types';
+import { GET_WISHES } from '../types';
 
-export const setWishes = (payload) => ({ type: SET_WISHES, payload });
+export const getWishes = (payload) => ({ type: GET_WISHES, payload });
 
-export const setWishesAsync = () => (dispatch) => {
-  axios.post('/api/wishes/')
-    .then((res) => dispatch(setWishes(res.data)))
+export const getWishesAsync = () => (dispatch) => {
+  axios.get('/api/wishes/')
+    .then((res) => dispatch(getWishes(res.data)))
     .catch(console.log);
 };
