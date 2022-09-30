@@ -4,6 +4,7 @@ const cors = require('cors');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const userRouter = require('./routes/userRouter');
+const wishesRouter = require('./routes/wishesRouter');
 
 require('dotenv').config();
 
@@ -30,5 +31,6 @@ app.use(session({
 }));
 
 app.use('/api/user', userRouter);
+app.use('/api/wishes', wishesRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));
