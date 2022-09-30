@@ -12,6 +12,7 @@ import {
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { logoutUserAsync } from '../../redux/actions/userActions';
+import Search from '../Search';
 
 const useStyles = makeStyles((theme) => ({
   navlinks: {
@@ -70,6 +71,8 @@ function MyNavbar() {
           <Link to="/" className={classes.link}>
             Главная
           </Link>
+          <Search />
+
           {!user.id ? (
             <>
               {' '}

@@ -5,8 +5,10 @@ import HomePage from './components/HomePage';
 import Login from './components/Login';
 import MyFooter from './components/MyFooter';
 import MyNavbar from './components/MyNavbar';
+import Search from './components/Search';
 import SignUp from './components/SignUp';
 import { checkAuth } from './redux/actions/userActions';
+import initialDetails from './components/Search/initialDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -17,12 +19,14 @@ function App() {
   return (
     <>
       <MyNavbar />
+      {/* <Search details={initialDetails} /> */}
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage details={initialDetails} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
       </Routes>
       <MyFooter />
+
     </>
   );
 }
