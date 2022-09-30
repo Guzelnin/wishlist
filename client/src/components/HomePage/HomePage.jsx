@@ -1,5 +1,8 @@
+
+import React from 'react';
+import OneWishCard from '../OneWishCard';
 import {
-  Button, Card, CardActions, CardContent, CardMedia, Grid, Typography,
+  Box, Button, Card, CardActions, CardContent, CardMedia, Grid, Typography,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect } from 'react';

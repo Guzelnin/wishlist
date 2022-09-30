@@ -8,6 +8,7 @@ import MyFooter from './components/MyFooter';
 import MyNavbar from './components/MyNavbar';
 import Search from './components/Search';
 import SignUp from './components/SignUp';
+import UserPage from './components/UserPage/UserPage';
 import { checkAuth } from './redux/actions/userActions';
 import initialDetails from './components/Search/initialDetails';
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<HomePage details={initialDetails} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/mypage" element={<UserPage />} />
         <Route path="/add-wish" element={<AddWish />} />
       </Routes>
       <MyFooter />
