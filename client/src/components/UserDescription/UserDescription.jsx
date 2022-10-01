@@ -20,11 +20,11 @@ export default function UserDescription() {
           <Avatar
             alt="My avatar"
             src={myPage.photo}
-            sx={{ width: 300, height: 300 }}
+            sx={{ width: 250, height: 250 }}
             style={{ marginTop: '60px' }}
           />
           <CardContent style={{ marginLeft: '100px' }}>
-            <Typography variant="h3" component="h2" style={{ marginTop: '60px', marginLeft: '20px', marginBottom: '20px' }}>
+            <Typography variant="h3" component="h2" style={{ marginTop: '60px', marginBottom: '20px' }}>
               {myPage.name}
             </Typography>
             <Typography variant="body1" gutterBottom>
