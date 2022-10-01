@@ -5,12 +5,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-// import BlockIcon from '@mui/icons-material/Block';
 import HttpsIcon from '@mui/icons-material/Https';
-// import { pink } from '@mui/material/colors';
 
 export default function OneWishCard({ myWish, id }) {
-  console.log(myWish);
+  // console.log(myWish);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
