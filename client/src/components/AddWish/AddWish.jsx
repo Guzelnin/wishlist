@@ -5,6 +5,7 @@ import {
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { getCategoriesAsync } from '../../redux/actions/categoriesAcrions';
 import { addWishAsync } from '../../redux/actions/myWishesAction';
 
@@ -13,6 +14,7 @@ const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 export default function AddWish() {
   const categories = useSelector((state) => state.categories);
   const [priv, setPriv] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategoriesAsync());
@@ -37,6 +39,7 @@ export default function AddWish() {
     e.preventDefault();
     console.log(inputs);
     dispatch(addWishAsync(inputs));
+    navigate('/mypage');
   };
   return (
     <form onSubmit={submitHandler} autoComplete="off">

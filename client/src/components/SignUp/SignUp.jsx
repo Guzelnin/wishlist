@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   Button, Col, Form, FormGroup, Input, Label, Row,
 } from 'reactstrap';
@@ -7,27 +8,36 @@ import { signupUser } from '../../redux/actions/userActions';
 
 export default function SignUp() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <Row>
       <Col>
-        <Form onSubmit={(e) => dispatch(signupUser(e, Object.fromEntries(new FormData(e.target))))}>
+        <br />
+        <Form onSubmit={(e) => {
+          console.log(Object.fromEntries(new FormData(e.target)));
+          dispatch(signupUser(e, Object.fromEntries(new FormData(e.target))));
+          navigate('/');
+        }}
+        >
           <FormGroup floating>
             <Input
-              id="exampleName"
               name="name"
               placeholder="Name"
               type="text"
+              autoComplete="off"
+              required
             />
             <Label for="exampleName">
-              Name
+              Имя
             </Label>
           </FormGroup>
           <FormGroup floating>
             <Input
-              id="exampleEmail"
               name="email"
               placeholder="Email"
               type="email"
+              autoComplete="off"
+              required
             />
             <Label for="exampleEmail">
               Email
@@ -35,50 +45,48 @@ export default function SignUp() {
           </FormGroup>
           <FormGroup floating>
             <Input
-              id="examplePassword"
               name="password"
               placeholder="Password"
               type="password"
+              required
             />
             <Label for="examplePassword">
-              Password
+              Пароль
             </Label>
           </FormGroup>
           <FormGroup floating>
             <Input
-              id="examplePassword"
               name="photo"
               placeholder="Photo"
               type="text"
+              required
             />
-            <Label for="examplePassword">
-              Photo
+            <Label>
+              Фото
             </Label>
           </FormGroup>
           <FormGroup floating>
             <Input
-              id="examplePassword"
               name="bday"
               placeholder="Birthday"
-              type="text"
+              type="date"
             />
-            <Label for="examplePassword">
-              Bday
+            <Label>
+              День Рождения
             </Label>
           </FormGroup>
           <FormGroup floating>
             <Input
-              id="examplePassword"
               name="description"
               placeholder="Description"
               type="text"
             />
-            <Label for="examplePassword">
-              Description
+            <Label>
+              Описание профиля
             </Label>
           </FormGroup>
           <Button>
-            Signup
+            Зарегистрироваться
           </Button>
         </Form>
       </Col>
