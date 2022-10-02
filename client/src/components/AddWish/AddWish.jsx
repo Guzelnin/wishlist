@@ -1,12 +1,13 @@
 import {
   Box,
   Button, Checkbox, FormControl, Grid,
+  Input,
   InputLabel, MenuItem, Select, TextField,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getCategoriesAsync } from '../../redux/actions/categoriesAcrions';
+import { getCategoriesAsync } from '../../redux/actions/categoriesActions';
 import { addWishAsync } from '../../redux/actions/myWishesAction';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -117,15 +118,16 @@ export default function AddWish() {
           />
         </Grid>
         <Grid item>
-          <label htmlFor="start">
+          <div>
             Дедлайн желания
-            <input
-              type="date"
-              name="date"
-              onChange={changeHandler}
-              value={inputs.date}
-            />
-          </label>
+          </div>
+          {/* </label> */}
+          <Input
+            type="date"
+            name="date"
+            onChange={changeHandler}
+            value={inputs.date}
+          />
         </Grid>
         <Grid item>
           <Checkbox

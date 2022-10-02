@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import AddWish from './components/AddWish';
+import FriendsPage from './components/FriendsPage';
 import HomePage from './components/HomePage';
 import Login from './components/Login';
 // import MyFooter from './components/MyFooter';
@@ -28,6 +29,7 @@ function App() {
         <Route element={<ProtectedRoute redirect="/login" isAllowed={!!user.id} />}>
           <Route path="/mypage" element={<UserPage />} />
           <Route path="/add-wish" element={<AddWish />} />
+          <Route path="/friends" element={<FriendsPage />} />
         </Route>
         <Route element={<ProtectedRoute redirect="/mypage" isAllowed={!user.id} />}>
           <Route path="/login" element={<Login />} />
