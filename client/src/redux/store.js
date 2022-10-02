@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import categoriesReducer from './reducers/categoriesReducer';
+import friendRequestReducer from './reducers/friendRequestsReducer';
+import friendsReducer from './reducers/friendsReducer';
 import myWishesReducer from './reducers/myWishesReducer';
 import userReducer from './reducers/userReducer';
 import wishesReducer from './reducers/wishesReducer';
@@ -10,5 +12,7 @@ export default configureStore({
     wishes: wishesReducer,
     categories: categoriesReducer,
     myWishes: myWishesReducer,
+    friends: friendsReducer,
+    friendRequests: friendRequestReducer,
   },
 });

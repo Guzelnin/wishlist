@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import AddWish from './components/AddWish';
+import FriendsPage from './components/FriendsPage';
 import HomePage from './components/HomePage';
 import Login from './components/Login';
 import MyFooter from './components/MyFooter';
@@ -28,6 +29,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/mypage" element={<UserPage />} />
         <Route path="/add-wish" element={<AddWish />} />
+        <Route path="/friends" element={<FriendsPage />} />
       </Routes>
       {/* <MyFooter /> */}
 
