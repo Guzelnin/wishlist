@@ -13,7 +13,6 @@ export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const GET_MY_WISHES = 'GET_MY_WISHES';
 export const ADD_WISH = 'ADD_WISH';
 
-
 // Friends
 export const GET_FRIENDS = 'GET_FRIENDS';
 export const GET_USERS_FOR_SEARCH = 'GET_USERS_FOR_SEARCH';
