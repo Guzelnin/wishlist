@@ -60,6 +60,17 @@ router.post('/check', (req, res) => {
   return res.sendStatus(401);
 });
 
+router.get('/mypage', async (req, res) => {
+  try {
+    const thisUser = await User.findOne({
+      where: { id: req.session.user.id },
+    });
+    res.send(thisUser);
+  } catch (error) {
+    res.sendStatus(500);
+  }
+});
+
 router.get('/logout', (req, res) => {
   req.session.destroy();
   res.clearCookie('sid').sendStatus(200);

@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { Container } from 'reactstrap';
 import AddWish from './components/AddWish';
 import FriendsPage from './components/FriendsPage';
 import HomePage from './components/HomePage';
 import Login from './components/Login';
-import MyFooter from './components/MyFooter';
+// import MyFooter from './components/MyFooter';
 import MyNavbar from './components/MyNavbar';
 // import Search from './components/Search';
 import SignUp from './components/SignUp';
+import ProtectedRoute from './components/HOCs/ProtectedRoute';
 import UserPage from './components/UserPage/UserPage';
 import { checkAuth } from './redux/actions/userActions';
+import NoPage from './components/NoPage/NoPage';
 // import initialDetails from './components/Search/initialDetails';
 
 function App() {
@@ -18,22 +21,26 @@ function App() {
   useEffect(() => {
     dispatch(checkAuth());
   }, []);
-  // const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
   return (
-    <>
+    <Container>
       <MyNavbar />
-      {/* <Search details={initialDetails} /> */}
       <Routes>
+        <Route element={<ProtectedRoute redirect="/login" isAllowed={!!user.id} />}>
+          <Route path="/mypage" element={<UserPage />} />
+          <Route path="/add-wish" element={<AddWish />} />
+          <Route path="/friends" element={<FriendsPage />} />
+        </Route>
+        <Route element={<ProtectedRoute redirect="/mypage" isAllowed={!user.id} />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Route>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/mypage" element={<UserPage />} />
-        <Route path="/add-wish" element={<AddWish />} />
-        <Route path="/friends" element={<FriendsPage />} />
+        <Route path="*" element={<NoPage />} />
       </Routes>
+      {/* <Search details={initialDetails} /> */}
       {/* <MyFooter /> */}
-
-    </>
+    </Container>
   );
 }
 
