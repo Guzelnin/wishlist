@@ -1,7 +1,4 @@
 import * as React from 'react';
-// import ImageList from '@mui/material/ImageList';
-// import ImageListItem from '@mui/material/ImageListItem';
-// import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -10,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import HttpsIcon from '@mui/icons-material/Https';
+import { Link, useParams } from 'react-router-dom';
 import { getMyWishesAsync } from '../../../redux/actions/myWishesAction';
 
 export default function MyWishes({ myWish }) {
@@ -34,7 +32,10 @@ export default function MyWishes({ myWish }) {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Открыть</Button>
+            <Button size="small">
+              {/*  */}
+              <Link to={`/wishes/${el.Wish.id}`}> Открыть</Link>
+            </Button>
             <Button size="small">Уже подарили</Button>
             {el.Gifts.giver_id
               ? <Button disabled>Забронировано</Button>
