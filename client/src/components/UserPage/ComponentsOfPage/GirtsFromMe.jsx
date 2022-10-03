@@ -7,7 +7,7 @@ import { setGiftsFromMeAsync } from '../../../redux/actions/giftsAction';
 
 export default function GirtsFromMe({ giftsFromMe }) {
   const dispatch = useDispatch();
-  console.log(giftsFromMe[0].Gifts);
+  console.log(giftsFromMe);
   React.useEffect(() => {
     dispatch(setGiftsFromMeAsync());
   }, []);
@@ -15,20 +15,20 @@ export default function GirtsFromMe({ giftsFromMe }) {
   return (
     <ImageList sx={{ width: 500, height: 450 }}>
       {giftsFromMe && giftsFromMe?.map((item) => (
-        <ImageListItem key={item.Wish.photo}>
+        <ImageListItem key={item.id}>
           <img
-            src={`${item.Wish.photo}?w=248&fit=crop&auto=format`}
-            srcSet={`${item.Wish.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.Wish.name}
+            src={`${item.Owner.Wish.photo}?w=248&fit=crop&auto=format`}
+            srcSet={`${item.Owner.Wish.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
+            alt={item.Owner.Wish.name}
             loading="lazy"
           />
           <ImageListItemBar
-            title={item.Wish.name}
+            title={item.Owner.Wish.name}
             subtitle={(
               <span>
                 Кому подарил:
                 {' '}
-                {item.Gifts[0].giver_id}
+                {item.User.name}
               </span>
 )}
             position="below"
