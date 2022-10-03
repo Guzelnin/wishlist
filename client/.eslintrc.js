@@ -24,6 +24,8 @@ module.exports = {
     'react/prop-types': 0,
     'no-param-reassign': 0,
     'func-names': 0,
+    'max-len': 0,
+    'no-trailing-spaces': 0,
     'react/jsx-props-no-spreading': 0,
     'no-unused-vars': 0,
     'no-nested-ternary': 0,

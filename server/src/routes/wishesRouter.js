@@ -30,8 +30,79 @@ router.get('/mypage', async (req, res) => {
         model: Gift,
       }],
     });
-    console.log(myWishes);
+    // console.log(myWishes);
     res.send(myWishes);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/mypage/friendswishes', async (req, res) => {
+  try {
+    const currUser = await User.findOne({ where: { id: req.session.user.id } });
+    const notedWishes = await Owner.findAll({
+      include: [
+        {
+          model: Wish,
+        },
+        {
+          model: Gift,
+          where: {
+            giver_id: currUser.id,
+          },
+        },
+      ],
+    });
+    // console.log(notedWishes);
+    res.send(notedWishes);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/mypage/gifts-to-me', async (req, res) => {
+  try {
+    const giftsForMe = await Owner.findAll({
+      include: [
+        {
+          model: Wish,
+          where: {
+            user_id: req.session.user.id,
+          },
+        },
+        {
+          model: Gift,
+        },
+      ],
+    });
+    // console.log(notedWishes);
+    res.send(giftsForMe);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/mypage/gifts-from-me', async (req, res) => {
+  try {
+    const giftsFromMe = await Owner.findAll({
+      include: [
+        {
+          model: Wish,
+        },
+        {
+          model: Gift,
+          where: {
+            giver_id: req.session.user.id,
+            wish_status: false,
+          },
+        },
+      ],
+    });
+    // console.log(notedWishes);
+    res.send(giftsFromMe);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);

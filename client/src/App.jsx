@@ -1,3 +1,4 @@
+import Search from '@mui/icons-material/Search';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
@@ -8,7 +9,6 @@ import HomePage from './components/HomePage';
 import Login from './components/Login';
 // import MyFooter from './components/MyFooter';
 import MyNavbar from './components/MyNavbar';
-// import Search from './components/Search';
 import SignUp from './components/SignUp';
 import ProtectedRoute from './components/HOCs/ProtectedRoute';
 import UserPage from './components/UserPage/UserPage';
@@ -17,7 +17,7 @@ import NoPage from './components/NoPage/NoPage';
 import DetailWishPage from './components/DetailWishPage';
 // import initialDetails from './components/Search/initialDetails';
 
-function App() {
+function App({ el }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkAuth());
@@ -30,14 +30,14 @@ function App() {
         <Route element={<ProtectedRoute redirect="/login" isAllowed={!!user.id} />}>
           <Route path="/mypage" element={<UserPage />} />
           <Route path="/add-wish" element={<AddWish />} />
+          <Route path="/friends" element={<FriendsPage />} />
         </Route>
         <Route element={<ProtectedRoute redirect="/mypage" isAllowed={!user.id} />}>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>
-        <Route path="/friends" element={<FriendsPage />} />
         <Route path="/wishes/:id" element={<DetailWishPage />} />
-        {/* ЗАЩИТИТЬ ПУТЬ К ДРУЗЬЯМ И ПОДРОБНОЙ ИНФЕ ПО ПОДАРКУ */}
+        {/* ЗАЩИТИТЬ ПУТЬ К ПОДРОБНОЙ ИНФЕ ПО ПОДАРКУ */}
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
