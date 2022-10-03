@@ -2,13 +2,18 @@ import Search from '@mui/icons-material/Search';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { Container } from 'reactstrap';
 import AddWish from './components/AddWish';
+import FriendsPage from './components/FriendsPage';
 import HomePage from './components/HomePage';
 import Login from './components/Login';
-import MyFooter from './components/MyFooter';
+// import MyFooter from './components/MyFooter';
 import MyNavbar from './components/MyNavbar';
 import SignUp from './components/SignUp';
+import ProtectedRoute from './components/HOCs/ProtectedRoute';
+import UserPage from './components/UserPage/UserPage';
 import { checkAuth } from './redux/actions/userActions';
+import NoPage from './components/NoPage/NoPage';
 
 function App({ el }) {
   const dispatch = useDispatch();
@@ -17,17 +22,25 @@ function App({ el }) {
   }, []);
   const user = useSelector((state) => state.user);
   return (
-    <>
+    <Container>
       <MyNavbar />
       <Routes>
+        <Route element={<ProtectedRoute redirect="/login" isAllowed={!!user.id} />}>
+          <Route path="/mypage" element={<UserPage />} />
+          <Route path="/add-wish" element={<AddWish />} />
+        </Route>
+        <Route element={<ProtectedRoute redirect="/mypage" isAllowed={!user.id} />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Route>
+        <Route path="/friends" element={<FriendsPage />} />
+        {/* ЗАЩИТИТЬ ПУТЬ К ДРУЗЬЯМ */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/add-wish" element={<AddWish />} />
+        <Route path="*" element={<NoPage />} />
       </Routes>
-      <MyFooter />
-
-    </>
+      {/* <Search details={initialDetails} /> */}
+      {/* <MyFooter /> */}
+    </Container>
   );
 }
 

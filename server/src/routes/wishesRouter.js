@@ -1,17 +1,74 @@
 const express = require('express');
-const { Wish, Owner, Category } = require('../db/models');
+const {
+  Wish, Owner, Category, User, Gift,
+} = require('../db/models');
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
     const allPublicWishes = await Wish.findAll({
-      // include: { model: Owner, where: { private: false } },
       order: [['id', 'DESC']],
       include: [{ model: Owner, where: { private: false } }, { model: Category }],
-    }); // NEED TO INCLUDE CATEGORIES!!!!!!!!
-    console.log(allPublicWishes[0]);
+    });
     res.send(allPublicWishes);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/mypage', async (req, res) => {
+  try {
+    const currUser = await User.findOne({ where: { id: req.session.user.id } });
+    const myWishes = await Owner.findAll({
+      where: { user_id: currUser.id },
+      include: [{
+        model: Wish,
+      },
+      {
+        model: Gift,
+      }],
+    });
+    console.log(myWishes);
+    res.send(myWishes);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.post('/add', async (req, res) => {
+  try {
+    const {
+      name, link, photo, categoryId, description, privateWish, date,
+    } = req.body;
+    console.log(req.body);
+    const newWish = await Wish.create({
+      name, link, photo, category_id: +categoryId,
+    });
+    const newOwner = await Owner.create({
+      wish_id: newWish.id,
+      user_id: req.session.user.id,
+      private: privateWish,
+      description,
+      date,
+    });
+    await Gift.create({
+      owner_id: newOwner.id,
+      giver_id: null,
+      wish_status: false,
+    });
+    const myNewWish = await Owner.findOne({
+      where: { id: newOwner.id },
+      include: [{
+        model: Wish,
+      },
+      {
+        model: Gift,
+      }],
+    });
+    res.json(myNewWish);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);

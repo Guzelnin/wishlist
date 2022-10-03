@@ -5,12 +5,16 @@ const { User } = require('../db/models');
 const router = express.Router();
 
 router.post('/signup', async (req, res) => {
-  const { name, email, password } = req.body;
-  if (name && email && password) {
+  const {
+    name, email, password, photo, bday, description,
+  } = req.body;
+  if (name && email && password && photo && bday && description) {
     try {
       const [user, created] = await User.findOrCreate({
         where: { email },
-        defaults: { name, password: await bcrypt.hash(password, 10) },
+        defaults: {
+          name, password: await bcrypt.hash(password, 10), photo, bday, description,
+        },
       });
       if (created) {
         const sessionUser = JSON.parse(JSON.stringify(user));
@@ -54,6 +58,17 @@ router.post('/check', (req, res) => {
     return res.json(req.session.user);
   }
   return res.sendStatus(401);
+});
+
+router.get('/mypage', async (req, res) => {
+  try {
+    const thisUser = await User.findOne({
+      where: { id: req.session.user.id },
+    });
+    res.send(thisUser);
+  } catch (error) {
+    res.sendStatus(500);
+  }
 });
 
 router.get('/logout', (req, res) => {

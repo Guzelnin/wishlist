@@ -23,9 +23,10 @@ module.exports = {
     'no-console': 0,
     'react/prop-types': 0,
     'no-param-reassign': 0,
-    'no-unused-vars': 0,
     'func-names': 0,
     'max-len': 0,
     'no-trailing-spaces': 0,
+    'react/jsx-props-no-spreading': 0,
+    'no-unused-vars': 0,
   },
 };

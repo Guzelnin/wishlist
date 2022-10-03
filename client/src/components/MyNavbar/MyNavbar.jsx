@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     color: 'white',
     fontSize: '20px',
-    marginLeft: theme.spacing(20),
+    marginLeft: theme.spacing(5),
     '&:hover': {
       color: 'yellow',
       borderBottom: '1px solid white',
@@ -54,7 +54,7 @@ function MyNavbar() {
       <Toolbar>
         <Avatar
           className={classes.rounded}
-          variant="circle"
+          variant="circular"
           alt="Logo image"
           src={url}
           style={{
@@ -63,9 +63,14 @@ function MyNavbar() {
             marginRight: 20,
           }}
         />
-        <Typography variant="h5" className={classes.logo}>
-          My Wishlist
-        </Typography>
+        {/* <Typography variant="h5" className={classes.logo}> */}
+        {/* </Typography> */}
+        <Link to="/mypage" className={classes.link}>
+          Мой список
+        </Link>
+        <Link to="/add-wish" className={classes.link}>
+          Добавить желание
+        </Link>
         <div className={classes.navlinks}>
           <Link to="/" className={classes.link}>
             Главная
@@ -74,10 +79,10 @@ function MyNavbar() {
           {!user.id ? (
             <>
               {' '}
-              <Link to="/login" className={classes.link}>
+              <Link to="/signup" className={classes.link}>
                 Регистрация
               </Link>
-              <Link to="/signup" className={classes.link}>
+              <Link to="/login" className={classes.link}>
                 Войти
               </Link>
             </>
@@ -86,7 +91,7 @@ function MyNavbar() {
               {' '}
               <div>
                 Hello,
-                {user}
+                {user.name}
                 !
               </div>
               <Button onClick={() => dispatch(logoutUserAsync())}>Выйти</Button>

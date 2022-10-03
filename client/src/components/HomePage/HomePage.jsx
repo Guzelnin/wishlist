@@ -3,6 +3,8 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
+// import OneWishCard from '../OneWishCard';
+import MyFooter from '../MyFooter';
 import { getWishesAsync } from '../../redux/actions/wishesActions';
 import PresentCard from '../Search/PresentCard';
 
@@ -91,8 +93,5 @@ export default function HomePage() {
         ))}
       </Grid>
     </Grid>
-  // </Grid>
   );
 }
-
-// {allWishes.filter((value) => value.name.toLowerCase().includes(data.toLowerCase())).map((el) => <PresentCard key={el.id} el={el} />)}
