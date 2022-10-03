@@ -177,7 +177,7 @@ router.post('/entry', async (req, res) => {
   }
 });
 
-router.get('/wishes/:id', async (req, res) => {
+router.get('/wishes/details/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const wish = await Owner.findOne({
