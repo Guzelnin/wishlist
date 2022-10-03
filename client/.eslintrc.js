@@ -26,5 +26,6 @@ module.exports = {
     'func-names': 0,
     'react/jsx-props-no-spreading': 0,
     'no-unused-vars': 0,
+    'no-nested-ternary': 0,
   },
 };

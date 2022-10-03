@@ -12,6 +12,7 @@ import FriendsList from './FriendsList';
 import Requests from './Requests';
 import FriendSearch from './FriendSearch';
 import { getRequestsAsync } from '../../redux/actions/friendRequestActions';
+import { getMyRequestsAsync } from '../../redux/actions/myFriendRequestActions';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -24,10 +25,12 @@ export default function FriendsPage() {
   const [pageComp, setPageComp] = useState('friends');
   const friends = useSelector((state) => state.friends);
   const friendRequests = useSelector((state) => state.friendRequests);
+  const myRequests = useSelector((state) => state.myRequests);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getFriendsAsync());
     dispatch(getRequestsAsync());
+    dispatch(getMyRequestsAsync());
   }, []);
   return (
     <Box sx={{ flexGrow: 1 }} style={{ marginTop: '10px' }}>
@@ -67,7 +70,13 @@ export default function FriendsPage() {
             {pageComp === 'requests'
             && <Requests friendRequests={friendRequests} />}
             {pageComp === 'search'
-            && <FriendSearch />}
+            && (
+            <FriendSearch
+              friends={friends}
+              friendRequests={friendRequests}
+              myRequests={myRequests}
+            />
+            )}
           </Item>
         </Grid>
       </Grid>
