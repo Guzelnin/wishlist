@@ -1,3 +1,4 @@
+import Search from '@mui/icons-material/Search';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
@@ -6,12 +7,10 @@ import HomePage from './components/HomePage';
 import Login from './components/Login';
 import MyFooter from './components/MyFooter';
 import MyNavbar from './components/MyNavbar';
-import Search from './components/Search';
 import SignUp from './components/SignUp';
 import { checkAuth } from './redux/actions/userActions';
-import initialDetails from './components/Search/initialDetails';
 
-function App() {
+function App({ el }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkAuth());
@@ -20,9 +19,8 @@ function App() {
   return (
     <>
       <MyNavbar />
-      {/* <Search details={initialDetails} /> */}
       <Routes>
-        <Route path="/" element={<HomePage details={initialDetails} />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/add-wish" element={<AddWish />} />

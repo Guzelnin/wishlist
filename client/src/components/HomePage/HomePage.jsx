@@ -2,15 +2,19 @@ import {
   Button, Card, CardActions, CardContent, CardMedia, Grid, Typography,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getWishesAsync } from '../../redux/actions/wishesActions';
+import PresentCard from '../Search/PresentCard';
 
 export default function HomePage() {
+  const [data, setData] = useState('');
   const allWishes = useSelector((state) => state.wishes);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getWishesAsync());
   }, []);
+
+  // const newFilterWord = allWishes.filter((el) => el.title.toLowerCase().includes(data.toLowerCase()));
   return (
     <Grid
       container
@@ -45,18 +49,25 @@ export default function HomePage() {
       <Grid item xs={8}>
         Желания других пользователей
       </Grid>
-      <Grid item xs={8}>
-        <Grid
-          container
-          spacing={2}
-          direction="row"
-          justifyContent="space-around"
-          alignItems="center"
-        >
-          {allWishes && allWishes.length !== 0
-          && allWishes.map((el) => (
-            <Grid item xs={4} key={el.id}>
-              <Card sx={{ maxWidth: 345 }}>
+      <input
+        type="text"
+        placeholder="Поиск..."
+        // onChange={handlerFilter}
+        onChange={(e) => setData(e.target.value)}
+      />
+      {/* <Grid item xs={8}> */}
+      <Grid
+        container
+        spacing={2}
+        direction="row"
+        justifyContent="space-around"
+        alignItems="center"
+      >
+        {/* {newFilterWord && newFilterWord.length !== 0
+          && newFilterWord.map((el) => ( */}
+        {allWishes && allWishes.length !== 0 && allWishes.filter((value) => value.name.toLowerCase().includes(data.toLowerCase())).map((el) => (
+          <Grid item xs={4}>
+            {/* <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                   component="img"
                   height="140"
@@ -74,12 +85,14 @@ export default function HomePage() {
                 <CardActions>
                   <Button size="small">button</Button>
                 </CardActions>
-              </Card>
-
-            </Grid>
-          ))}
-        </Grid>
+              </Card> */}
+            <PresentCard key={el.id} el={el} />
+          </Grid>
+        ))}
       </Grid>
     </Grid>
+  // </Grid>
   );
 }
+
+// {allWishes.filter((value) => value.name.toLowerCase().includes(data.toLowerCase())).map((el) => <PresentCard key={el.id} el={el} />)}
