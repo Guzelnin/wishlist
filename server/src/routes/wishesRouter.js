@@ -1,4 +1,5 @@
 const express = require('express');
+const { Op } = require('sequelize');
 const {
   Wish, Owner, Category, User, Gift,
 } = require('../db/models');
@@ -47,9 +48,13 @@ router.get('/mypage/friendswishes', async (req, res) => {
           model: Wish,
         },
         {
+          model: User,
+        },
+        {
           model: Gift,
           where: {
             giver_id: currUser.id,
+            wish_status: true,
           },
         },
       ],
@@ -62,18 +67,22 @@ router.get('/mypage/friendswishes', async (req, res) => {
   }
 });
 
-router.get('/mypage/gifts-to-me', async (req, res) => {
+router.get('/mypage/giftstome', async (req, res) => {
   try {
     const giftsForMe = await Owner.findAll({
+      where: {
+        user_id: req.session.user.id,
+      },
       include: [
         {
           model: Wish,
-          where: {
-            user_id: req.session.user.id,
-          },
         },
         {
           model: Gift,
+          where: {
+            wish_status: false,
+            giver_id: { [Op.ne]: req.session.user.id },
+          },
         },
       ],
     });
@@ -85,7 +94,7 @@ router.get('/mypage/gifts-to-me', async (req, res) => {
   }
 });
 
-router.get('/mypage/gifts-from-me', async (req, res) => {
+router.get('/mypage/giftsfromme', async (req, res) => {
   try {
     const giftsFromMe = await Owner.findAll({
       include: [

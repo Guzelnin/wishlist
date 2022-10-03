@@ -1,5 +1,4 @@
 import {
-  // eslint-disable-next-line no-unused-vars
   call, put, takeEvery, takeLatest, throttle, delay,
 } from 'redux-saga/effects';
 import axios from 'axios';

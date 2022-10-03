@@ -1,28 +1,23 @@
-import { useDispatch } from 'react-redux';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
-import Typography from '@mui/material/Typography';
-import { setGiftsToMeAsync } from '../../../redux/actions/myWishesAction';
+import { useDispatch } from 'react-redux';
+import { setGiftsToMeAsync } from '../../../redux/actions/giftsAction';
 
 export default function GiftsForMe({ allMyGifts }) {
   const dispatch = useDispatch();
+  console.log(allMyGifts[0]);
   React.useEffect(() => {
     dispatch(setGiftsToMeAsync());
   }, []);
   return (
 
     <ImageList sx={{ width: 500, height: 450 }}>
-      {allMyGifts.map((item) => (
+      {allMyGifts && allMyGifts?.map((item) => (
         <ImageListItem key={item.Wish.photo}>
           <img
-            src={item.Wish.photo}
+            src={`${item.Wish.photo}?w=248&fit=crop&auto=format`}
             srcSet={`${item.Wish.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
             alt={item.Wish.name}
             loading="lazy"
@@ -31,9 +26,9 @@ export default function GiftsForMe({ allMyGifts }) {
             title={item.Wish.name}
             subtitle={(
               <span>
-                Подарено:
+                Кто подарил:
                 {' '}
-                {item.Gifts.giver_id}
+                {item.Gifts[0].giver_id}
               </span>
 )}
             position="below"

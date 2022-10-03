@@ -25,6 +25,7 @@ export default configureStore({
     entries: entriesReducer,
     page: pageReducer,
     myRequests: myFriendRequestReducer,
+    gifts: myWishesReducer,
     oneWish: oneWishReducer,
   },
   middleware: (mid) => [...mid(), sagaMiddleware],

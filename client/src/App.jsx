@@ -30,7 +30,7 @@ function App({ el }) {
         <Route element={<ProtectedRoute redirect="/login" isAllowed={!!user.id} />}>
           <Route path="/mypage" element={<UserPage />} />
           <Route path="/add-wish" element={<AddWish />} />
-          <Route path="/friends" element={<FriendsPage />} />
+
         </Route>
         <Route element={<ProtectedRoute redirect="/mypage" isAllowed={!user.id} />}>
           <Route path="/login" element={<Login />} />
@@ -40,6 +40,7 @@ function App({ el }) {
         {/* ЗАЩИТИТЬ ПУТЬ К ПОДРОБНОЙ ИНФЕ ПО ПОДАРКУ */}
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<NoPage />} />
+        <Route path="/friends" element={<FriendsPage />} />
       </Routes>
       {/* <Search details={initialDetails} /> */}
       {/* <MyFooter /> */}
