@@ -1,3 +1,4 @@
+import Search from '@mui/icons-material/Search';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
@@ -8,15 +9,13 @@ import HomePage from './components/HomePage';
 import Login from './components/Login';
 // import MyFooter from './components/MyFooter';
 import MyNavbar from './components/MyNavbar';
-// import Search from './components/Search';
 import SignUp from './components/SignUp';
 import ProtectedRoute from './components/HOCs/ProtectedRoute';
 import UserPage from './components/UserPage/UserPage';
 import { checkAuth } from './redux/actions/userActions';
 import NoPage from './components/NoPage/NoPage';
-// import initialDetails from './components/Search/initialDetails';
 
-function App() {
+function App({ el }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkAuth());
