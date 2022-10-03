@@ -12,7 +12,7 @@ export default function UserDescription() {
   React.useEffect(() => {
     dispatch(getMyPage());
   }, []);
-  console.log(myPage);
+  // console.log(myPage);
   return (
     <Row>
       <Col>
@@ -28,12 +28,12 @@ export default function UserDescription() {
               {myPage.name}
             </Typography>
             <Typography variant="body1" gutterBottom>
-              Lorem ipsum dolor sit amet,
+              {/* Lorem ipsum dolor sit amet,
               consectetur adipisicing elit.
               Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
               neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti?
-              Eum quasi quidem quibusdam.
-              {/* {myPage.description} */}
+              Eum quasi quidem quibusdam. */}
+              {myPage.description}
             </Typography>
             <Typography variant="h6" gutterBottom>
               День рождения:
