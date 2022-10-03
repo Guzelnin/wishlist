@@ -29,12 +29,12 @@ function App() {
         <Route element={<ProtectedRoute redirect="/login" isAllowed={!!user.id} />}>
           <Route path="/mypage" element={<UserPage />} />
           <Route path="/add-wish" element={<AddWish />} />
+          <Route path="/friends" element={<FriendsPage />} />
         </Route>
         <Route element={<ProtectedRoute redirect="/mypage" isAllowed={!user.id} />}>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>
-        <Route path="/friends" element={<FriendsPage />} />
         {/* ЗАЩИТИТЬ ПУТЬ К ДРУЗЬЯМ */}
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<NoPage />} />
