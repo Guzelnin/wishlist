@@ -1,49 +1,31 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {
-  Button, Col, Form, FormGroup, Input, Label, Row,
-} from 'reactstrap';
+import { Form } from 'reactstrap';
 import { loginUser } from '../../redux/actions/userActions';
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
-    <Row>
-      <Col>
-        <Form onSubmit={(e) => {
-          dispatch(loginUser(e, Object.fromEntries(new FormData(e.target))));
-          navigate('/');
-        }}
+    <div className="wrapper fadeInDown">
+      <div id="formContent">
+        <h2 className="active"> Вход </h2>
+        <div className="fadeIn first">
+          <img src="https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg" id="icon" alt="User Icon" />
+        </div>
+        <Form
+          onSubmit={(e) => {
+            dispatch(loginUser(e, Object.fromEntries(new FormData(e.target))));
+            navigate('/');
+          }}
         >
-          <FormGroup floating>
-            <Input
-              id="exampleEmail"
-              name="email"
-              placeholder="Email"
-              type="email"
-            />
-            <Label for="exampleEmail">
-              Email
-            </Label>
-          </FormGroup>
-          <FormGroup floating>
-            <Input
-              id="examplePassword"
-              name="password"
-              placeholder="Password"
-              type="password"
-            />
-            <Label for="examplePassword">
-              Password
-            </Label>
-          </FormGroup>
-          <Button>
-            Login
-          </Button>
+          <input type="text" id="name" className="fadeIn second" name="email" placeholder="email" />
+          <input type="text" id="email" className="fadeIn third" name="password" placeholder="password" />
+          <input type="submit" className="fadeIn eight" value="Log In" />
         </Form>
-      </Col>
-    </Row>
+
+      </div>
+    </div>
   );
 }
