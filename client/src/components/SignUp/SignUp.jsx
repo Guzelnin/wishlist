@@ -1,9 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {
-  Button, Col, Form, FormGroup, Input, Label, Row,
-} from 'reactstrap';
+import { Form } from 'reactstrap';
 import { signupUser } from '../../redux/actions/userActions';
 
 export default function SignUp() {

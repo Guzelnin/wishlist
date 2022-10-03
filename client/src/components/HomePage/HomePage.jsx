@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 // import OneWishCard from '../OneWishCard';
 import MyFooter from '../MyFooter';
 import { getWishesAsync } from '../../redux/actions/wishesActions';
-import PresentCard from '../Search/PresentCard';
+import PresentCard from './PresentCard';
 
 export default function HomePage() {
   const [data, setData] = useState('');
@@ -51,7 +51,7 @@ export default function HomePage() {
         Желания других пользователей
       </Grid>
       <input
-        type="text"
+        className="input_search"
         placeholder="Поиск..."
         // onChange={handlerFilter}
         onChange={(e) => setData(e.target.value)}

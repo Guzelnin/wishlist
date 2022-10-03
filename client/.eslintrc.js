@@ -29,5 +29,8 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'no-unused-vars': 0,
     'react/button-has-type': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/anchor-is-valid': 0,
+    'jsx-a11y/interactive-supports-focus': 0,
   },
 };

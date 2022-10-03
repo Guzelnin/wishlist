@@ -1,10 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import {
-  Button, Col, Form, FormGroup, Input, Label, Row,
-} from 'reactstrap';
-import { loginUser, signupUser } from '../../redux/actions/userActions';
+import { Form } from 'reactstrap';
+import { loginUser } from '../../redux/actions/userActions';
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -12,7 +10,7 @@ export default function Login() {
   return (
     <div className="wrapper fadeInDown">
       <div id="formContent">
-        <h2 className="active"> Регистрация </h2>
+        <h2 className="active"> Вход </h2>
         <div className="fadeIn first">
           <img src="https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg" id="icon" alt="User Icon" />
         </div>
