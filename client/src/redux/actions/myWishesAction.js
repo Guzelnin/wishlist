@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { ADD_WISH, GET_MY_WISHES } from '../types';
+import { ADD_WISH, GET_MY_WISHES, SET_FRIENDS_WISHES } from '../types';
 
 export const getMyWishes = (payload) => ({ type: GET_MY_WISHES, payload });
 export const addWish = (payload) => ({ type: ADD_WISH, payload });
+export const setFriendsWishes = (payload) => ({ type: SET_FRIENDS_WISHES, payload });
 
 export const getMyWishesAsync = () => (dispatch) => {
   axios.get('/api/wishes/mypage')
@@ -13,5 +14,11 @@ export const getMyWishesAsync = () => (dispatch) => {
 export const addWishAsync = (input) => (dispatch) => {
   axios.post('/api/wishes/add', input)
     .then((res) => dispatch(addWish(res.data)))
+    .catch(console.log);
+};
+
+export const setFriendsWishesAsync = () => (dispatch) => {
+  axios('/api/user/mypage/friendswishes')
+    .then((data) => dispatch(setFriendsWishes(data.data)))
     .catch(console.log);
 };

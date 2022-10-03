@@ -38,6 +38,30 @@ router.get('/mypage', async (req, res) => {
   }
 });
 
+router.get('/mypage/friendswishes', async (req, res) => {
+  try {
+    const currUser = await User.findOne({ where: { id: req.session.user.id } });
+    const notedWishes = await Owner.findAll({
+      include: [
+        {
+          model: Wish,
+        },
+        {
+          model: Gift,
+          where: {
+            giver_id: currUser.id,
+          },
+        },
+      ],
+    });
+    console.log(notedWishes);
+    res.send(notedWishes);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
 router.post('/add', async (req, res) => {
   try {
     const {

@@ -22,3 +22,4 @@ export const ADD_FRIEND = 'ADD_FRIEND';
 
 // my page
 export const SET_MY_PAGE = 'SET_MY_PAGE';
+export const SET_FRIENDS_WISHES = 'SET_FRIENDS_WISHES';

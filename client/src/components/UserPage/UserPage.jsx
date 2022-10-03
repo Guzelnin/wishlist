@@ -1,9 +1,8 @@
 import { Container } from '@mui/system';
 import React from 'react';
+import UserDescription from '../UserPage/UserDescription';
+import WishPlace from '../UserPage/WishPlace';
 import PageNavbar from './PageNavbar';
-import UserDescription from '../UserDescription';
-
-import WishPlace from '../WishPlace';
 
 export default function UserPage() {
   return (

@@ -1,4 +1,4 @@
-import { ADD_WISH, GET_MY_WISHES } from '../types';
+import { ADD_WISH, GET_MY_WISHES, SET_FRIENDS_WISHES } from '../types';
 
 export default function myWishesReducer(state = [], action) {
   const { type, payload } = action;
@@ -7,6 +7,8 @@ export default function myWishesReducer(state = [], action) {
       return payload;
     case ADD_WISH:
       return [...state, payload];
+    case SET_FRIENDS_WISHES:
+      return payload;
     default:
       return state;
   }

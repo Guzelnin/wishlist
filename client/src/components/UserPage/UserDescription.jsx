@@ -12,7 +12,7 @@ export default function UserDescription() {
   React.useEffect(() => {
     dispatch(getMyPage());
   }, []);
-  console.log(myPage);
+  // console.log(myPage);
   return (
     <Row>
       <Col>
