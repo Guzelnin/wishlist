@@ -1,6 +1,8 @@
 const express = require('express');
 const { Op } = require('sequelize');
-const { Category, Friend, User } = require('../db/models');
+const {
+  Category, Friend, User, Owner, Wish,
+} = require('../db/models');
 
 const router = express.Router();
 
@@ -171,6 +173,25 @@ router.post('/entry', async (req, res) => {
     }
   } catch (error) {
     console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/wishes/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const wish = await Owner.findOne({
+      where: {
+        wish_id: id,
+        user_id: req.session.user.id,
+      },
+      include: {
+        model: Wish,
+      },
+    });
+    res.send(wish);
+  } catch (error) {
+    console.log(error.message);
     res.sendStatus(500);
   }
 });

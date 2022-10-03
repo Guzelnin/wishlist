@@ -14,6 +14,7 @@ import ProtectedRoute from './components/HOCs/ProtectedRoute';
 import UserPage from './components/UserPage/UserPage';
 import { checkAuth } from './redux/actions/userActions';
 import NoPage from './components/NoPage/NoPage';
+import DetailWishPage from './components/DetailWishPage';
 // import initialDetails from './components/Search/initialDetails';
 
 function App() {
@@ -35,7 +36,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
         </Route>
         <Route path="/friends" element={<FriendsPage />} />
-        {/* ЗАЩИТИТЬ ПУТЬ К ДРУЗЬЯМ */}
+        <Route path="/wishes/:id" element={<DetailWishPage />} />
+        {/* ЗАЩИТИТЬ ПУТЬ К ДРУЗЬЯМ И ПОДРОБНОЙ ИНФЕ ПО ПОДАРКУ */}
         <Route path="/" element={<HomePage />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
