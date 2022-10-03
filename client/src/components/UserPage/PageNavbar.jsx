@@ -7,7 +7,6 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import { Grid } from '@mui/material';
 import { getMyWishesAsync } from '../../redux/actions/myWishesAction';
-import WishPlace from './WishPlace';
 import MyWishes from './ComponentsOfPage/MyWishes';
 import FriendsWishes from './ComponentsOfPage/FriendsWishes';
 import GiftsForMe from './ComponentsOfPage/GiftsForMe';
@@ -20,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
 }));
 
-export default function PageNavbar() {
+export default function PageNavbar({ myWish, friendWishes }) {
   const [pageComponent, setPageComponent] = React.useState('mywishes');
   const dispatch = useDispatch();
   const myWishes = useSelector((state) => state.myWishes);
@@ -39,7 +38,7 @@ export default function PageNavbar() {
       }}
     >
       <Item>
-        <ButtonGroup variant="text" aria-label="text button group" style={{ marginTop: '50px' }}>
+        <ButtonGroup variant="text" aria-label="text button group">
           <Button onClick={() => setPageComponent('mywishes')}>Мои желания</Button>
           <Button onClick={() => setPageComponent('friendswishes')}>Желания друзей</Button>
           <Button onClick={() => setPageComponent('giftstome')}>Подарки мне</Button>
@@ -49,10 +48,10 @@ export default function PageNavbar() {
       <Grid item xs={8}>
         <Item>
           {pageComponent === 'mywishes'
-            && <MyWishes />}
+            && <MyWishes myWish={myWish} />}
           {/* myWishes={myWishes} */}
           {pageComponent === 'friendswishes'
-            && <FriendsWishes />}
+            && <FriendsWishes friendWishes={friendWishes} />}
           {pageComponent === 'giftstome'
             && <GiftsForMe />}
           {pageComponent === 'giftsfromme'

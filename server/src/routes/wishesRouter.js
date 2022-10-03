@@ -30,7 +30,7 @@ router.get('/mypage', async (req, res) => {
         model: Gift,
       }],
     });
-    console.log(myWishes);
+    // console.log(myWishes);
     res.send(myWishes);
   } catch (error) {
     console.log(error);
@@ -54,7 +54,7 @@ router.get('/mypage/friendswishes', async (req, res) => {
         },
       ],
     });
-    console.log(notedWishes);
+    // console.log(notedWishes);
     res.send(notedWishes);
   } catch (error) {
     console.log(error);

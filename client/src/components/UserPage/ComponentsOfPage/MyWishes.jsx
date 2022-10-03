@@ -1,7 +1,7 @@
 import * as React from 'react';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
+// import ImageList from '@mui/material/ImageList';
+// import ImageListItem from '@mui/material/ImageListItem';
+// import ImageListItemBar from '@mui/material/ImageListItemBar';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -12,13 +12,11 @@ import Typography from '@mui/material/Typography';
 import HttpsIcon from '@mui/icons-material/Https';
 import { getMyWishesAsync } from '../../../redux/actions/myWishesAction';
 
-export default function MyWishes() {
+export default function MyWishes({ myWish }) {
   const dispatch = useDispatch();
-  const myWish = useSelector((state) => state.myWishes);
   React.useEffect(() => {
     dispatch(getMyWishesAsync());
   }, []);
-  console.log(myWish[0]);
   return (
     <div>
       {myWish && myWish?.map((el) => (
@@ -27,7 +25,7 @@ export default function MyWishes() {
             component="img"
             height="140"
             image={el.Wish.photo}
-            alt="el.Wish.name"
+            alt={el.Wish.name}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
