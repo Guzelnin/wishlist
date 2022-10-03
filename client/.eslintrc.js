@@ -28,5 +28,6 @@ module.exports = {
     'no-trailing-spaces': 0,
     'react/jsx-props-no-spreading': 0,
     'no-unused-vars': 0,
+    'react/button-has-type': 0,
   },
 };

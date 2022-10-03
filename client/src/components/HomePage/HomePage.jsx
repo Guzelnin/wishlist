@@ -16,7 +16,6 @@ export default function HomePage() {
     dispatch(getWishesAsync());
   }, []);
 
-  // const newFilterWord = allWishes.filter((el) => el.title.toLowerCase().includes(data.toLowerCase()));
   return (
     <Grid
       container
