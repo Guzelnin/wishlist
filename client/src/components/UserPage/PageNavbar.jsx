@@ -6,11 +6,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import { Grid } from '@mui/material';
-import { getMyWishesAsync } from '../../redux/actions/myWishesAction';
+import { getMyWishesAsync, setFriendsWishesAsync } from '../../redux/actions/myWishesAction';
 import MyWishes from './ComponentsOfPage/MyWishes';
 import FriendsWishes from './ComponentsOfPage/FriendsWishes';
 import GiftsForMe from './ComponentsOfPage/GiftsForMe';
 import GirtsFromMe from './ComponentsOfPage/GirtsFromMe';
+import { setGiftsFromMeAsync, setGiftsToMeAsync } from '../../redux/actions/giftsAction';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -19,12 +20,17 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
 }));
 
-export default function PageNavbar({ myWish, friendWishes, allMyGifts }) {
+export default function PageNavbar({
+  myWish, friendWishes, allMyGifts, giftsFromMe, 
+}) {
   const [pageComponent, setPageComponent] = React.useState('mywishes');
   const dispatch = useDispatch();
   const myWishes = useSelector((state) => state.myWishes);
   React.useEffect(() => {
     dispatch(getMyWishesAsync());
+    dispatch(setFriendsWishesAsync());
+    dispatch(setGiftsToMeAsync());
+    dispatch(setGiftsFromMeAsync());
   }, []);
   return (
     <Box
@@ -55,7 +61,7 @@ export default function PageNavbar({ myWish, friendWishes, allMyGifts }) {
           {pageComponent === 'giftstome'
             && <GiftsForMe allMyGifts={allMyGifts} />}
           {pageComponent === 'giftsfromme'
-            && <GirtsFromMe />}
+            && <GirtsFromMe giftsFromMe={giftsFromMe} />}
         </Item>
       </Grid>
     </Box>
