@@ -36,7 +36,7 @@ export default function MyWishes({ myWish }) {
           <CardActions>
             <Button size="small">Открыть</Button>
             <Button size="small">Уже подарили</Button>
-            {el.Gifts.wish_status
+            {el.Gifts.giver_id
               ? <Button disabled>Забронировано</Button>
               : <Button size="small">Удалить</Button>}
           </CardActions>

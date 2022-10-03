@@ -1,9 +1,13 @@
 import axios from 'axios';
-import { ADD_WISH, GET_MY_WISHES, SET_FRIENDS_WISHES } from '../types';
+import {
+  ADD_WISH, GET_MY_WISHES, SET_FRIENDS_WISHES, SET_GIFTS_TO_ME, SET_GIFTS_FROM_ME,
+} from '../types';
 
 export const getMyWishes = (payload) => ({ type: GET_MY_WISHES, payload });
 export const addWish = (payload) => ({ type: ADD_WISH, payload });
 export const setFriendsWishes = (payload) => ({ type: SET_FRIENDS_WISHES, payload });
+export const setGiftsToMe = (payload) => ({ type: SET_GIFTS_TO_ME, payload });
+export const setGiftsFromMe = (payload) => ({ type: SET_GIFTS_FROM_ME, payload });
 
 export const getMyWishesAsync = () => (dispatch) => {
   axios.get('/api/wishes/mypage')
@@ -21,5 +25,19 @@ export const setFriendsWishesAsync = () => (dispatch) => {
   axios('/api/wishes/mypage/friendswishes')
     // .then((data) => console.log(data))
     .then((data) => dispatch(setFriendsWishes(data.data)))
+    .catch(console.log);
+};
+
+export const setGiftsToMeAsync = () => (dispatch) => {
+  axios('/api/wishes/mypage/gifts-to-me')
+    // .then((data) => console.log(data))
+    .then((data) => dispatch(setGiftsToMe(data.data)))
+    .catch(console.log);
+};
+
+export const setGiftsFromMeAsync = () => (dispatch) => {
+  axios('/api/wishes/mypage/gifts-from-me')
+    // .then((data) => console.log(data))
+    .then((data) => dispatch(setGiftsFromMe(data.data)))
     .catch(console.log);
 };

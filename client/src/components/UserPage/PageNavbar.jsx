@@ -19,7 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
 }));
 
-export default function PageNavbar({ myWish, friendWishes }) {
+export default function PageNavbar({ myWish, friendWishes, allMyGifts }) {
   const [pageComponent, setPageComponent] = React.useState('mywishes');
   const dispatch = useDispatch();
   const myWishes = useSelector((state) => state.myWishes);
@@ -53,7 +53,7 @@ export default function PageNavbar({ myWish, friendWishes }) {
           {pageComponent === 'friendswishes'
             && <FriendsWishes friendWishes={friendWishes} />}
           {pageComponent === 'giftstome'
-            && <GiftsForMe />}
+            && <GiftsForMe allMyGifts={allMyGifts} />}
           {pageComponent === 'giftsfromme'
             && <GirtsFromMe />}
         </Item>
