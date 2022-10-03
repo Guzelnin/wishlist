@@ -7,7 +7,7 @@ import AddWish from './components/AddWish';
 import FriendsPage from './components/FriendsPage';
 import HomePage from './components/HomePage';
 import Login from './components/Login';
-// import MyFooter from './components/MyFooter';
+import MyFooter from './components/MyFooter';
 import MyNavbar from './components/MyNavbar';
 import SignUp from './components/SignUp';
 import ProtectedRoute from './components/HOCs/ProtectedRoute';
@@ -43,7 +43,7 @@ function App({ el }) {
         <Route path="/friends" element={<FriendsPage />} />
       </Routes>
       {/* <Search details={initialDetails} /> */}
-      {/* <MyFooter /> */}
+      <MyFooter />
     </Container>
   );
 }
