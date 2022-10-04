@@ -214,4 +214,35 @@ router.post('/add/copy/:id', async (req, res) => {
   }
 });
 
+router.patch('/:id/edit', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      categoryId, description, date, privateWish,
+    } = req.body;
+    const wish = await Owner.findOne({
+      where: {
+        user_id: req.session.user.id,
+      },
+      include: {
+        model: Wish,
+        where: {
+          id,
+        },
+        include: {
+          model: Category,
+        },
+      },
+    });
+    if (categoryId && description && date && privateWish) {
+      await wish.update({ description, date, private: privateWish });
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
 module.exports = router;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_WISHES, SET_FRIENDS_WISHES } from '../types';
+import { GET_WISHES } from '../types';
 
 export const getWishes = (payload) => ({ type: GET_WISHES, payload });
 
