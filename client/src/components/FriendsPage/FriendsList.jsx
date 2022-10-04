@@ -20,7 +20,7 @@ export default function FriendsList({ friends }) {
           direction="column"
           justifyContent="center"
           alignItems="center"
-          onClick={() => navigate(`/users/${el.id}`)}
+          onClick={() => navigate(`/${el.id}`)}
         >
           <Avatar
             alt="friend"

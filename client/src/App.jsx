@@ -49,7 +49,7 @@ function App({ el }) {
         <Route path="/wishes/:id/copy" element={<NewWishCopy />} />
 
         {/* ЗАЩИТИТЬ ПУТЬ К ПОДРОБНОЙ ИНФЕ ПО ПОДАРКУ */}
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage user={user} />} />
         <Route path="/friends" element={<FriendsPage />} />
         <Route path="/users/:id/edit" element={<UserPageEditing />} />
         <Route path="*" element={<NoPage />} />
