@@ -7,6 +7,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { Button, Link, Typography } from '@mui/material';
 import { getOneWishAsync } from '../../redux/actions/oneWishActions';
+import ApiComponent from './ApiComponent';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -86,7 +87,8 @@ export default function DetailWishPage() {
             </Grid>
           </Item>
         </Grid>
-        <Grid item xs={12} md={12}>
+        <ApiComponent id={id} />
+        {/* <Grid item xs={12} md={12}>
           <Item>
             <h3 style={{ marginBottom: '10px' }}>Варианты:</h3>
             <Grid
@@ -129,8 +131,8 @@ export default function DetailWishPage() {
                 </Grid>
               </Grid>
             </Grid>
-          </Item>
-        </Grid>
+          </Item> */}
+        {/* </Grid> */}
       </Grid>
     </Box>
   );
