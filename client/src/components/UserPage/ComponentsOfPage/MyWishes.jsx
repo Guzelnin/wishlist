@@ -8,16 +8,19 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import HttpsIcon from '@mui/icons-material/Https';
 import { Link, useParams } from 'react-router-dom';
-import { getMyWishesAsync } from '../../../redux/actions/myWishesAction';
+import { getMyWishesAsync, deleteMyWishesAsync } from '../../../redux/actions/myWishesAction';
 
 export default function MyWishes({ myWish }) {
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(getMyWishesAsync());
+    // dispatch(deleteMyWishesAsync());
   }, []);
+  console.log(myWish);
   return (
     <div>
       {myWish && myWish?.map((el) => (
+        
         <Card sx={{ maxWidth: 345 }} key={el.id}>
           <CardMedia
             component="img"
@@ -39,7 +42,7 @@ export default function MyWishes({ myWish }) {
             <Button size="small">Уже подарили</Button>
             {el.Gifts.giver_id
               ? <Button disabled>Забронировано</Button>
-              : <Button size="small">Удалить</Button>}
+              : <Button size="small" onClick={() => dispatch(deleteMyWishesAsync(el.id))} className="danger">Удалить</Button>}
           </CardActions>
         </Card>
       ))}

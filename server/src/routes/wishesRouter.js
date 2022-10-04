@@ -245,4 +245,32 @@ router.patch('/:id/edit', async (req, res) => {
   }
 });
 
+router.delete('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    // const wish = await Wish.findOne({
+    //   where: {
+    //     user_id: req.session.user.id,
+    //   },
+    //   include: {
+    //     model: Wish,
+    //     where: {
+    //       id,
+    //     },
+    //   },
+    // });
+    const wish = await Wish.findOne({
+      where: {
+        id,
+      },
+    });
+    console.log(wish);
+    await Wish.destroy({ where: { id } });
+    res.sendStatus(200);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(403);
+  }
+});
+
 module.exports = router;
