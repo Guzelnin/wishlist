@@ -8,9 +8,11 @@ import Paper from '@mui/material/Paper';
 import { Grid } from '@mui/material';
 // import { getMyWishesAsync, setFriendsWishesAsync } from '../../redux/actions/myWishesAction';
 // import { setGiftsFromMeAsync, setGiftsToMeAsync } from '../../redux/actions/giftsAction';
+import { useParams } from 'react-router-dom';
 import UserWishes from './Components/UserWishes';
 import UserGifts from './Components/UserGifts';
 import GiftsForUser from './Components/GiftsForUser';
+import { setUserWishesAsync } from '../../redux/actions/anotherWishesActions';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -19,15 +21,13 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
 }));
 
-export default function AnotherPageNavbar() {
+export default function AnotherPageNavbar({ anotherWishes }) {
   const [pageComponent, setPageComponent] = React.useState('mywishes');
   const dispatch = useDispatch();
-  // const myWishes = useSelector((state) => state.myWishes);
+  // const { id } = useParams();
+  // const anotherWishes = useSelector((state) => state.anotherWishes);
   // React.useEffect(() => {
-  //   dispatch(getMyWishesAsync());
-  //   dispatch(setFriendsWishesAsync());
-  //   dispatch(setGiftsToMeAsync());
-  //   dispatch(setGiftsFromMeAsync());
+  //   dispatch(setUserWishesAsync());
   // }, []);
   return (
     <Box
@@ -50,7 +50,7 @@ export default function AnotherPageNavbar() {
       <Grid item xs={8}>
         <Item>
           {pageComponent === 'thiswishes'
-            && <UserWishes />}
+            && <UserWishes allUserWishes={anotherWishes} />}
           {/* myWishes={myWishes} */}
           {pageComponent === 'usergifts'
             && <UserGifts />}

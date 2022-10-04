@@ -1,19 +1,17 @@
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import HttpsIcon from '@mui/icons-material/Https';
 import { Link, useParams } from 'react-router-dom';
 import { setUserWishesAsync } from '../../../redux/actions/anotherWishesActions';
 
-export default function UserWishes() {
+export default function UserWishes({ allUserWishes }) {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const allUserWishes = useSelector((state) => state.anotherWishes);
   React.useEffect(() => {
     dispatch(setUserWishesAsync(id));
   }, []);
