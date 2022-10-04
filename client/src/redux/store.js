@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import categoriesReducer from './reducers/categoriesReducer';
+import copyWishReducer from './reducers/copyWishReduser';
 import entriesReducer from './reducers/entriesReducer';
 import friendRequestReducer from './reducers/friendRequestsReducer';
 import friendsReducer from './reducers/friendsReducer';
@@ -27,6 +28,7 @@ export default configureStore({
     myRequests: myFriendRequestReducer,
     gifts: myWishesReducer,
     oneWish: oneWishReducer,
+    oneWishToCopy: copyWishReducer,
   },
   middleware: (mid) => [...mid(), sagaMiddleware],
 });

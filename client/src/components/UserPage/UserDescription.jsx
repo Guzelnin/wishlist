@@ -2,17 +2,21 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { useDispatch, useSelector } from 'react-redux';
-import { CardContent, Typography } from '@mui/material';
+import { Button, CardContent, Typography } from '@mui/material';
 import { Col, Row } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
 import { getMyPage } from '../../redux/actions/pageAction';
 
 export default function UserDescription() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const myPage = useSelector((state) => state.page);
   React.useEffect(() => {
     dispatch(getMyPage());
   }, []);
-  // console.log(myPage);
+  React.useEffect(() => {
+    dispatch(getMyPage());
+  }, [myPage.name, myPage.email, myPage.password, myPage.description, myPage.bday, myPage.photo]);
   return (
     <Row>
       <Col>
@@ -40,6 +44,7 @@ export default function UserDescription() {
               {' '}
               {myPage.bday}
             </Typography>
+            <Button onClick={() => navigate('/friends')} style={{ marginTop: '50px' }}>Мои друзья</Button>
           </CardContent>
         </Stack>
       </Col>

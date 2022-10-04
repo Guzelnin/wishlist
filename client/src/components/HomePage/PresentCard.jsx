@@ -5,26 +5,28 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActions, CardMedia } from '@material-ui/core';
 import { Button } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
 
 function PresentCard({ el }) {
+  const navigate = useNavigate();
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="140"
-        image={el.photo}
+        image={el.Wish.photo}
         alt="wish"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {el.name}
+          {el.Wish.name}
         </Typography>
         <Typography gutterBottom component="div">
-          {`категория: ${el.Category.title}`}
+          {`категория: ${el.Wish.Category.title}`}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">button</Button>
+        <Button size="small" onClick={() => navigate(`/wishes/${el.Wish.id}/copy`)}>Хочу себе!</Button>
       </CardActions>
     </Card>
   );

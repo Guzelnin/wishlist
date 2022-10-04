@@ -19,6 +19,12 @@ export const addWishAsync = (input) => (dispatch) => {
     .catch(console.log);
 };
 
+export const addCopyWishAsync = (input, id) => (dispatch) => {
+  axios.post(`/api/wishes/add/copy/${id}`, input)
+    .then((res) => dispatch(addWish(res.data)))
+    .catch(console.log);
+};
+
 export const setFriendsWishesAsync = () => (dispatch) => {
   axios('/api/wishes/mypage/friendswishes')
     // .then((data) => console.log(data))
