@@ -1,5 +1,5 @@
 const express = require('express');
-// const { Op } = require('sequelize');
+const { Op } = require('sequelize');
 const {
   Wish, Owner, Category, User, Gift,
 } = require('../db/models');
@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
       where: {
         private: false,
         user_id: {
-          [Op.ne]: req.session.user.id,
+          [Op.ne]: req.session.user ? req.session.user.id : null,
         },
       },
       include: {

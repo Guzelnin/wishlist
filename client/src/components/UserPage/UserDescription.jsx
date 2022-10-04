@@ -20,7 +20,7 @@ export default function UserDescription() {
   return (
     <Row>
       <Col>
-        <Stack direction="row" spacing={2}>
+        <Stack direction="row">
           <Avatar
             alt="My avatar"
             src={myPage.photo}
@@ -45,12 +45,10 @@ export default function UserDescription() {
               {myPage.bday}
             </Typography>
             <Row>
-              <Col>
-                <Button variant="contained">Редактировать</Button>
-              </Col>
-              <Col>
-                <Button onClick={() => navigate('/friends')} style={{ marginTop: '50px' }} variant="contained">Друзья</Button>
-              </Col>
+              {/* <Col> */}
+              <Button onClick={() => navigate(`/users/${myPage.id}/edit`)} style={{ marginTop: '20px' }} variant="outlined">Редактировать</Button>
+              <Button onClick={() => navigate('/friends')} style={{ marginTop: '20px' }} variant="contained">Друзья</Button>
+              {/* </Col> */}
             </Row>
           </CardContent>
         </Stack>
