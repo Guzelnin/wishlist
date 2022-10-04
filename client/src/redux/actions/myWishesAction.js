@@ -1,11 +1,12 @@
 import axios from 'axios';
 import {
-  ADD_WISH, GET_MY_WISHES, SET_FRIENDS_WISHES,
+  ADD_WISH, GET_MY_WISHES, SET_FRIENDS_WISHES, DELETE_MY_WISH,
 } from '../types';
 
 export const getMyWishes = (payload) => ({ type: GET_MY_WISHES, payload });
 export const addWish = (payload) => ({ type: ADD_WISH, payload });
 export const setFriendsWishes = (payload) => ({ type: SET_FRIENDS_WISHES, payload });
+export const deleteMyWishes = (payload) => ({ type: DELETE_MY_WISH, payload });
 
 export const getMyWishesAsync = () => (dispatch) => {
   axios.get('/api/wishes/mypage')
@@ -29,5 +30,11 @@ export const setFriendsWishesAsync = () => (dispatch) => {
   axios('/api/wishes/mypage/friendswishes')
     // .then((data) => console.log(data))
     .then((data) => dispatch(setFriendsWishes(data.data)))
+    .catch(console.log);
+};
+
+export const deleteMyWishesAsync = (id) => (dispatch) => {
+  axios.delete(`/api/wishes/${id}`)
+    .then(() => dispatch(deleteMyWishes(id)))
     .catch(console.log);
 };

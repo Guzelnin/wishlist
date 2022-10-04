@@ -309,7 +309,7 @@ input[type=date]:placeholder {
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: #56baed;
+  background-color: #41545d;
   content: "";
   transition: width 0.2s;
 }
@@ -358,7 +358,7 @@ input[type=date]:placeholder {
   width: 100%;
  background: rgb(113, 140, 118);
   color: #000;
-  opacity: 0.85;
+  opacity: 0.9;
   z-index: 100;
  
 }
@@ -395,7 +395,7 @@ input[type=date]:placeholder {
 }
  .header_name{
   margin-top: 3px;
-  color: rgb(93, 122, 65);
+  color: rgb(15, 23, 7);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease-in-out;
@@ -409,7 +409,7 @@ input[type=date]:placeholder {
 } */
 
 .navbar a:hover{
-    color: #117964;
+    color: #103f35;
 }
 
 @media (max-width: 768px){
@@ -506,6 +506,7 @@ input[type=date]:placeholder {
 	font: bold 16px sans-serif;
 	padding: 55px 50px;
   margin-top: 60px;
+
 }
 
 .footer-distributed .footer-left,
