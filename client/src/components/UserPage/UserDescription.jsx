@@ -2,7 +2,7 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { useDispatch, useSelector } from 'react-redux';
-import { CardContent, Typography } from '@mui/material';
+import { Button, CardContent, Typography } from '@mui/material';
 import { Col, Row } from 'reactstrap';
 import { getMyPage } from '../../redux/actions/pageAction';
 
@@ -40,6 +40,14 @@ export default function UserDescription() {
               {' '}
               {myPage.bday}
             </Typography>
+            <Row>
+              <Col>
+                <Button variant="contained">Редактировать</Button>
+              </Col>
+              <Col>
+                <Button variant="contained">Друзья</Button>
+              </Col>
+            </Row>
           </CardContent>
         </Stack>
       </Col>
