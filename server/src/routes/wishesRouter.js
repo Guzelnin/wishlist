@@ -1,5 +1,5 @@
 const express = require('express');
-const { Op } = require('sequelize');
+// const { Op } = require('sequelize');
 const {
   Wish, Owner, Category, User, Gift,
 } = require('../db/models');
@@ -69,24 +69,25 @@ router.get('/mypage/friendswishes', async (req, res) => {
 
 router.get('/mypage/giftstome', async (req, res) => {
   try {
-    const giftsForMe = await Owner.findAll({
+    const giftsForMe = await Gift.findAll({
       where: {
-        user_id: req.session.user.id,
+        owner_id: req.session.user.id,
+        wish_status: false,
       },
       include: [
         {
-          model: Wish,
+          model: Owner,
+          include: {
+            model: Wish,
+          },
         },
         {
-          model: Gift,
-          where: {
-            wish_status: false,
-            giver_id: { [Op.ne]: req.session.user.id },
-          },
+          model: User,
         },
       ],
     });
     // console.log(notedWishes);
+    console.log(giftsForMe);
     res.send(giftsForMe);
   } catch (error) {
     console.log(error);
@@ -96,17 +97,20 @@ router.get('/mypage/giftstome', async (req, res) => {
 
 router.get('/mypage/giftsfromme', async (req, res) => {
   try {
-    const giftsFromMe = await Owner.findAll({
+    const giftsFromMe = await Gift.findAll({
+      where: {
+        giver_id: req.session.user.id,
+        wish_status: false,
+      },
       include: [
         {
-          model: Wish,
-        },
-        {
-          model: Gift,
-          where: {
-            giver_id: req.session.user.id,
-            wish_status: false,
+          model: Owner,
+          include: [{
+            model: Wish,
           },
+          {
+            model: User,
+          }],
         },
       ],
     });
