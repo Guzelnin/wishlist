@@ -15,7 +15,7 @@ export default function FriendsWishes({ friendWishes }) {
   React.useEffect(() => {
     dispatch(setFriendsWishesAsync());
   }, []);
-  console.log(friendWishes[0]);
+  console.log(friendWishes);
   return (
     <div>
       {friendWishes && friendWishes.length !== 0 && friendWishes?.map((el) => (
@@ -23,27 +23,26 @@ export default function FriendsWishes({ friendWishes }) {
           <CardMedia
             component="img"
             height="140"
-            image={el.Wish.photo}
-            alt={el.Wish.name}
+            image={el?.Wish.photo}
+            alt={el?.Wish.name}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {/* {el.Wish.name} */}
-              {/* <HttpsIcon style={{ marginLeft: '30px' }} /> */}
+              {el?.Wish?.name}
+              <HttpsIcon style={{ marginLeft: '30px' }} />
             </Typography>
             <Typography>
               {' '}
               Кому:
               {' '}
-              {/* {el.User.name} */}
+              {el?.User?.name}
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Открыть</Button>
-            {/* <Button size="small">Уже подарили</Button> */}
-            {/* {el.Gifts.wish_status
-                ? <Button disabled>Забронировано</Button>
-                : <Button size="small">Удалить</Button>} */}
+            <Button size="small">Открыть</Button> 
+            {el?.Gifts?.wish_status
+              ? <Button disabled>Забронировано</Button>
+              : <Button size="small">Подарено</Button>} 
           </CardActions>
         </Card>
       ))}

@@ -40,7 +40,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/mypage', async (req, res) => {
+router.get('/mypage/mywishes', async (req, res) => {
   try {
     const currUser = await User.findOne({ where: { id: req.session.user.id } });
     const myWishes = await Owner.findAll({
@@ -54,6 +54,16 @@ router.get('/mypage', async (req, res) => {
     });
     // console.log(myWishes);
     res.send(myWishes);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/mypage', async (req, res) => {
+  try {
+    const currUser = await User.findOne({ where: { id: req.session.user.id } });
+    res.send(currUser);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);

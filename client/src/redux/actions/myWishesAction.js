@@ -8,7 +8,7 @@ export const addWish = (payload) => ({ type: ADD_WISH, payload });
 export const setFriendsWishes = (payload) => ({ type: SET_FRIENDS_WISHES, payload });
 
 export const getMyWishesAsync = () => (dispatch) => {
-  axios.get('/api/wishes/mypage')
+  axios.get('/api/wishes/mypage/mywishes')
     .then((res) => dispatch(getMyWishes(res.data)))
     .catch(console.log);
 };
