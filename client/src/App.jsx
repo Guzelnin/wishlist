@@ -15,6 +15,7 @@ import UserPage from './components/UserPage/UserPage';
 import { checkAuth } from './redux/actions/userActions';
 import NoPage from './components/NoPage/NoPage';
 import DetailWishPage from './components/DetailWishPage';
+import AnotherUserPage from './components/AnotherUserPage/AnotherUserPage';
 // import initialDetails from './components/Search/initialDetails';
 
 function App({ el }) {
@@ -23,6 +24,7 @@ function App({ el }) {
     dispatch(checkAuth());
   }, []);
   const user = useSelector((state) => state.user);
+  const anoterPage = useSelector((state) => state.anotherPage);
   return (
     <Container>
       <MyNavbar />
@@ -30,7 +32,6 @@ function App({ el }) {
         <Route element={<ProtectedRoute redirect="/login" isAllowed={!!user.id} />}>
           <Route path="/mypage" element={<UserPage />} />
           <Route path="/add-wish" element={<AddWish />} />
-
         </Route>
         <Route element={<ProtectedRoute redirect="/mypage" isAllowed={!user.id} />}>
           <Route path="/login" element={<Login />} />
@@ -39,8 +40,9 @@ function App({ el }) {
         <Route path="/wishes/:id" element={<DetailWishPage />} />
         {/* ЗАЩИТИТЬ ПУТЬ К ПОДРОБНОЙ ИНФЕ ПО ПОДАРКУ */}
         <Route path="/" element={<HomePage />} />
-        <Route path="*" element={<NoPage />} />
         <Route path="/friends" element={<FriendsPage />} />
+        <Route path="*" element={<NoPage />} />
+        <Route path="/:id" element={<AnotherUserPage />} />
       </Routes>
       {/* <Search details={initialDetails} /> */}
       {/* <MyFooter /> */}

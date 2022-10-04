@@ -6,6 +6,7 @@ const FileStore = require('session-file-store')(session);
 const userRouter = require('./routes/userRouter');
 const wishesRouter = require('./routes/wishesRouter');
 const apiRouter = require('./routes/apiRouter');
+const anotherPageRouter = require('./routes/anotherPageRouter');
 
 require('dotenv').config();
 
@@ -34,5 +35,6 @@ app.use(session({
 app.use('/api/user', userRouter);
 app.use('/api/wishes', wishesRouter);
 app.use('/api/v1', apiRouter);
+app.use('/api/another', anotherPageRouter);
 
 app.listen(PORT, () => console.log(`Server has started on PORT ${PORT}`));

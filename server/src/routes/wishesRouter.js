@@ -1,5 +1,5 @@
 const express = require('express');
-const { Op } = require('sequelize');
+// const { Op } = require('sequelize');
 const {
   Wish, Owner, Category, User, Gift,
 } = require('../db/models');
@@ -87,6 +87,7 @@ router.get('/mypage/giftstome', async (req, res) => {
       ],
     });
     // console.log(notedWishes);
+    console.log(giftsForMe);
     res.send(giftsForMe);
   } catch (error) {
     console.log(error);
