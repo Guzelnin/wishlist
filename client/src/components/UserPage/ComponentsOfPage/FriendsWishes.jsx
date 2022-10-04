@@ -11,11 +11,10 @@ import { setFriendsWishesAsync } from '../../../redux/actions/myWishesAction';
 
 export default function FriendsWishes({ friendWishes }) {
   const dispatch = useDispatch();
-  // const friendWishes = useSelector((state) => state.myWishes);
   React.useEffect(() => {
     dispatch(setFriendsWishesAsync());
   }, []);
-  console.log(friendWishes);
+
   return (
     <div>
       {friendWishes && friendWishes.length !== 0 && friendWishes?.map((el) => (

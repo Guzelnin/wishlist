@@ -7,11 +7,9 @@ import { setGiftsFromMeAsync } from '../../../redux/actions/giftsAction';
 
 export default function GirtsFromMe({ giftsFromMe }) {
   const dispatch = useDispatch();
-  console.log(giftsFromMe);
   React.useEffect(() => {
     dispatch(setGiftsFromMeAsync());
   }, []);
-  console.log(giftsFromMe);
   return (
     <ImageList sx={{ width: 500, height: 450 }}>
       {giftsFromMe && giftsFromMe?.map((item) => (

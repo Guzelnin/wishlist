@@ -7,7 +7,6 @@ import { setGiftsToMeAsync } from '../../../redux/actions/giftsAction';
 
 export default function GiftsForMe({ allMyGifts }) {
   const dispatch = useDispatch();
-  console.log(allMyGifts[0].Owner);
   React.useEffect(() => {
     dispatch(setGiftsToMeAsync());
   }, []);

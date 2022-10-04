@@ -8,17 +8,10 @@ import { getMyWishesAsync, setFriendsWishesAsync } from '../../redux/actions/myW
 import { setGiftsFromMeAsync, setGiftsToMeAsync } from '../../redux/actions/giftsAction';
 
 export default function UserPage() {
-  const dispatch = useDispatch();
   const myWish = useSelector((state) => state.myWishes);
   const friendWishes = useSelector((state) => state.myWishes);
   const allMyGifts = useSelector((state) => state.gifts);
   const giftsFromMe = useSelector((state) => state.gifts);
-  // React.useEffect(() => {
-  //   dispatch(getMyWishesAsync());
-  //   dispatch(setFriendsWishesAsync());
-  //   dispatch(setGiftsToMeAsync());
-  //   dispatch(setGiftsFromMeAsync());
-  // }, []);
   return (
     <Container>
       <UserDescription />

@@ -50,6 +50,7 @@ router.get('/mypage/mywishes', async (req, res) => {
       },
       {
         model: Gift,
+        where: { wish_status: true },
       }],
     });
     // console.log(myWishes);
@@ -104,6 +105,9 @@ router.get('/mypage/giftstome', async (req, res) => {
       where: {
         owner_id: req.session.user.id,
         wish_status: false,
+        giver_id: {
+          [Op.not]: null,
+        },
       },
       include: [
         {
