@@ -66,8 +66,8 @@ export default function HomePage() {
       >
         {/* {newFilterWord && newFilterWord.length !== 0
           && newFilterWord.map((el) => ( */}
-        {allWishes && allWishes.length !== 0 && allWishes.filter((value) => value.name.toLowerCase().includes(data.toLowerCase())).map((el) => (
-          <Grid item xs={4}>
+        {allWishes && allWishes.length !== 0 && allWishes.filter((value) => value.Wish.name.toLowerCase().includes(data.toLowerCase())).map((el) => (
+          <Grid item xs={4} key={el.id}>
             {/* <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                   component="img"
@@ -87,7 +87,7 @@ export default function HomePage() {
                   <Button size="small">button</Button>
                 </CardActions>
               </Card> */}
-            <PresentCard key={el.id} el={el} />
+            <PresentCard el={el} />
           </Grid>
         ))}
       </Grid>

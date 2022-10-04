@@ -8,9 +8,30 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
-    const allPublicWishes = await Wish.findAll({
-      order: [['id', 'DESC']],
-      include: [{ model: Owner, where: { private: false } }, { model: Category }],
+    // const allPublicWishes = await Wish.findAll({
+    //   order: [['id', 'DESC']],
+    //   include: [{ model: Owner, where: { private: false } }, { model: Category }],
+    // });
+    // const userWishes = await Owner.findAll({
+    //   where: { user_id: req.session.user.id },
+    // });
+    // const filtered = allPublicWishes.filter((el) => {
+    //   const result = userWishes.find((elem) => elem.wish_id === el.id);
+    //   return result === undefined;
+    // });
+    const allPublicWishes = await Owner.findAll({
+      where: {
+        private: false,
+        user_id: {
+          [Op.ne]: req.session.user.id,
+        },
+      },
+      include: {
+        model: Wish,
+        include: {
+          model: Category,
+        },
+      },
     });
     res.send(allPublicWishes);
   } catch (error) {
@@ -69,24 +90,25 @@ router.get('/mypage/friendswishes', async (req, res) => {
 
 router.get('/mypage/giftstome', async (req, res) => {
   try {
-    const giftsForMe = await Owner.findAll({
+    const giftsForMe = await Gift.findAll({
       where: {
-        user_id: req.session.user.id,
+        owner_id: req.session.user.id,
+        wish_status: false,
       },
       include: [
         {
-          model: Wish,
+          model: Owner,
+          include: {
+            model: Wish,
+          },
         },
         {
-          model: Gift,
-          where: {
-            wish_status: false,
-            giver_id: { [Op.ne]: req.session.user.id },
-          },
+          model: User,
         },
       ],
     });
     // console.log(notedWishes);
+    console.log(giftsForMe);
     res.send(giftsForMe);
   } catch (error) {
     console.log(error);
@@ -96,17 +118,20 @@ router.get('/mypage/giftstome', async (req, res) => {
 
 router.get('/mypage/giftsfromme', async (req, res) => {
   try {
-    const giftsFromMe = await Owner.findAll({
+    const giftsFromMe = await Gift.findAll({
+      where: {
+        giver_id: req.session.user.id,
+        wish_status: false,
+      },
       include: [
         {
-          model: Wish,
-        },
-        {
-          model: Gift,
-          where: {
-            giver_id: req.session.user.id,
-            wish_status: false,
+          model: Owner,
+          include: [{
+            model: Wish,
           },
+          {
+            model: User,
+          }],
         },
       ],
     });
@@ -123,7 +148,6 @@ router.post('/add', async (req, res) => {
     const {
       name, link, photo, categoryId, description, privateWish, date,
     } = req.body;
-    console.log(req.body);
     const newWish = await Wish.create({
       name, link, photo, category_id: +categoryId,
     });
@@ -137,7 +161,42 @@ router.post('/add', async (req, res) => {
     await Gift.create({
       owner_id: newOwner.id,
       giver_id: null,
-      wish_status: false,
+      wish_status: true,
+    });
+    const myNewWish = await Owner.findOne({
+      where: { id: newOwner.id },
+      include: [{
+        model: Wish,
+      },
+      {
+        model: Gift,
+      }],
+    });
+    res.json(myNewWish);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.post('/add/copy/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const {
+      description, privateWish, date,
+    } = req.body;
+    // categoryId!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    const newOwner = await Owner.create({
+      wish_id: id,
+      user_id: req.session.user.id,
+      private: privateWish,
+      description,
+      date,
+    });
+    await Gift.create({
+      owner_id: newOwner.id,
+      giver_id: null,
+      wish_status: true,
     });
     const myNewWish = await Owner.findOne({
       where: { id: newOwner.id },

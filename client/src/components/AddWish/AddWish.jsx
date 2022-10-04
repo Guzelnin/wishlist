@@ -38,7 +38,6 @@ export default function AddWish() {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(inputs);
     dispatch(addWishAsync(inputs));
     navigate('/mypage');
   };
@@ -121,7 +120,6 @@ export default function AddWish() {
           <div>
             Дедлайн желания
           </div>
-          {/* </label> */}
           <Input
             type="date"
             name="date"

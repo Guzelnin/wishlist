@@ -1,24 +1,24 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function PresentCard({ el }) {
+  const navigate = useNavigate();
   return (
- 
     <div id="card">
-      <img src={el.photo} alt="" />
+      <img src={el.Wish.photo} alt="" />
       <div id="content">
-        {el.name}
+        {el.Wish.name}
         <ol>
           <li> 
             {' '}
-            {`Категория: ${el.Category.title}`}
+            {`Категория: ${el.Wish.Category.title}`}
           </li>
         </ol>
         <div id="price">
-          <button> Добавить к себе </button>
+          <button onClick={() => navigate(`/wishes/${el.Wish.id}/copy`)}> Добавить к себе </button>
         </div>
       </div>
     </div>
-
   );
 }
 
