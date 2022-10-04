@@ -27,15 +27,15 @@ export default function AnotherUserDescription() {
           />
           <CardContent style={{ marginLeft: '100px' }}>
             <Typography variant="h3" component="h2" style={{ marginTop: '60px', marginBottom: '20px' }}>
-              {thisPage.name}
+              {thisPage?.name}
             </Typography>
             <Typography variant="body1" gutterBottom>
-              {thisPage.description}
+              {thisPage?.description}
             </Typography>
             <Typography variant="h6" gutterBottom>
               День рождения:
               {' '}
-              {thisPage.bday}
+              {thisPage?.bday}
             </Typography>
             <Row>
               <Col>

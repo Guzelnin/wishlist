@@ -25,7 +25,7 @@ export default function GiftsForMe({ allMyGifts }) {
             title={item?.Owner?.Wish?.name}
             subtitle={(
               <span>
-                Кто подарил:
+                Подарок от:
                 {' '}
                 {item?.User?.name}
               </span>

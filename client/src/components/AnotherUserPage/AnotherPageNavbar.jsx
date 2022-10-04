@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
 }));
 
-export default function AnotherPageNavbar({ anotherWishes }) {
+export default function AnotherPageNavbar({ anotherWishes, giftsForUser, giftsFromUser }) {
   const [pageComponent, setPageComponent] = React.useState('thiswishes');
   return (
     <Box
@@ -42,9 +42,9 @@ export default function AnotherPageNavbar({ anotherWishes }) {
           {pageComponent === 'thiswishes'
             && <UserWishes allUserWishes={anotherWishes} />}
           {pageComponent === 'usergifts'
-            && <UserGifts />}
+            && <UserGifts giftsFromUser={giftsFromUser} />}
           {pageComponent === 'giftsfromuser'
-            && <GiftsForUser />}
+            && <GiftsForUser giftsForUser={giftsForUser} />}
         </Item>
       </Grid>
     </Box>

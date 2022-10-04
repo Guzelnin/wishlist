@@ -103,7 +103,7 @@ router.get('/mypage/giftstome', async (req, res) => {
   try {
     const giftsForMe = await Gift.findAll({
       where: {
-        owner_id: req.session.user.id,
+        user_id: req.session.user.id,
         wish_status: false,
         giver_id: {
           [Op.not]: null,
@@ -121,8 +121,6 @@ router.get('/mypage/giftstome', async (req, res) => {
         },
       ],
     });
-    // console.log(notedWishes);
-    console.log(giftsForMe);
     res.send(giftsForMe);
   } catch (error) {
     console.log(error);
