@@ -10,9 +10,9 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const currUser = await User.findByPk(id);
-    // if (id === req.session.user.id) {
-    //   res.redirect('/api/wishes/mypage');
-    // }
+    if (id === req.session.user.id) {
+      res.redirect('/api/wishes/mypage');
+    }
     res.send(currUser);
   } catch (error) {
     console.log(error);
@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.get('/userwishes', async (req, res) => {
+router.get('/userwishes/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const currUser = await User.findOne({ where: { id } });
