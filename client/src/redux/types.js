@@ -34,3 +34,6 @@ export const SET_GIFTS_FROM_ME = 'SET_GIFTS_FROM_ME';
 
 // another page
 export const SET_USER_PAGE = 'SET_USER_PAGE';
+export const GET_USER_WISHES = 'GET_USER_WISHES';
+export const GET_GIFTS_FOR_USER = 'GET_GIFTS_FOR_USER';
+export const GET_GIFTS_FROM_USER = 'GET_GIFTS_FROM_USER';

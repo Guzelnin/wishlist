@@ -6,11 +6,13 @@ import copyWishReducer from './reducers/copyWishReduser';
 import entriesReducer from './reducers/entriesReducer';
 import friendRequestReducer from './reducers/friendRequestsReducer';
 import friendsReducer from './reducers/friendsReducer';
+import giftsReducer from './reducers/giftsReducer';
 import myFriendRequestReducer from './reducers/myFriendRequestsReducer';
 import myWishesReducer from './reducers/myWishesReducer';
 import oneWishReducer from './reducers/oneWishReducer';
 import pageReducer from './reducers/pageReducer';
 import userReducer from './reducers/userReducer';
+import userWishesReducer from './reducers/userWishesReducer';
 import wishesReducer from './reducers/wishesReducer';
 import entriesSagaWatcher from './sagas/entriesSaga';
 
@@ -27,10 +29,11 @@ export default configureStore({
     entries: entriesReducer,
     page: pageReducer,
     myRequests: myFriendRequestReducer,
-    gifts: myWishesReducer,
+    gifts: giftsReducer,
     oneWish: oneWishReducer,
     oneWishToCopy: copyWishReducer,
     anotherPage: anotherPageReducer,
+    anotherWishes: userWishesReducer,
   },
   middleware: (mid) => [...mid(), sagaMiddleware],
 });
