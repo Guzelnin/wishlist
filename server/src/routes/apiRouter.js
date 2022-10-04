@@ -1,4 +1,7 @@
+const axios = require('axios');
+
 const express = require('express');
+
 const { Op } = require('sequelize');
 const {
   Category, Friend, User, Owner, Wish,
@@ -190,6 +193,32 @@ router.get('/wishes/details/:id', async (req, res) => {
       },
     });
     res.send(wish);
+  } catch (error) {
+    console.log(error.message);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/wishes/api/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const currOwner = await Owner.findByPk(id);
+    const currWish = await Wish.findOne({
+      where: {
+        id: currOwner.wish_id,
+      },
+    });
+    const options = {
+      method: 'GET',
+      url: `https://amazon-data-scraper58.p.rapidapi.com/search/${currWish.name}`,
+      headers: {
+        'X-RapidAPI-Key': '91f366fe2dmsh222ff350d50ebf8p1a5868jsnf71042f07107',
+        'X-RapidAPI-Host': 'amazon-data-scraper58.p.rapidapi.com',
+      },
+    };
+    const currRes = await axios.request(options);
+    console.log(currRes);
+    res.json(currRes.data);
   } catch (error) {
     console.log(error.message);
     res.sendStatus(500);

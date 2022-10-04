@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import anotherPageReducer from './reducers/anotherPageReducer';
+import apiReducer from './reducers/apiReducer';
 import categoriesReducer from './reducers/categoriesReducer';
 import copyWishReducer from './reducers/copyWishReduser';
 import entriesReducer from './reducers/entriesReducer';
@@ -34,6 +35,7 @@ export default configureStore({
     oneWishToCopy: copyWishReducer,
     anotherPage: anotherPageReducer,
     anotherWishes: userWishesReducer,
+    api: apiReducer,
   },
   middleware: (mid) => [...mid(), sagaMiddleware],
 });
