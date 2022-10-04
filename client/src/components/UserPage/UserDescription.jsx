@@ -4,15 +4,19 @@ import Stack from '@mui/material/Stack';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, CardContent, Typography } from '@mui/material';
 import { Col, Row } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
 import { getMyPage } from '../../redux/actions/pageAction';
 
 export default function UserDescription() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const myPage = useSelector((state) => state.page);
   React.useEffect(() => {
     dispatch(getMyPage());
   }, []);
-  // console.log(myPage);
+  React.useEffect(() => {
+    dispatch(getMyPage());
+  }, [myPage.name, myPage.email, myPage.password, myPage.description, myPage.bday, myPage.photo]);
   return (
     <Row>
       <Col>
@@ -45,7 +49,7 @@ export default function UserDescription() {
                 <Button variant="contained">Редактировать</Button>
               </Col>
               <Col>
-                <Button variant="contained">Друзья</Button>
+                <Button onClick={() => navigate('/friends')} style={{ marginTop: '50px' }} variant="contained">Друзья</Button>
               </Col>
             </Row>
           </CardContent>

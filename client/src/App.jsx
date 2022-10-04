@@ -15,7 +15,10 @@ import UserPage from './components/UserPage/UserPage';
 import { checkAuth } from './redux/actions/userActions';
 import NoPage from './components/NoPage/NoPage';
 import DetailWishPage from './components/DetailWishPage';
+import NewWishCopy from './components/NewWishCopy';
+import UserPageEditing from './components/UserPageEditing';
 import AnotherUserPage from './components/AnotherUserPage/AnotherUserPage';
+
 // import initialDetails from './components/Search/initialDetails';
 
 function App({ el }) {
@@ -38,9 +41,11 @@ function App({ el }) {
           <Route path="/signup" element={<SignUp />} />
         </Route>
         <Route path="/wishes/:id" element={<DetailWishPage />} />
+        <Route path="/wishes/:id/copy" element={<NewWishCopy />} />
         {/* ЗАЩИТИТЬ ПУТЬ К ПОДРОБНОЙ ИНФЕ ПО ПОДАРКУ */}
         <Route path="/" element={<HomePage />} />
         <Route path="/friends" element={<FriendsPage />} />
+        <Route path="/users/:id/edit" element={<UserPageEditing />} />
         <Route path="*" element={<NoPage />} />
         <Route path="/:id" element={<AnotherUserPage />} />
       </Routes>

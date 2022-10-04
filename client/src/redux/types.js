@@ -4,6 +4,7 @@ export const LOGOUT = 'LOGOUT';
 
 // Wishes
 export const GET_WISHES = 'GET_WISHES';
+export const GET_ONE_WISH_TO_COPY = 'GET_ONE_WISH_TO_COPY';
 
 // Categories
 

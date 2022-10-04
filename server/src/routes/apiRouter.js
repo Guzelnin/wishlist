@@ -196,4 +196,15 @@ router.get('/wishes/details/:id', async (req, res) => {
   }
 });
 
+router.get('/wishes/copy/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const wish = await Wish.findByPk(id);
+    res.send(wish);
+  } catch (error) {
+    console.log(error.message);
+    res.sendStatus(500);
+  }
+});
+
 module.exports = router;
