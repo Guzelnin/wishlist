@@ -25,7 +25,7 @@ export default function PageNavbar({
 }) {
   const [pageComponent, setPageComponent] = React.useState('mywishes');
   const dispatch = useDispatch();
-  const myWishes = useSelector((state) => state.myWishes);
+  // const myWishes = useSelector((state) => state.myWishes);
   React.useEffect(() => {
     dispatch(getMyWishesAsync());
     dispatch(setFriendsWishesAsync());

@@ -13,3 +13,17 @@ export const setUserWishesAsync = (id) => (dispatch) => {
     .then((data) => dispatch(setUserWishes(data.data)))
     .catch(console.log);
 };
+
+export const setGiftsFromUserAsync = (id) => (dispatch) => {
+  axios(`/api/another/giftsfromuser/${id}`)
+  // .then((data) => console.log(data))
+    .then((data) => dispatch(setGiftsFromUser(data.data)))
+    .catch(console.log); 
+};
+
+export const setGiftsForUserAsync = (id) => (dispatch) => {
+  axios(`/api/another/giftsforuser/${id}`)
+  // .then((data) => console.log(data))
+    .then((data) => dispatch(setGiftsForUser(data.data)))
+    .catch(console.log); 
+};

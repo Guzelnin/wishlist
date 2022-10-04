@@ -40,7 +40,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/mypage', async (req, res) => {
+router.get('/mypage/mywishes', async (req, res) => {
   try {
     const currUser = await User.findOne({ where: { id: req.session.user.id } });
     const myWishes = await Owner.findAll({
@@ -50,10 +50,21 @@ router.get('/mypage', async (req, res) => {
       },
       {
         model: Gift,
+        where: { wish_status: true },
       }],
     });
     // console.log(myWishes);
     res.send(myWishes);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/mypage', async (req, res) => {
+  try {
+    const currUser = await User.findOne({ where: { id: req.session.user.id } });
+    res.send(currUser);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -92,8 +103,11 @@ router.get('/mypage/giftstome', async (req, res) => {
   try {
     const giftsForMe = await Gift.findAll({
       where: {
-        owner_id: req.session.user.id,
+        user_id: req.session.user.id,
         wish_status: false,
+        giver_id: {
+          [Op.not]: null,
+        },
       },
       include: [
         {
@@ -107,8 +121,6 @@ router.get('/mypage/giftstome', async (req, res) => {
         },
       ],
     });
-    // console.log(notedWishes);
-    console.log(giftsForMe);
     res.send(giftsForMe);
   } catch (error) {
     console.log(error);
