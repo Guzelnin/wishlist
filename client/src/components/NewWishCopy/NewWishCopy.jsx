@@ -59,14 +59,13 @@ export default function NewWishCopy() {
             <Grid
               container
               direction="column"
-              justifyContent="space-around"
               alignItems="center"
             >
               <Typography variant="h5">{wish?.name}</Typography>
               <img src={wish?.photo} alt="wish" width="100%" />
               <Link href={wish?.link}>
-                <Typography variant="h5">
-                  Ссылка
+                <Typography variant="h6">
+                  Ссылка на желание
                 </Typography>
               </Link>
             </Grid>
