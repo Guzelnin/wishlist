@@ -25,10 +25,17 @@ export default function MyFooter() {
 
         <div>
           <i className="fa fa-map-marker" />
-          <p>
+          <p className="footer-company-about">
             <span>
-              ул.Орджоникидзе, д. 11 стр.10 
+              Контакты
+              {' '}
+
             </span>
+            
+            ул.Орджоникидзе, д. 11 стр.10 
+            {' '}
+            <br /> 
+          
             {' '}
             Москва, Россия
           </p>
@@ -49,16 +56,18 @@ export default function MyFooter() {
       <div className="footer-right">
 
         <p className="footer-company-about">
-          <span>About the company</span>
-          Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce euismod convallis velit, eu auctor lacus vehicula sit amet.
+          <span>О нас</span>
+          Для чего нужен список желаний?
+          <br />
+          Чтобы не забыть, что вы хотите купить.
+          <br />
+          Чтобы ваши друзья знали, что подарить вам.
+          <br />
+          Чтобы вы знали, что хотят ваши друзья.
+          <br />
         </p>
 
         <div className="footer-icons">
-
-          {/* <a href="#"><i className="fa fa-facebook" /></a>
-          <a href="#"><i className="fa fa-twitter" /></a>
-          <a href="#"><i className="fa fa-linkedin" /></a>
-          <a href="#"><i className="fa fa-github" /></a> */}
           <Social />
         </div>
 

@@ -4,6 +4,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 // import OneWishCard from '../OneWishCard';
+import SearchIcon from '@mui/icons-material/Search';
 import { getWishesAsync } from '../../redux/actions/wishesActions';
 import PresentCard from './PresentCard';
 
@@ -18,13 +19,8 @@ export default function HomePage({ user }) {
     dispatch(getWishesAsync());
   }, [user.id]);
   return (
-    <Grid
-      container
-      spacing={2}
-      direction="column"
-      // justifyContent="center"
-      alignItems="center"
-    >
+    <>
+  
       <Grid item xs={8}>
         <video
           autoPlay
@@ -48,31 +44,26 @@ export default function HomePage({ user }) {
           <source src="/video.mp4" type="video/mp4" />
         </video>
       </Grid>
-      <Grid item xs={8}>
-        Желания других пользователей
-      </Grid>
-      <input
-        className="input_search"
-        placeholder="Поиск..."
-        // onChange={handlerFilter}
-        onChange={(e) => setData(e.target.value)}
-      />
-      {/* <Grid item xs={8}> */}
-      <Grid
-        container
-        spacing={2}
-        direction="row"
-        justifyContent="space-around"
-        alignItems="center"
-      >
-        {/* {newFilterWord && newFilterWord.length !== 0
-          && newFilterWord.map((el) => ( */}
-        {allWishes && allWishes.length !== 0 && allWishes.filter((value) => value.Wish.name.toLowerCase().includes(data.toLowerCase())).map((el) => (
-          <Grid item xs={4} key={el.id}>
+      <div className="home_bottom_all">
+        <div className="home_line">
+          Желания других пользователей
+  
+        </div>
+        <form action="" className="search-bar">
+          <input type="search" name="search" pattern=".*\S.*" required onChange={(e) => setData(e.target.value)} />
+          <button className="search-btn">
+            <span>Search</span>
+          </button>
+        </form>
+        <div className="cards">      
+          {allWishes && allWishes.length !== 0 && allWishes.filter((value) => value.Wish.name.toLowerCase().includes(data.toLowerCase())).map((el) => (
+
             <PresentCard el={el} />
-          </Grid>
-        ))}
-      </Grid>
-    </Grid>
+        
+          ))}
+        </div>
+       
+      </div>
+    </>
   );
 }
