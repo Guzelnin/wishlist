@@ -1,6 +1,6 @@
 import { ADD_USER_GIFT } from '../types';
 
-export default function bookingReducer(state = [], action) {
+export default function bookingReducer(state = {}, action) {
   const { type, payload } = action;
   switch (type) {
     case ADD_USER_GIFT:

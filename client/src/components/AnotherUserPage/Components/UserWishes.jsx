@@ -13,10 +13,11 @@ import { addFGiftAsync } from '../../../redux/actions/bookingActions';
 export default function UserWishes({ allUserWishes }) {
   const { id } = useParams();
   const navigate = useNavigate();
+  console.log(allUserWishes);
   const bookingWish = useSelector((state) => state.booking);
+  console.log(bookingWish);
   const dispatch = useDispatch();
   const [booked, setBooked] = React.useState(null);
-  console.log(bookingWish);
   React.useEffect(() => {
     dispatch(setUserWishesAsync(id));
     setBooked();
@@ -41,9 +42,9 @@ export default function UserWishes({ allUserWishes }) {
               <Link to={`/wishes/${el.Wish.id}`}>Открыть</Link>
             </Button>
             <Button size="small" onClick={() => navigate(`/wishes/${el.Wish.id}/copy`)}>Хочу себе!</Button>
-            {booked === null
-              ? <Button size="small" onClick={() => { dispatch(addFGiftAsync(id, el.Wish.id)); setBooked(el.Gifts[0].giver_id); }}>Забронировать</Button>
-              : <Button disabled>Забронировано</Button>}
+            {booked !== null
+              ? <Button disabled>Забронировано</Button>
+              : <Button size="small" onClick={() => { dispatch(addFGiftAsync(id, el.Wish.id)); setBooked(bookingWish?.giver_id); }}>Забронировать</Button>}
           </CardActions>
         </Card>
       ))}

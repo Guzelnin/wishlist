@@ -17,7 +17,6 @@ export default function MyWishes({ myWish }) {
     dispatch(getMyWishesAsync());
     dispatch(deleteMyWishesAsync());
   }, []);
-  console.log(myWish);
   return (
     <div>
       {myWish && myWish?.map((el) => (
@@ -34,8 +33,7 @@ export default function MyWishes({ myWish }) {
               {el.Wish.name}
               {el.private
                 ? <HttpsIcon style={{ marginLeft: '30px' }} />
-                : <SupervisorAccountIcon style={{ marginLeft: '30px' }} />}
-              
+                : <SupervisorAccountIcon style={{ marginLeft: '30px' }} />}  
             </Typography>
           </CardContent>
           <CardActions>
@@ -43,7 +41,7 @@ export default function MyWishes({ myWish }) {
               <Link to={`/wishes/${el.Wish.id}`}> Открыть</Link>
             </Button>
             <Button size="small">Уже подарили</Button>
-            {el.Gifts.giver_id
+            {el.Gifts[0].giver_id
               ? <Button disabled>Забронировано</Button>
               : <Button size="small" onClick={() => dispatch(deleteMyWishesAsync(el.id))} className="danger">Удалить</Button>}
           </CardActions>

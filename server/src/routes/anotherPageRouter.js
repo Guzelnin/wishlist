@@ -117,19 +117,32 @@ router.post('/book/:id/:wishId', async (req, res) => {
       },
     );
     await newGift.update({ giver_id: req.session.user.id });
-    const currUser = await User.findOne({ where: { id } });
-    const updatedWish = await Owner.findAll({
-      where: { user_id: currUser.id },
-      include: [{
-        model: Wish,
-      },
-      {
-        model: Gift,
-      }],
-    });
-    console.log(updatedWish);
+    // await newGift.save();
+    // const test = await Gift.findOne(
+    //   {
+    //     where:
+    //     {
+    //       owner_id: findedOwner.id,
+    //       giver_id: req.session.user.id,
+    //       wish_status: true,
+    //     },
+    //   },
+    // );
+    // const currUser = await User.findOne({ where: { id } });
+    // const updatedWish = await Owner.findAll({
+    //   where: { user_id: currUser.id },
+    //   include: [{
+    //     model: Wish,
+    //   },
+    //   {
+    //     model: Gift,
+    //   }],
+    // });
+    // console.log(updatedWish);
     // res.send(updatedWish);
-    res.json(updatedWish);
+  
+    console.log(newGift);
+    res.json(newGift);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
