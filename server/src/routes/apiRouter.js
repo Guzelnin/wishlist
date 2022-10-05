@@ -210,10 +210,11 @@ router.get('/wishes/api/:id', async (req, res) => {
     });
     const options = {
       method: 'GET',
-      url: `https://amazon-data-scraper58.p.rapidapi.com/search/${currWish.name}`,
+      url: 'https://walmart.p.rapidapi.com/v2/auto-complete',
+      params: { term: `${currWish.name}` },
       headers: {
-        'X-RapidAPI-Key': '91f366fe2dmsh222ff350d50ebf8p1a5868jsnf71042f07107',
-        'X-RapidAPI-Host': 'amazon-data-scraper58.p.rapidapi.com',
+        'X-RapidAPI-Key': 'f6ca1c031bmsh46947f3d9a84dd4p1ca312jsnf5a443f37eaf',
+        'X-RapidAPI-Host': 'walmart.p.rapidapi.com',
       },
     };
     const currRes = await axios.request(options);

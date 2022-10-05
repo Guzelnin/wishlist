@@ -102,4 +102,38 @@ router.get('/giftsfromuser/:id', async (req, res) => {
   }
 });
 
+router.post('/book/:id/:wishId', async (req, res) => {
+  try {
+    const { id, wishId } = req.params;
+    const findedOwner = await Owner.findOne({ where: { user_id: id, wish_id: wishId } });
+    const newGift = await Gift.findOne(
+      {
+        where:
+        {
+          owner_id: findedOwner.id,
+          // giver_id: req.session.user.id,
+          wish_status: true,
+        },
+      },
+    );
+    await newGift.update({ giver_id: req.session.user.id });
+    const currUser = await User.findOne({ where: { id } });
+    const updatedWish = await Owner.findAll({
+      where: { user_id: currUser.id },
+      include: [{
+        model: Wish,
+      },
+      {
+        model: Gift,
+      }],
+    });
+    console.log(updatedWish);
+    // res.send(updatedWish);
+    res.json(updatedWish);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
 module.exports = router;
