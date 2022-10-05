@@ -5,7 +5,7 @@ function PresentCard({ el }) {
   const navigate = useNavigate();
   return (
     <div id="card">
-      <img src={el.Wish.photo} alt="" />
+      <img src={process.env.REACT_APP_BASEURL + el.Wish.photo} alt="" />
       <div id="content">
         {el.Wish.name}
         <ol>

@@ -17,6 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
 }));
 
+
 export default function AnotherPageNavbar({ anotherWishes, giftsForUser, giftsFromUser }) {
   const [pageComponent, setPageComponent] = React.useState('thiswishes');
   return (
