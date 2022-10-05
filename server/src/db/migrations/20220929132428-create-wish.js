@@ -23,7 +23,10 @@ module.exports = {
           model: 'Categories',
           key: 'id',
         },
+        onDelete: 'CASCADE',
+        allowNull: false,
       },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

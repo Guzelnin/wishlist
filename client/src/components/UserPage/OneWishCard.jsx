@@ -6,15 +6,16 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import HttpsIcon from '@mui/icons-material/Https';
+import MyWishes from './ComponentsOfPage/MyWishes';
 
 export default function OneWishCard({ myWish, id }) {
-  // console.log(myWish);
+  console.log(myWish);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="140"
-        image={myWish.Wish.photo}
+        image={process.env.REACT_APP_BASEURL + MyWishes.Wish.photo}
         alt="Фото желания"
       />
       <CardContent>
@@ -31,5 +32,6 @@ export default function OneWishCard({ myWish, id }) {
           : <Button size="small">Удалить</Button>}
       </CardActions>
     </Card>
+    
   );
 }

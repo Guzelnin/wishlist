@@ -14,6 +14,9 @@ module.exports = {
           model: 'Users',
           key: 'id',
         },
+        onDelete: 'cascade',
+        allowNull: false,
+
       },
       res_user_id: {
         type: Sequelize.INTEGER,
@@ -21,6 +24,8 @@ module.exports = {
           model: 'Users',
           key: 'id',
         },
+        onDelete: 'cascade',
+        allowNull: false,
       },
       request: {
         type: Sequelize.BOOLEAN,
