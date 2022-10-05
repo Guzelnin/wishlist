@@ -11,6 +11,10 @@ function MyNavbar({ userName }) {
   const logOut = () => {
     dispatch(logoutUserAsync());
   };
+  console.log(user);
+  useEffect(() => {
+ 
+  }, [user]);
   
   const url = 'https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg';
 

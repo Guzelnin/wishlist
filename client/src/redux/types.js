@@ -1,6 +1,7 @@
 // User
 export const SET_AUTH = 'SET_AUTH';
 export const LOGOUT = 'LOGOUT';
+export const GET_USER = 'GET_USER';
 
 // Wishes
 export const GET_WISHES = 'GET_WISHES';

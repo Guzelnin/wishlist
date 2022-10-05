@@ -217,10 +217,16 @@ router.get('/wishes/api/:id', async (req, res) => {
         'X-RapidAPI-Host': 'walmart.p.rapidapi.com',
       },
     };
-    const currRes = await axios.request(options);
+    try {
+      const currRes = await axios.request(options);
+    } catch (error) {
+      console.log(error);
+    }
+
     // console.log(currRes.data.results);
-    const sliced = currRes.data.results.slice(0, 3);
-    res.json(sliced);
+    // const sliced = currRes.data.results.slice(0, 3);
+    // res.json(sliced);
+    res.sendStatus(500);
   } catch (error) {
     console.log(error.message);
     res.sendStatus(500);
