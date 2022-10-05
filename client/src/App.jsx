@@ -16,7 +16,6 @@ import { checkAuth, getUserAsync } from './redux/actions/userActions';
 import NoPage from './components/NoPage/NoPage';
 import DetailWishPage from './components/DetailWishPage';
 import EditDetailWishPage from './components/DetailWishPage/EditDetailWithPage';
-
 import NewWishCopy from './components/NewWishCopy';
 import UserPageEditing from './components/UserPageEditing';
 import AnotherUserPage from './components/AnotherUserPage/AnotherUserPage';
@@ -34,7 +33,7 @@ function App({ el }) {
     dispatch(getUserAsync());
   }, [user]);
   return (
-    <Container>
+    <>
       <MyNavbar />
       <Routes>
         <Route element={<ProtectedRoute redirect="/login" isAllowed={!!user.id} />}>
@@ -60,7 +59,7 @@ function App({ el }) {
       </Routes>
       {/* <Search details={initialDetails} /> */}
       <MyFooter />
-    </Container>
+    </>
   );
 }
 
