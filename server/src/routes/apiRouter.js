@@ -217,8 +217,9 @@ router.get('/wishes/api/:id', async (req, res) => {
       },
     };
     const currRes = await axios.request(options);
-    console.log(currRes);
-    res.json(currRes.data);
+    // console.log(currRes.data.results);
+    const sliced = currRes.data.results.slice(0, 3);
+    res.json(sliced);
   } catch (error) {
     console.log(error.message);
     res.sendStatus(500);
