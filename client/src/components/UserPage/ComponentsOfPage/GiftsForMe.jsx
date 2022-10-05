@@ -7,7 +7,6 @@ import { setGiftsToMeAsync } from '../../../redux/actions/giftsAction';
 
 export default function GiftsForMe({ allMyGifts }) {
   const dispatch = useDispatch();
-  console.log(allMyGifts[0].Owner);
   React.useEffect(() => {
     dispatch(setGiftsToMeAsync());
   }, []);
@@ -15,20 +14,20 @@ export default function GiftsForMe({ allMyGifts }) {
 
     <ImageList sx={{ width: 500, height: 450 }}>
       {allMyGifts && allMyGifts?.map((item) => (
-        <ImageListItem key={item.Owner.Wish.id}>
+        <ImageListItem key={item?.id}>
           <img
-            src={`${item.Owner.Wish.photo}?w=248&fit=crop&auto=format`}
+            src={`${item?.Owner?.Wish?.photo}?w=248&fit=crop&auto=format`}
             srcSet={`${item.Owner.Wish.photo}?w=248&fit=crop&auto=format&dpr=2 2x`}
-            alt={item.Owner.Wish.name}
+            alt={item?.Owner?.Wish?.name}
             loading="lazy"
           />
           <ImageListItemBar
-            title={item.Owner.Wish.name}
+            title={item?.Owner?.Wish?.name}
             subtitle={(
               <span>
-                Кто подарил:
+                Подарок от:
                 {' '}
-                {item.User.name}
+                {item?.User?.name}
               </span>
 )}
             position="below"

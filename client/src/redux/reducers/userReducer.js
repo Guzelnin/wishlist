@@ -1,4 +1,4 @@
-import { LOGOUT, SET_AUTH } from '../types';
+import { GET_USER, LOGOUT, SET_AUTH } from '../types';
 
 export default function userReducer(state = {}, action) {
   const { type, payload } = action;
@@ -7,6 +7,8 @@ export default function userReducer(state = {}, action) {
       return payload;
     case LOGOUT:
       return {};
+    case GET_USER:
+      return payload;
     default:
       return state;
   }

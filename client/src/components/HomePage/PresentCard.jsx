@@ -18,7 +18,6 @@ function PresentCard({ el }) {
           <div id="add_button">
             <button onClick={() => navigate(`/wishes/${el.Wish.id}/copy`)}> Добавить к себе </button>
           </div>
-        
         </div>
       </div>
     </div>

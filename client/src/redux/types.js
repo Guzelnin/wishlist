@@ -1,6 +1,7 @@
 // User
 export const SET_AUTH = 'SET_AUTH';
 export const LOGOUT = 'LOGOUT';
+export const GET_USER = 'GET_USER';
 
 // Wishes
 export const GET_WISHES = 'GET_WISHES';
@@ -43,3 +44,6 @@ export const GET_GIFTS_FROM_USER = 'GET_GIFTS_FROM_USER';
 
 // api
 export const API_RANDOM = 'API_RANDOM';
+
+// booking wish
+export const ADD_USER_GIFT = 'ADD_USER_GIFT';

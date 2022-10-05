@@ -33,7 +33,7 @@ export default function FriendsPage() {
     dispatch(getMyRequestsAsync());
   }, []);
   return (
-    <Box sx={{ flexGrow: 1 }} style={{ marginTop: '10px' }}>
+    <Box sx={{ flexGrow: 1 }} style={{ marginTop: '10px', marginBottom: '300px' }}>
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <Item>
