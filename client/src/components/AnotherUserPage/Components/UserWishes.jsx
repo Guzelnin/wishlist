@@ -6,11 +6,12 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { setUserWishesAsync } from '../../../redux/actions/anotherWishesActions';
 
 export default function UserWishes({ allUserWishes }) {
   const { id } = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(setUserWishesAsync(id));
@@ -28,14 +29,13 @@ export default function UserWishes({ allUserWishes }) {
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
               {el.Wish.name}
-              {/* <HttpsIcon style={{ marginLeft: '30px' }} /> */}
             </Typography>
           </CardContent>
           <CardActions>
             <Button size="small">
-              <Link to={`/wishes/${el.Wish.id}`}> Открыть</Link>
+              <Link to={`/wishes/${el.Wish.id}`}>Открыть</Link>
             </Button>
-            <Button size="small">Хочу себе!</Button>
+            <Button size="small" onClick={() => navigate(`/wishes/${el.Wish.id}/copy`)}>Хочу себе!</Button>
             {el.Gifts.giver_id
               ? <Button disabled>Забронировано</Button>
               : <Button size="small">Забронировать</Button>}

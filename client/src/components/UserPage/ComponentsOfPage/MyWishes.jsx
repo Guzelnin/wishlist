@@ -36,7 +36,6 @@ export default function MyWishes({ myWish }) {
           </CardContent>
           <CardActions>
             <Button size="small">
-              {/*  */}
               <Link to={`/wishes/${el.Wish.id}`}> Открыть</Link>
             </Button>
             <Button size="small">Уже подарили</Button>
