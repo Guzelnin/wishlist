@@ -21,8 +21,13 @@ export default function AddWish() {
     dispatch(getCategoriesAsync());
   }, []);
   const [inputs, setInputs] = useState({
-    name: '', link: '', photo: '', categoryId: '', description: '', date: '', privateWish: false,
+    name: '', link: '', photo: null, categoryId: '', description: '', date: '', privateWish: false,
   });
+
+  const inputHandlerPhoto = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.files[0] }));
+  };
+
   const changeHandler = (e) => {
     if (e.target.name === 'privateWish') {
       setInputs((prev) => ({
@@ -37,10 +42,21 @@ export default function AddWish() {
     }));
   };
   const submitHandler = (e) => {
+    // console.log(inputs);
+    // dispatch(addWishAsync(inputs));
     e.preventDefault();
-    dispatch(addWishAsync(inputs));
+    const data = new FormData();
+    data.append('name', inputs.name);
+    data.append('link', inputs.link);
+    data.append('photo', inputs.photo);
+    data.append('category_id', inputs.categoryId);
+    dispatch(addWishAsync(data));
+    setInputs({});
+    // dispatch(addWishAsync(inputs));
     navigate('/mypage');
   };
+  console.log(inputs);
+    
   return (
     <div className="wrapper fadeInDown">
       <div id="formContent">

@@ -13,6 +13,13 @@ import { Container } from '@mui/system';
 import { Row } from 'reactstrap';
 import { getApiAsync } from '../../redux/actions/apiActions';
 
+// export default function ApiComponent({ id, sliced }) {
+//  const dispatch = useDispatch();
+// useEffect(() => {
+//   dispatch(getApiAsync(id));
+//  }, []);
+// const date = new Date();
+
 // const Item = styled(Paper)(({ theme }) => ({
 //   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
 //   ...theme.typography.body2,
@@ -21,14 +28,19 @@ import { getApiAsync } from '../../redux/actions/apiActions';
 // }));
 
 export default function ApiComponent({ id }) {
+  // const [load, setLoad] = useState(true);
   const api = useSelector((state) => state.api);
-  const [sliced, setSliced] = useState(api?.results?.slice(0, 3) || []);
-  console.log(api?.results);
+  // console.log(api);
+  // const [sliced, setSliced] = useState(api?.results?.slice(0, 3) || []);
+  // console.log(api?.results);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getApiAsync(id));
-    setSliced(api?.results?.slice(0, 3));
+    // setSliced(api?.results?.slice(0, 3));
   }, []);
+  // if (api !== undefined) {
+  //   setLoad(false);
+  // }
   return (
     <Container>
       <Row>
@@ -36,24 +48,42 @@ export default function ApiComponent({ id }) {
       </Row>
       <Row>
         {
-        sliced?.length !== 0 && sliced && sliced?.map((el) => (
-          <Card key={el.id} sx={{ maxWidth: 345 }}>
+       // sliced?.length !== 0 && sliced && sliced?.map((el) => (
+        //  <Card key={date} sx={{ maxWidth: 345 }}>
+          //  <CardMedia
+           //   component="img"
+           //   height="140"
+
+        api?.length !== 0 && api && api?.map((el) => (
+          <Card key={el?.url} sx={{ maxWidth: 345 }}>
             <CardMedia
               component="img"
               height="140"
-              image={el.image}
+              // image={load ? 'https://flevix.com/wp-content/uploads/2019/07/Curve-Loading.gif' : el?.image}
+              image={el?.image}
               alt="green iguana"
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                {el.price_string}
+                {/* 
+              {el?.displayName}
+           </Typography>
+              <Typography variant="body2" color="text.secondary">
+               {el?.displayName}
+             </Typography>
+        </CardContent>
+           <CardActions>
+          <Button size="small"><Link href={`${el?.url}`}>перейти на Amazon.com</Link></Button> */}
+
+                {`$${el?.price}`}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {el.name}
+                {el?.name}
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small"><Link href={`${el.url}`}>Learn More</Link></Button>
+              <Button size="small"><Link href={`${el?.url}`}>Learn More</Link></Button>
+
             </CardActions>
           </Card>
         ))

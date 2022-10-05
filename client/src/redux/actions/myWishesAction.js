@@ -9,7 +9,7 @@ export const setFriendsWishes = (payload) => ({ type: SET_FRIENDS_WISHES, payloa
 export const deleteMyWishes = (payload) => ({ type: DELETE_MY_WISH, payload });
 
 export const getMyWishesAsync = () => (dispatch) => {
-  axios.get('/api/wishes/mypage')
+  axios.get('/api/wishes/mypage/mywishes')
     .then((res) => dispatch(getMyWishes(res.data)))
     .catch(console.log);
 };

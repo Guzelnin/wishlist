@@ -19,10 +19,59 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
 }));
 
+function errorCheck(inputs, setNameError, setEmailError, setDescError, errors) {
+  if (inputs.name === '') {
+    setNameError(true);
+  } else {
+    setNameError(false); 
+  }
+  if (inputs.email === '') {
+    setEmailError(true);
+  } else {
+    setEmailError(false); 
+  }
+  if (inputs.description === '') {
+    setDescError(true);
+  } else {
+    setDescError(false); 
+  }
+  console.log(errors);
+  const result = errors.filter((el) => el === true);
+  return result.length !== 0;
+}
+
 export default function UserPageEditing() {
+  const myPage = useSelector((state) => state.page);
+  const [inputs, setInputs] = useState({ 
+    name: myPage.name, email: myPage.email, password: '', photo: '', date: '', description: myPage.description,
+  });
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [descError, setDescError] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const myPage = useSelector((state) => state.page);
+  const changeHandler = (e) => {
+    setInputs((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (errorCheck(inputs, setNameError, setEmailError, setDescError, [nameError, emailError, descError])) {
+      console.log('not ok');
+    } else {
+      dispatch(editUser(e, inputs));
+      dispatch(getMyPage());
+      navigate('/mypage');
+      console.log('ok');
+      // navigate('/mypage');
+    }
+    // console.log('kek');
+    // console.log(inputs);
+  };
+
   useEffect(() => {
     dispatch(getMyPage());
   }, []);
@@ -48,37 +97,35 @@ export default function UserPageEditing() {
         </Grid>
         <Grid item xs={6} md={8}>
           <Item>
-            <Form
-              onSubmit={(e) => {
-                dispatch(editUser(e, Object.fromEntries(new FormData(e.target))));
-                dispatch(getMyPage());
-                navigate('/mypage');
-              }}
+            {/* <Form
+              onSubmit={submitHandler}
               autoComplete="off"
-            >
+            > */}
+            <form onSubmit={submitHandler} autoComplete="off">
               <Grid
                 container
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
               >
-                <input type="text" id="name" className="fadeIn second" name="name" placeholder="Имя" />
-                <input type="text" id="email" className="fadeIn third" name="email" placeholder="email" />
-                <input type="password" id="password" className="fadeIn fourth" name="password" placeholder="Пароль" />
-                <input type="text" id="photo" className="fadeIn fifth" name="photo" placeholder="Фото" />
-                <input type="date" id="bday" className="fadeIn sixth" name="bday" placeholder="birthday" />
-                <input type="text" id="description" className="fadeIn seventh" name="description" placeholder="Описание" />
-                <input type="submit" className="fadeIn eight" value="Сохранить изменения" />
-                <button
-                  type="button"
-                  onClick={() => {
-                    navigate('/mypage');
-                  }}
-                >
-                  Отмена
-                </button>
+                <input type="text" style={{ borderColor: nameError === false ? 'transparent' : 'red' }} id="name" value={inputs.name} onChange={changeHandler} className="lol second" name="name" placeholder="Имя" />
+                <input type="text" style={{ borderColor: emailError === false ? 'transparent' : 'red' }} id="email" value={inputs.email} onChange={changeHandler} className="lol third" name="email" placeholder="email" />
+                <input type="password" id="password" className="lol fourth" onChange={changeHandler} name="password" placeholder="Пароль" />
+                <input type="text" id="photo" className="lol fifth" onChange={changeHandler} name="photo" placeholder="Фото" />
+                <input type="date" id="bday" value={inputs.date} onChange={changeHandler} className="lol sixth" name="bday" placeholder="birthday" />
+                <input type="text" style={{ borderColor: descError === false ? 'transparent' : 'red' }} id="description" value={inputs.description} onChange={changeHandler} className="lol seventh" name="description" placeholder="Описание" />
+                <input type="submit" className="lol eight" value="Сохранить изменения" />
               </Grid>
-            </Form>
+              {/* </Form> */}
+            </form>
+            <input
+              type="button"
+              // onClick={() => {
+              //   navigate('/mypage');
+              // }}
+              className="lol eight"
+              value="Отмена"
+            />
           </Item>
         </Grid>
       </Grid>

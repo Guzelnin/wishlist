@@ -21,9 +21,22 @@ export default function HomePage({ user }) {
   return (
     <>
   
-      <video autoPlay muted loop id="myVideo">
-        <source src="/video.mp4" type="video/mp4" />
-      </video>
+      <div className="video_wrapper">
+        <div className="full-screen">
+          <div className="full-screen__body">
+            <div className="full-screen__title">Wishplace</div>
+            <div className="full-screen__text">Место, где хранятся твои желания</div>
+          </div>
+          <video
+            autoPlay
+            loop
+            muted
+            className="full-screen__video"
+          >
+            <source src="/video.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </div>
       <div className="home_bottom_all">
         <div className="home_line">
           Желания других пользователей
