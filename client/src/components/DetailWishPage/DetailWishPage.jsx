@@ -83,10 +83,13 @@ export default function DetailWishPage() {
               alignItems="center"
             >
 
-             // <img src={wish?.Wish?.photo} alt="wish" width="100%" />
+              {/* // 
+              {' '}
+              <img src={wish?.Wish?.photo} alt="wish" width="100%" /> */}
 
               {/* // {process.env.REACT_APP_BASEURL + */}
-              <img src={process.env.REACT_APP_BASEURL + wish?.Wish.photo} alt="wish" width="100%" />
+              {/* eslint-disable-next-line no-unsafe-optional-chaining */}
+              <img src={process.env.REACT_APP_BASEURL + wish?.Wish?.photo} alt="wish" width="100%" />
 
               <Button
                 variant="outlined"
