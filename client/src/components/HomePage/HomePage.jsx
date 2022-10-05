@@ -21,29 +21,9 @@ export default function HomePage({ user }) {
   return (
     <>
   
-      <Grid item xs={8}>
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{
-            // position: 'absolute',
-            top: '0',
-            bottom: '0',
-            right: '0',
-            left: '0',
-            overflow: 'hidden',
-            boxSizing: 'border-box',
-            width: '100%',
-            // height: '50%',
-            // zIndex: '-1',
-            // height: '400px',
-          }}
-        >
-          <source src="/video.mp4" type="video/mp4" />
-        </video>
-      </Grid>
+      <video autoPlay muted loop id="myVideo">
+        <source src="/video.mp4" type="video/mp4" />
+      </video>
       <div className="home_bottom_all">
         <div className="home_line">
           Желания других пользователей
