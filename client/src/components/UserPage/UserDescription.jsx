@@ -2,21 +2,25 @@ import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { useDispatch, useSelector } from 'react-redux';
-import { CardContent, Typography } from '@mui/material';
+import { Button, CardContent, Typography } from '@mui/material';
 import { Col, Row } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
 import { getMyPage } from '../../redux/actions/pageAction';
 
 export default function UserDescription() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const myPage = useSelector((state) => state.page);
   React.useEffect(() => {
     dispatch(getMyPage());
   }, []);
-  // console.log(myPage);
+  React.useEffect(() => {
+    dispatch(getMyPage());
+  }, [myPage.name, myPage.email, myPage.password, myPage.description, myPage.bday, myPage.photo]);
   return (
     <Row>
       <Col>
-        <Stack direction="row" spacing={2}>
+        <Stack direction="row">
           <Avatar
             alt="My avatar"
             src={myPage.photo}
@@ -28,11 +32,6 @@ export default function UserDescription() {
               {myPage.name}
             </Typography>
             <Typography variant="body1" gutterBottom>
-              {/* Lorem ipsum dolor sit amet,
-              consectetur adipisicing elit.
-              Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
-              neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti?
-              Eum quasi quidem quibusdam. */}
               {myPage.description}
             </Typography>
             <Typography variant="h6" gutterBottom>
@@ -40,6 +39,12 @@ export default function UserDescription() {
               {' '}
               {myPage.bday}
             </Typography>
+            <Row>
+              {/* <Col> */}
+              <Button onClick={() => navigate(`/users/${myPage.id}/edit`)} style={{ marginTop: '20px' }} variant="outlined">Редактировать</Button>
+              <Button onClick={() => navigate('/friends')} style={{ marginTop: '20px' }} variant="contained">Друзья</Button>
+              {/* </Col> */}
+            </Row>
           </CardContent>
         </Stack>
       </Col>

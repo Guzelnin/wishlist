@@ -11,11 +11,10 @@ import { setFriendsWishesAsync } from '../../../redux/actions/myWishesAction';
 
 export default function FriendsWishes({ friendWishes }) {
   const dispatch = useDispatch();
-  // const friendWishes = useSelector((state) => state.myWishes);
   React.useEffect(() => {
     dispatch(setFriendsWishesAsync());
   }, []);
-  console.log(friendWishes[0]);
+
   return (
     <div>
       {friendWishes && friendWishes.length !== 0 && friendWishes?.map((el) => (
@@ -24,26 +23,25 @@ export default function FriendsWishes({ friendWishes }) {
             component="img"
             height="140"
             image={process.env.REACT_APP_BASEURL + el.Wish.photo}
-            alt={el.Wish.name}
+            alt={el?.Wish.name}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {/* {el.Wish.name} */}
-              {/* <HttpsIcon style={{ marginLeft: '30px' }} /> */}
+              {el?.Wish?.name}
+              <HttpsIcon style={{ marginLeft: '30px' }} />
             </Typography>
             <Typography>
               {' '}
               Кому:
               {' '}
-              {/* {el.User.name} */}
+              {el?.User?.name}
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Открыть</Button>
-            {/* <Button size="small">Уже подарили</Button> */}
-            {/* {el.Gifts.wish_status
-                ? <Button disabled>Забронировано</Button>
-                : <Button size="small">Удалить</Button>} */}
+            <Button size="small">Открыть</Button> 
+            {el?.Gifts?.wish_status
+              ? <Button disabled>Забронировано</Button>
+              : <Button size="small">Подарено</Button>} 
           </CardActions>
         </Card>
       ))}

@@ -15,14 +15,15 @@ export default function Login() {
           <img src="https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg" id="icon" alt="User Icon" />
         </div>
         <Form
+          autoComplete="off"
           onSubmit={(e) => {
             dispatch(loginUser(e, Object.fromEntries(new FormData(e.target))));
             navigate('/');
           }}
         >
           <input type="text" id="name" className="fadeIn second" name="email" placeholder="email" />
-          <input type="text" id="email" className="fadeIn third" name="password" placeholder="password" />
-          <input type="submit" className="fadeIn eight" value="Log In" />
+          <input type="password" id="email" className="fadeIn third" name="password" placeholder="Пароль" />
+          <input type="submit" className="fadeIn eight" value="Войти" />
         </Form>
 
       </div>

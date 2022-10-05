@@ -5,7 +5,6 @@ export default function wishesReducer(state = [], action) {
   switch (type) {
     case GET_WISHES:
       return payload;
-
     default:
       return state;
   }

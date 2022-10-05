@@ -14,13 +14,19 @@ module.exports = {
           model: 'Wishes',
           key: 'id',
         },
+        onDelete: 'cascade',
+        allowNull: false,
       },
+
       user_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
           key: 'id',
         },
+        onDelete: 'cascade',
+        allowNull: false,
+
       },
       private: {
         type: Sequelize.BOOLEAN,

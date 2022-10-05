@@ -42,7 +42,8 @@ function Social({ color }) {
       >
         <HomeIcon
           className={classes.snsIcon}
-          color={color ? 'primary' : 'secondary'}
+          style={{ color: 'black' }}
+
         />
       </Grid>
       <Grid
@@ -54,7 +55,7 @@ function Social({ color }) {
       >
         <FilterHdrIcon
           className={classes.snsIcon}
-          color={color ? 'primary' : 'secondary'}
+          style={{ color: 'black' }}
         />
       </Grid>
       <Grid
@@ -66,7 +67,7 @@ function Social({ color }) {
       >
         <GitHubIcon
           className={classes.snsIcon}
-          color={color ? 'primary' : 'secondary'}
+          style={{ color: 'black' }}
         />
       </Grid>
       <Grid
@@ -78,7 +79,8 @@ function Social({ color }) {
       >
         <TelegramIcon
           className={classes.snsIcon}
-          color={color ? 'primary' : 'secondary'}
+          // color={color ? 'primary' : 'secondary'}
+          style={{ color: 'black' }}
         />
       </Grid>
     </Grid>

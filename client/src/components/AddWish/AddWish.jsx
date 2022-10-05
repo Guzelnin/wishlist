@@ -52,6 +52,7 @@ export default function AddWish() {
     data.append('category_id', inputs.categoryId);
     dispatch(addWishAsync(data));
     setInputs({});
+    // dispatch(addWishAsync(inputs));
     navigate('/mypage');
   };
   console.log(inputs);
@@ -152,7 +153,6 @@ export default function AddWish() {
           <div>
             Дедлайн желания
           </div>
-          {/* </label> */}
           <Input
             type="date"
             name="date"

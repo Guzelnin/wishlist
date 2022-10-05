@@ -14,6 +14,8 @@ module.exports = {
           model: 'Owners',
           key: 'id',
         },
+        onDelete: 'cascade',
+        allowNull: false,
       },
       giver_id: {
         type: Sequelize.INTEGER,
@@ -21,6 +23,8 @@ module.exports = {
           model: 'Users',
           key: 'id',
         },
+        onDelete: 'cascade',
+        allowNull: false,
       },
       wish_status: {
         type: Sequelize.BOOLEAN,

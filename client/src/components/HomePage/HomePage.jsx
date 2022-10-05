@@ -4,18 +4,19 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 // import OneWishCard from '../OneWishCard';
-import MyFooter from '../MyFooter';
 import { getWishesAsync } from '../../redux/actions/wishesActions';
 import PresentCard from './PresentCard';
 
-export default function HomePage() {
+export default function HomePage({ user }) {
   const [data, setData] = useState('');
   const allWishes = useSelector((state) => state.wishes);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getWishesAsync());
   }, []);
-
+  useEffect(() => {
+    dispatch(getWishesAsync());
+  }, [user.id]);
   return (
     <Grid
       container
@@ -66,28 +67,9 @@ export default function HomePage() {
       >
         {/* {newFilterWord && newFilterWord.length !== 0
           && newFilterWord.map((el) => ( */}
-        {allWishes && allWishes.length !== 0 && allWishes.filter((value) => value.name.toLowerCase().includes(data.toLowerCase())).map((el) => (
-          <Grid item xs={4}>
-            {/* <Card sx={{ maxWidth: 345 }}>
-                <CardMedia
-                  component="img"
-                  height="140"
-                  image={el.photo}
-                  alt="wish"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {el.name}
-                  </Typography>
-                  <Typography gutterBottom component="div">
-                    {`категория: ${el.Category.title}`}
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small">button</Button>
-                </CardActions>
-              </Card> */}
-            <PresentCard key={el.id} el={el} />
+        {allWishes && allWishes.length !== 0 && allWishes.filter((value) => value.Wish.name.toLowerCase().includes(data.toLowerCase())).map((el) => (
+          <Grid item xs={4} key={el.id}>
+            <PresentCard el={el} />
           </Grid>
         ))}
       </Grid>

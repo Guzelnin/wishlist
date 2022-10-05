@@ -8,43 +8,42 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import HttpsIcon from '@mui/icons-material/Https';
 import { Link, useParams } from 'react-router-dom';
-import { getMyWishesAsync } from '../../../redux/actions/myWishesAction';
+import { getMyWishesAsync, deleteMyWishesAsync } from '../../../redux/actions/myWishesAction';
 
 export default function MyWishes({ myWish }) {
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(getMyWishesAsync());
+    // dispatch(deleteMyWishesAsync());
   }, []);
+  console.log(myWish);
   return (
     <div>
       {myWish && myWish?.map((el) => (
-        <>
-          {/* <img src={process.env.REACT_APP_BASEURL + el.Wish.photo} alt="подарок" /> */}
-          <Card sx={{ maxWidth: 345 }} key={el.id}>
-            <CardMedia
-              component="img"
-              height="140"
-              image={process.env.REACT_APP_BASEURL + el.Wish.photo}
-              alt={el.Wish.name}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {el.Wish.name}
-                <HttpsIcon style={{ marginLeft: '30px' }} />
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">
-                {/*  */}
-                <Link to={`/wishes/${el.Wish.id}`}> Открыть</Link>
-              </Button>
-              <Button size="small">Уже подарили</Button>
-              {el.Gifts.giver_id
-                ? <Button disabled>Забронировано</Button>
-                : <Button size="small">Удалить</Button>}
-            </CardActions>
-          </Card>
-        </>
+        <Card sx={{ maxWidth: 345 }} key={el.id}>
+          <CardMedia
+            component="img"
+            height="140"
+            image={process.env.REACT_APP_BASEURL + el.Wish.photo}
+            alt={el.Wish.name}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
+              {el.Wish.name}
+              <HttpsIcon style={{ marginLeft: '30px' }} />
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small">
+              {/*  */}
+              <Link to={`/wishes/${el.Wish.id}`}> Открыть</Link>
+            </Button>
+            <Button size="small">Уже подарили</Button>
+            {el.Gifts.giver_id
+              ? <Button disabled>Забронировано</Button>
+              : <Button size="small" onClick={() => dispatch(deleteMyWishesAsync(el.id))} className="danger">Удалить</Button>}
+          </CardActions>
+        </Card>
       ))}
     </div>
   );
