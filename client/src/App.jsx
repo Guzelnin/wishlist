@@ -30,9 +30,12 @@ function App({ el }) {
   }, []);
   const user = useSelector((state) => state.user);
   const anoterPage = useSelector((state) => state.anotherPage);
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [user.name]);
   return (
     <Container>
-      <MyNavbar />
+      <MyNavbar userName={user.name} />
       <Routes>
         <Route element={<ProtectedRoute redirect="/login" isAllowed={!!user.id} />}>
           <Route path="/mypage" element={<UserPage />} />
