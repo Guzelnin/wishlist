@@ -21,8 +21,13 @@ export default function AddWish() {
     dispatch(getCategoriesAsync());
   }, []);
   const [inputs, setInputs] = useState({
-    name: '', link: '', photo: '', categoryId: '', description: '', date: '', privateWish: false,
+    name: '', link: '', photo: null, categoryId: '', description: '', date: '', privateWish: false,
   });
+
+  const inputHandlerPhoto = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.files[0] }));
+  };
+
   const changeHandler = (e) => {
     if (e.target.name === 'privateWish') {
       setInputs((prev) => ({
@@ -37,11 +42,20 @@ export default function AddWish() {
     }));
   };
   const submitHandler = (e) => {
+    // console.log(inputs);
+    // dispatch(addWishAsync(inputs));
     e.preventDefault();
-    console.log(inputs);
-    dispatch(addWishAsync(inputs));
+    const data = new FormData();
+    data.append('name', inputs.name);
+    data.append('link', inputs.link);
+    data.append('photo', inputs.photo);
+    data.append('category_id', inputs.categoryId);
+    dispatch(addWishAsync(data));
+    setInputs({});
     navigate('/mypage');
   };
+  console.log(inputs);
+    
   return (
     <form onSubmit={submitHandler} autoComplete="off">
       <Grid
@@ -74,15 +88,32 @@ export default function AddWish() {
           />
         </Grid>
         <Grid item>
-          <TextField
+          <div className="fileUpload">
+            <Button className="buttonFileUpload" variant="contained" component="label">
+              Загрузить фото
+              <input
+                className="buttonFileUpload form-control"
+                name="photo"
+                onChange={inputHandlerPhoto}
+                // eslint-disable-next-line react/jsx-no-duplicate-props
+                // className="form-control"
+                id="outlined-basic"
+                // eslint-disable-next-line react/no-unknown-property
+                variant="outlined"
+                multiple
+                type="file"
+              />
+            </Button>
+          </div>
+          {/* <TextField
             id="outlined-basic"
             label="Фото"
             variant="outlined"
             required
             name="photo"
-            onChange={changeHandler}
-            value={inputs.photo}
-          />
+            onChange={inputHandlerPhoto}
+            
+          /> */}
         </Grid>
         <Box sx={{ minWidth: 120 }}>
           <FormControl fullWidth>

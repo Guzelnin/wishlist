@@ -12,7 +12,7 @@ function PresentCard({ el }) {
       <CardMedia
         component="img"
         height="140"
-        image={el.photo}
+        image={process.env.REACT_APP_BASEURL + el.Wish.photo}
         alt="wish"
       />
       <CardContent>

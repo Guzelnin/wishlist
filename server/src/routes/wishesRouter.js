@@ -3,6 +3,7 @@ const { Op } = require('sequelize');
 const {
   Wish, Owner, Category, User, Gift,
 } = require('../db/models');
+const upload = require('../middlewares/multer');
 
 const router = express.Router();
 
@@ -118,14 +119,14 @@ router.get('/mypage/giftsfromme', async (req, res) => {
   }
 });
 
-router.post('/add', async (req, res) => {
+router.post('/add', upload.single('photo'), async (req, res) => {
   try {
     const {
-      name, link, photo, categoryId, description, privateWish, date,
+      name, link, category_id, description, privateWish, date,
     } = req.body;
     console.log(req.body);
     const newWish = await Wish.create({
-      name, link, photo, category_id: +categoryId,
+      name, link, category_id: +category_id, photo: req.file?.path.replace('public/', '') || null,
     });
     const newOwner = await Owner.create({
       wish_id: newWish.id,
