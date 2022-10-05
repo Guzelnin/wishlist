@@ -40,9 +40,6 @@ export default function AnotherUserDescription() {
               <Col>
                 <Button variant="contained">Добавить в друзья</Button>
               </Col>
-              {/* <Col>
-                <Button variant="contained">Друзья</Button>
-              </Col> */}
             </Row>
             
           </CardContent>

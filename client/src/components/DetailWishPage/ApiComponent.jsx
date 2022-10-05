@@ -13,13 +13,12 @@ import { Container } from '@mui/system';
 import { Row } from 'reactstrap';
 import { getApiAsync } from '../../redux/actions/apiActions';
 
-
 // export default function ApiComponent({ id, sliced }) {
 //  const dispatch = useDispatch();
- // useEffect(() => {
- //   dispatch(getApiAsync(id));
+// useEffect(() => {
+//   dispatch(getApiAsync(id));
 //  }, []);
- // const date = new Date();
+// const date = new Date();
 
 // const Item = styled(Paper)(({ theme }) => ({
 //   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -66,15 +65,15 @@ export default function ApiComponent({ id }) {
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-
-             //   {el?.displayName}
-           //   </Typography>
-          //    <Typography variant="body2" color="text.secondary">
-          //      {el?.displayName}
-           //   </Typography>
-          //  </CardContent>
-         //   <CardActions>
-         //     <Button size="small"><Link href={`${el?.url}`}>перейти на Amazon.com</Link></Button>
+                {/* 
+              {el?.displayName}
+           </Typography>
+              <Typography variant="body2" color="text.secondary">
+               {el?.displayName}
+             </Typography>
+        </CardContent>
+           <CardActions>
+          <Button size="small"><Link href={`${el?.url}`}>перейти на Amazon.com</Link></Button> */}
 
                 {`$${el?.price}`}
               </Typography>
