@@ -22,7 +22,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function AnotherPageNavbar({ anotherWishes }) {
-  const [pageComponent, setPageComponent] = React.useState('mywishes');
+  const [pageComponent, setPageComponent] = React.useState('thiswishes');
   const dispatch = useDispatch();
   // const { id } = useParams();
   // const anotherWishes = useSelector((state) => state.anotherWishes);

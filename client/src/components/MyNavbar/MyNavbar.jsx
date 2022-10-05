@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
-import { logoutUserAsync } from '../../redux/actions/userActions';
+import { getMyPage } from '../../redux/actions/pageAction';
+import { checkAuth, logoutUserAsync } from '../../redux/actions/userActions';
 
-function MyNavbar() {
+function MyNavbar({ userName }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const logOut = () => {
     dispatch(logoutUserAsync());
   };
-
+  
   const url = 'https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg';
 
   return (
@@ -30,7 +31,6 @@ function MyNavbar() {
                 Hello,
                 {user.name}
                 !
-
               </div>
             </li>
           )}

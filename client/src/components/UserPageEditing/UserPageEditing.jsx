@@ -20,9 +20,31 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function UserPageEditing() {
+  const myPage = useSelector((state) => state.page);
+  const [inputs, setInputs] = useState({ 
+    name: myPage.name, email: myPage.email, password: '', photo: '', date: '', description: myPage.description,
+  });
+  const [error, setError] = useState({ 
+    name: false, email: false, photo: false, date: false, description: false,
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const myPage = useSelector((state) => state.page);
+  const changeHandler = (e) => {
+    // setInputs((prev) => ({
+    //   ...prev,
+    //   [e.target.name]: e.target.value,
+    // }));
+  };
+
+  const submitHandler = (e) => {
+    // setError({
+    //   [e.target.name]: e.target.value === '',
+    // });
+    // dispatch(editUser(e, inputs));
+    // dispatch(getMyPage());
+    // navigate('/mypage');
+  };
+
   useEffect(() => {
     dispatch(getMyPage());
   }, []);
@@ -48,37 +70,36 @@ export default function UserPageEditing() {
         </Grid>
         <Grid item xs={6} md={8}>
           <Item>
-            <Form
-              onSubmit={(e) => {
-                dispatch(editUser(e, Object.fromEntries(new FormData(e.target))));
-                dispatch(getMyPage());
-                navigate('/mypage');
-              }}
+            {/* <Form
+              onSubmit={submitHandler}
               autoComplete="off"
-            >
+            > */}
+            <form onSubmit={submitHandler}>
               <Grid
                 container
                 direction="column"
                 justifyContent="center"
                 alignItems="center"
               >
-                <input type="text" id="name" className="fadeIn second" name="name" placeholder="Имя" />
-                <input type="text" id="email" className="fadeIn third" name="email" placeholder="email" />
-                <input type="password" id="password" className="fadeIn fourth" name="password" placeholder="Пароль" />
-                <input type="text" id="photo" className="fadeIn fifth" name="photo" placeholder="Фото" />
-                <input type="date" id="bday" className="fadeIn sixth" name="bday" placeholder="birthday" />
-                <input type="text" id="description" className="fadeIn seventh" name="description" placeholder="Описание" />
-                <input type="submit" className="fadeIn eight" value="Сохранить изменения" />
-                <button
-                  type="button"
-                  onClick={() => {
-                    navigate('/mypage');
-                  }}
-                >
-                  Отмена
-                </button>
+                <input type="text" style={{ borderColor: error.name === false ? 'transparent' : 'red' }} id="name" value={inputs.name} onChange={changeHandler} className="lol second" name="name" placeholder="Имя" />
+                <input type="text" id="email" value={inputs.email} onChange={changeHandler} className="lol third" name="email" placeholder="email" />
+                <input type="password" id="password" className="lol fourth" onChange={changeHandler} name="password" placeholder="Пароль" />
+                <input type="text" id="photo" className="lol fifth" onChange={changeHandler} name="photo" placeholder="Фото" />
+                <input type="date" id="bday" value={inputs.date} onChange={changeHandler} className="lol sixth" name="bday" placeholder="birthday" />
+                <input type="text" id="description" value={inputs.description} onChange={changeHandler} className="lol seventh" name="description" placeholder="Описание" />
+                {/* <input type="submit" className="lol eight" value="Сохранить изменения" /> */}
               </Grid>
-            </Form>
+              <button type="submit">ok</button>
+              {/* </Form> */}
+            </form>
+            <input
+              type="button"
+              // onClick={() => {
+              //   navigate('/mypage');
+              // }}
+              className="lol eight"
+              value="Отмена"
+            />
           </Item>
         </Grid>
       </Grid>
