@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import { getCategoriesAsync } from '../../redux/actions/categoriesActions';
 import { addWishAsync } from '../../redux/actions/myWishesAction';
 
@@ -42,106 +42,95 @@ export default function AddWish() {
     navigate('/mypage');
   };
   return (
-    <form onSubmit={submitHandler} autoComplete="off">
-      <Grid
-        container
-        spacing={2}
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid item>
-          <TextField
-            id="outlined-basic"
+    <div className="wrapper fadeInDown">
+      <div id="formContent">
+        <h2 className="active">Добавление подарка </h2>
+        <div className="fadeIn first">
+          <img src="https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg" id="icon" alt="User Icon" />
+        </div>
+        <form onSubmit={submitHandler} autoComplete="off">
+  
+          <input
+            placeholder="Название"
+            type="text"
+            className="fadeIn second"
             label="Название желания"
-            variant="outlined"
-            required
             name="name"
             onChange={changeHandler}
             value={inputs.name}
           />
-        </Grid>
-        <Grid item>
-          <TextField
-            id="outlined-basic"
-            label="Ссылка"
-            variant="outlined"
-            required
+     
+          <input
+            placeholder="Ссылка" 
+            type="text"
+            className="fadeIn fourth"
             name="link"
             onChange={changeHandler}
             value={inputs.link}
           />
-        </Grid>
-        <Grid item>
-          <TextField
-            id="outlined-basic"
-            label="Фото"
-            variant="outlined"
-            required
+ 
+          <input
+            type="text"
+            className="fadeIn fifth"
+            placeholder="Фото" 
             name="photo"
             onChange={changeHandler}
             value={inputs.photo}
           />
-        </Grid>
-        <Box sx={{ minWidth: 120 }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Категория</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              name="categoryId"
-              onChange={changeHandler}
-              value={inputs.categoryId}
-              label="Category"
-            >
-              {categories && categories?.map((el) => (
-                <MenuItem
-                  key={el.id}
-                  value={el.id}
-                >
-                  {el.title}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Box>
-        <Grid item>
-          <TextField
-            id="outlined-basic"
-            label="Описание"
-            variant="outlined"
-            required
+          <input
+            type="text"
+            className="fadeIn sixth"
+            placeholder="Описание" 
             name="description"
             onChange={changeHandler}
             value={inputs.description}
           />
-        </Grid>
-        <Grid item>
-          <div>
+          <div className="fadeIn sixth">
             Дедлайн желания
           </div>
-          <Input
+          <input
             type="date"
             name="date"
+            className="fadeIn seventh"
             onChange={changeHandler}
             value={inputs.date}
           />
-        </Grid>
-        <Grid item>
-          <Checkbox
-            {...label}
-            name="privateWish"
-            checked={priv === true}
+
+          <select
+            id="selection"
+            className="fadeIn seventh"
+            name="categoryId"
             onChange={changeHandler}
-            onClick={() => setPriv(!priv)}
-            value={priv === true}
-          />
-          Приватное желание
-        </Grid>
-        <Grid item>
-          <Button variant="contained" type="submit">Добавить желание</Button>
-        </Grid>
-      </Grid>
-    </form>
+            value={inputs.categoryId}
+          >
+            <option value="" selected disabled hidden>Выбрать категорию</option>
+            {categories && categories?.map((el) => (
+              <option
+                key={el.id}
+                value={el.id}
+              >
+                {el.title}
+              </option>
+            ))}
+          </select>
+
+          <div className="fadeIn eight">
+            <Checkbox
+              {...label}
+              className=""
+              id="_checkbox"
+              name="privateWish"
+              checked={priv === true}
+              onChange={changeHandler}
+              onClick={() => setPriv(!priv)}
+              value={priv === true}
+            />
+            Приватное желание
+          </div>
+          <input type="submit" className="fadeIn eight" value="Добавить желание" />
+  
+        </form>
+      </div>
+    </div>
   );
 }
