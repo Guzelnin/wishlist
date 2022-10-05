@@ -64,7 +64,7 @@ export default function HomePage({ user }) {
         </div>
        
       </div>
-{/*
+      {/*
       <div className="video_wrapper">
         <div className="full-screen">
           <div className="full-screen__body">
@@ -98,22 +98,21 @@ export default function HomePage({ user }) {
           onChange={(e) => setData(e.target.value)}
         />
         {/* <Grid item xs={8}> */}
-        <Grid
-          container
-          spacing={2}
-          direction="row"
-          justifyContent="space-around"
-          alignItems="center"
-        >
-          {/* {newFilterWord && newFilterWord.length !== 0
+      <Grid
+        container
+        spacing={2}
+        direction="row"
+        justifyContent="space-around"
+        alignItems="center"
+      >
+        {/* {newFilterWord && newFilterWord.length !== 0
           && newFilterWord.map((el) => ( */}
-          {allWishes && allWishes.length !== 0 && allWishes.filter((value) => value.Wish.name.toLowerCase().includes(data.toLowerCase())).map((el) => (
-            <Grid item xs={4} key={el.id}>
-              <PresentCard el={el} />
-            </Grid>
-          ))}
-        </Grid>
-      </Grid> */}
+        {allWishes && allWishes.length !== 0 && allWishes.filter((value) => value.Wish.name.toLowerCase().includes(data.toLowerCase())).map((el) => (
+          <Grid item xs={4} key={el.id}>
+            <PresentCard el={el} />
+          </Grid>
+        ))}
+      </Grid>
     </>
   );
 }

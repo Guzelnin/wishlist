@@ -84,7 +84,6 @@ export default function AddWish() {
             onChange={changeHandler}
             value={inputs.link}
           />
-
  
           <input
             type="text"
