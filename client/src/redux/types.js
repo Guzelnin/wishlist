@@ -43,3 +43,6 @@ export const GET_GIFTS_FROM_USER = 'GET_GIFTS_FROM_USER';
 
 // api
 export const API_RANDOM = 'API_RANDOM';
+
+// booking wish
+export const ADD_USER_GIFT = 'ADD_USER_GIFT';

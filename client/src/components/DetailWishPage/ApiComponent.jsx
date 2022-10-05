@@ -13,6 +13,14 @@ import { Container } from '@mui/system';
 import { Row } from 'reactstrap';
 import { getApiAsync } from '../../redux/actions/apiActions';
 
+
+// export default function ApiComponent({ id, sliced }) {
+//  const dispatch = useDispatch();
+ // useEffect(() => {
+ //   dispatch(getApiAsync(id));
+//  }, []);
+ // const date = new Date();
+
 // const Item = styled(Paper)(({ theme }) => ({
 //   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
 //   ...theme.typography.body2,
@@ -41,6 +49,12 @@ export default function ApiComponent({ id }) {
       </Row>
       <Row>
         {
+       // sliced?.length !== 0 && sliced && sliced?.map((el) => (
+        //  <Card key={date} sx={{ maxWidth: 345 }}>
+          //  <CardMedia
+           //   component="img"
+           //   height="140"
+
         api?.length !== 0 && api && api?.map((el) => (
           <Card key={el?.url} sx={{ maxWidth: 345 }}>
             <CardMedia
@@ -52,6 +66,16 @@ export default function ApiComponent({ id }) {
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
+
+             //   {el?.displayName}
+           //   </Typography>
+          //    <Typography variant="body2" color="text.secondary">
+          //      {el?.displayName}
+           //   </Typography>
+          //  </CardContent>
+         //   <CardActions>
+         //     <Button size="small"><Link href={`${el?.url}`}>перейти на Amazon.com</Link></Button>
+
                 {`$${el?.price}`}
               </Typography>
               <Typography variant="body2" color="text.secondary">
@@ -60,6 +84,7 @@ export default function ApiComponent({ id }) {
             </CardContent>
             <CardActions>
               <Button size="small"><Link href={`${el?.url}`}>Learn More</Link></Button>
+
             </CardActions>
           </Card>
         ))

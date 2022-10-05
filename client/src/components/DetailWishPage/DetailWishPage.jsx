@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 import { Button, Link, Typography } from '@mui/material';
 import { getOneWishAsync } from '../../redux/actions/oneWishActions';
 import ApiComponent from './ApiComponent';
+import { getApiAsync } from '../../redux/actions/apiActions';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -19,10 +20,15 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function DetailWishPage() {
   const { id } = useParams();
   const wish = useSelector((state) => state.oneWish);
+  const api = useSelector((state) => state.api);
+  const [sliced, setSliced] = useState(api?.queries?.slice(0, 3) || []);
+  console.log(api?.queries);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(getOneWishAsync(id));
+    // dispatch(getApiAsync(id));
+    // setSliced(api?.queries?.slice(0, 3));
   }, []);
   return (
     <Box sx={{ flexGrow: 1 }} style={{ marginTop: '20px' }}>
@@ -38,12 +44,12 @@ export default function DetailWishPage() {
             >
               <Grid item>
                 <Typography variant="h3">
-                  {wish?.Wish.name}
+                  {wish?.Wish?.name}
                 </Typography>
               </Grid>
               <Grid item>
                 <Typography variant="h5">
-                  <Link href={wish?.Wish.link}>Ссылка</Link>
+                  <Link href={wish?.Wish?.link}>Ссылка</Link>
                 </Typography>
               </Grid>
               <Grid item>
@@ -76,8 +82,12 @@ export default function DetailWishPage() {
               justifyContent="space-around"
               alignItems="center"
             >
+
+             // <img src={wish?.Wish?.photo} alt="wish" width="100%" />
+
               {/* // {process.env.REACT_APP_BASEURL + */}
               <img src={process.env.REACT_APP_BASEURL + wish?.Wish.photo} alt="wish" width="100%" />
+
               <Button
                 variant="outlined"
                 style={{ width: '100%', marginTop: '10px' }}
@@ -88,7 +98,7 @@ export default function DetailWishPage() {
             </Grid>
           </Item>
         </Grid>
-        <ApiComponent id={id} />
+        {/* <ApiComponent id={id} sliced={sliced} /> */}
         {/* <Grid item xs={12} md={12}>
           <Item>
             <h3 style={{ marginBottom: '10px' }}>Варианты:</h3>

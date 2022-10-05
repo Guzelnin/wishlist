@@ -14,7 +14,6 @@ export default function AnotherUserDescription() {
   React.useEffect(() => {
     dispatch(getPage(id));
   }, []);
-  console.log(thisPage);
   return (
     <Row>
       <Col>
