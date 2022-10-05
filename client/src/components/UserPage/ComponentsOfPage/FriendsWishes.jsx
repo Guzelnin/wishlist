@@ -22,7 +22,7 @@ export default function FriendsWishes({ friendWishes }) {
           <CardMedia
             component="img"
             height="140"
-            image={el?.Wish.photo}
+            image={process.env.REACT_APP_BASEURL + el.Wish.photo}
             alt={el?.Wish.name}
           />
           <CardContent>

@@ -20,12 +20,11 @@ export default function MyWishes({ myWish }) {
   return (
     <div>
       {myWish && myWish?.map((el) => (
-        
         <Card sx={{ maxWidth: 345 }} key={el.id}>
           <CardMedia
             component="img"
             height="140"
-            image={el.Wish.photo}
+            image={process.env.REACT_APP_BASEURL + el.Wish.photo}
             alt={el.Wish.name}
           />
           <CardContent>
