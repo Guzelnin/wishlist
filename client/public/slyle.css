@@ -1175,6 +1175,7 @@ input {
   margin-right: 2vw;
   transform: scale(1.3);
   cursor: pointer;
+}
 
 .navMenu {
   position: absolute;
