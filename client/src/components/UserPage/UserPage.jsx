@@ -1,18 +1,39 @@
-import { Container } from '@mui/system';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import UserDescription from './UserDescription';
 import PageNavbar from './PageNavbar';
+import UserNavBar from './UserNavBar';
+import FriendsWishes from './ComponentsOfPage/FriendsWishes';
+import MyWishes from './ComponentsOfPage/MyWishes';
+import GiftsForMe from './ComponentsOfPage/GiftsForMe';
+import GiftsFromMe from './ComponentsOfPage/GiftsFromMe';
+import { getMyWishesAsync } from '../../redux/actions/myWishesAction';
+import { getFriendsWishesIbookedAsync } from '../../redux/actions/friendsWishesIBookedActions';
+import { getWishesForMeAsync } from '../../redux/actions/wishesForMeActions';
+import { getWishesFromMeAsync } from '../../redux/actions/wishesFromMeActions';
 
 export default function UserPage() {
-  const myWish = useSelector((state) => state.myWishes);
-  const friendWishes = useSelector((state) => state.myWishes);
-  const allMyGifts = useSelector((state) => state.gifts);
-  const giftsFromMe = useSelector((state) => state.gifts);
+  const myWishes = useSelector((state) => state.myWishes);
+  const friendsWishesIBooked = useSelector((state) => state.friendsWishesIBooked);
+  const wishesForMe = useSelector((state) => state.wishesForMe);
+  const wishesFromMe = useSelector((state) => state.wishesFromMe);
+  const [pageComp, setPageComp] = useState('myWishes');
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMyWishesAsync());
+    dispatch(getFriendsWishesIbookedAsync());
+    dispatch(getWishesForMeAsync());
+    dispatch(getWishesFromMeAsync());
+  }, []);
   return (
-    <Container>
+    <div>
       <UserDescription />
-      <PageNavbar myWish={myWish} friendWishes={friendWishes} allMyGifts={allMyGifts} giftsFromMe={giftsFromMe} />
-    </Container>
+      <UserNavBar setPageComp={setPageComp} />
+      {pageComp === 'myWishes' && <MyWishes myWishes={myWishes} />}
+      {pageComp === 'friendsWishes' && <FriendsWishes wishes={friendsWishesIBooked} />}
+      {pageComp === 'giftsForMe' && <GiftsForMe wishes={wishesForMe} />}
+      {pageComp === 'giftsFromMe' && <GiftsFromMe wishes={wishesFromMe} />}
+    </div>
   );
 }

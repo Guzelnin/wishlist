@@ -43,16 +43,21 @@ router.get('/', async (req, res) => {
 
 router.get('/mypage/mywishes', async (req, res) => {
   try {
-    const currUser = await User.findOne({ where: { id: req.session.user.id } });
-    const myWishes = await Owner.findAll({
-      where: { user_id: currUser.id },
-      include: [{
-        model: Wish,
+    const myWishes = await Gift.findAll({
+      where: {
+        wish_status: true,
       },
-      {
-        model: Gift,
-        where: { wish_status: true },
-      }],
+      include: {
+        model: Owner,
+        where: {
+          user_id: req.session.user.id,
+        },
+        include: [{
+          model: User,
+        }, {
+          model: Wish,
+        }],
+      },
     });
     console.log(myWishes);
     res.send(myWishes);
@@ -72,28 +77,121 @@ router.get('/mypage', async (req, res) => {
   }
 });
 
-router.get('/mypage/friendswishes', async (req, res) => {
+router.get('/v1/mypage/friendswishesibooked', async (req, res) => {
   try {
-    const currUser = await User.findOne({ where: { id: req.session.user.id } });
-    const notedWishes = await Owner.findAll({
-      include: [
-        {
+    const wishes = await Gift.findAll({
+      where: {
+        giver_id: req.session.user.id,
+        wish_status: true,
+      },
+      include: {
+        model: Owner,
+        include: [{
+          model: User,
+        }, {
+          model: Wish,
+        }],
+      },
+    });
+    res.send(wishes);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/v1/mypage/wishesforme', async (req, res) => {
+  try {
+    const wishes = await Gift.findAll({
+      where: {
+        wish_status: false,
+      },
+      include: [{
+        model: Owner,
+        where: {
+          user_id: req.session.user.id,
+        },
+        include: {
           model: Wish,
         },
-        {
-          model: User,
-        },
-        {
-          model: Gift,
-          where: {
-            giver_id: currUser.id,
-            wish_status: true,
-          },
-        },
-      ],
+      }, {
+        model: User,
+      }],
     });
-    // console.log(notedWishes);
-    res.send(notedWishes);
+    res.send(wishes);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/v1/mypage/wishesforme/new/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const wish = await Gift.findOne({
+      where: {
+        id,
+      },
+      include: [{
+        model: Owner,
+        include: {
+          model: Wish,
+        },
+      }, {
+        model: User,
+      }],
+    });
+    await wish.update({ wish_status: false });
+    res.send(wish);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/v1/mypage/wishesfromme', async (req, res) => {
+  try {
+    const wishes = await Gift.findAll({
+      where: {
+        giver_id: req.session.user.id,
+        wish_status: false,
+      },
+      include: {
+        model: Owner,
+        include: [{
+          model: User,
+        }, {
+          model: Wish,
+        }],
+      },
+    });
+    res.send(wishes);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/v1/mypage/wishesfromme/new/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const wish = await Gift.findOne({
+      where: {
+        id,
+      },
+      include: {
+        model: Owner,
+        include: [{
+          model: User,
+        }, {
+          model: Wish,
+        }],
+      },
+    });
+    await wish.update({
+      giver_id: req.session.user.id,
+    });
+    res.send(wish);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -159,14 +257,15 @@ router.get('/mypage/giftsfromme', async (req, res) => {
 
 router.post('/add', upload.single('photo'), async (req, res) => {
   try {
+    console.log('debug1');
     const {
-      // eslint-disable-next-line camelcase
-      name, link, category_id, description, privateWish, date,
+      name, link, categoryId, description, privateWish, date,
     } = req.body;
+    console.log('debug2');
     const newWish = await Wish.create({
-      // eslint-disable-next-line camelcase
-      name, link, category_id: +category_id, photo: req.file?.path.replace('public/', '') || null,
+      name, link, category_id: +categoryId, photo: req.file?.path.replace('public/', '') || null,
     });
+    console.log('debug3');
     const newOwner = await Owner.create({
       wish_id: newWish.id,
       user_id: req.session.user.id,
@@ -174,23 +273,30 @@ router.post('/add', upload.single('photo'), async (req, res) => {
       description,
       date,
     });
-    await Gift.create({
+    console.log('debug4');
+    const newGift = await Gift.create({
       owner_id: newOwner.id,
       giver_id: null,
       wish_status: true,
     });
-    const myNewWish = await Owner.findOne({
-      where: { id: newOwner.id },
-      include: [{
-        model: Wish,
+    console.log('debug5');
+    const myNewWish = await Gift.findOne({
+      where: {
+        id: newGift.id,
       },
-      {
-        model: Gift,
-      }],
+      include: {
+        model: Owner,
+        include: [{
+          model: User,
+        }, {
+          model: Wish,
+        }],
+      },
     });
-    res.json(myNewWish);
+    console.log('debug6');
+    res.send(myNewWish);
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     res.sendStatus(500);
   }
 });
@@ -264,24 +370,8 @@ router.patch('/:id/edit', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    // const wish = await Wish.findOne({
-    //   where: {
-    //     user_id: req.session.user.id,
-    //   },
-    //   include: {
-    //     model: Wish,
-    //     where: {
-    //       id,
-    //     },
-    //   },
-    // });
-    const wish = await Wish.findOne({
-      where: {
-        id,
-      },
-    });
-    console.log(wish);
-    await Wish.destroy({ where: { id } });
+    const wish = await Owner.findByPk(id);
+    await wish.destroy();
     res.sendStatus(200);
   } catch (e) {
     console.log(e);
