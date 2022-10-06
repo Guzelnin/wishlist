@@ -20,9 +20,9 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function DetailWishPage() {
   const { id } = useParams();
   const wish = useSelector((state) => state.oneWish);
-  const api = useSelector((state) => state.api);
-  const [sliced, setSliced] = useState(api?.queries?.slice(0, 3) || []);
-  console.log(api?.queries);
+  // const api = useSelector((state) => state.api);
+  // const [sliced, setSliced] = useState(api?.queries?.slice(0, 3) || []);
+  // console.log(api?.queries);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
