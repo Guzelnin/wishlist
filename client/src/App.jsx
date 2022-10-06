@@ -1,4 +1,3 @@
-import Search from '@mui/icons-material/Search';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
@@ -16,12 +15,9 @@ import { checkAuth, getUserAsync } from './redux/actions/userActions';
 import NoPage from './components/NoPage/NoPage';
 import DetailWishPage from './components/DetailWishPage';
 import EditDetailWishPage from './components/DetailWishPage/EditDetailWithPage';
-
 import NewWishCopy from './components/NewWishCopy';
 import UserPageEditing from './components/UserPageEditing';
-import AnotherUserPage from './components/AnotherUserPage/AnotherUserPage';
-
-// import initialDetails from './components/Search/initialDetails';
+import AnotherUserPage2 from './components/AnotherUserPage2';
 
 function App({ el }) {
   const dispatch = useDispatch();
@@ -29,10 +25,9 @@ function App({ el }) {
     dispatch(checkAuth());
   }, []);
   const user = useSelector((state) => state.user);
-  const anoterPage = useSelector((state) => state.anotherPage);
   useEffect(() => {
     dispatch(getUserAsync());
-  }, [user]);
+  }, [user.name]);
   return (
     <Container>
       <MyNavbar />
@@ -56,7 +51,7 @@ function App({ el }) {
         <Route path="/friends" element={<FriendsPage />} />
         <Route path="/users/:id/edit" element={<UserPageEditing />} />
         <Route path="*" element={<NoPage />} />
-        <Route path="/:id" element={<AnotherUserPage />} />
+        <Route path="/:id" element={<AnotherUserPage2 />} />
       </Routes>
       {/* <Search details={initialDetails} /> */}
       <MyFooter />

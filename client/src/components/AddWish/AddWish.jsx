@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getCategoriesAsync } from '../../redux/actions/categoriesActions';
-import { addWishAsync } from '../../redux/actions/myWishesAction';
+import { addWishAsync, getMyWishesAsync } from '../../redux/actions/myWishesAction';
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
@@ -49,14 +49,15 @@ export default function AddWish() {
     data.append('name', inputs.name);
     data.append('link', inputs.link);
     data.append('photo', inputs.photo);
-    data.append('category_id', inputs.categoryId);
+    data.append('categoryId', inputs.categoryId);
+    data.append('description', inputs.description);
+    data.append('privateWish', inputs.privateWish);
+    data.append('date', inputs.date);
     dispatch(addWishAsync(data));
+    dispatch(getMyWishesAsync());
     setInputs({});
-    // dispatch(addWishAsync(inputs));
     navigate('/mypage');
-  };
-  console.log(inputs);
-    
+  };    
   return (
     <form onSubmit={submitHandler} autoComplete="off">
       <Grid

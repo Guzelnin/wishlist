@@ -82,10 +82,6 @@ export default function DetailWishPage() {
               justifyContent="space-around"
               alignItems="center"
             >
-
-             // <img src={wish?.Wish?.photo} alt="wish" width="100%" />
-
-              {/* // {process.env.REACT_APP_BASEURL + */}
               <img src={process.env.REACT_APP_BASEURL + wish?.Wish.photo} alt="wish" width="100%" />
 
               <Button

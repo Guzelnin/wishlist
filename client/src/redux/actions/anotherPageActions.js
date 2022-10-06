@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { SET_USER_PAGE } from '../types';
+import { GET_ANOTHER_USER } from '../types';
 
-export const setPage = (payload) => ({ type: SET_USER_PAGE, payload });
+export const getAnotherUserPage = (payload) => ({ type: GET_ANOTHER_USER, payload });
 
-export const getPage = (id) => (dispatch) => {
+export const getAnotherUserPageAsync = (id) => (dispatch) => {
   axios(`/api/another/${id}`)
-    .then((data) => dispatch(setPage(data.data)))
+    .then((res) => dispatch(getAnotherUserPage(res.data)))
     .catch(console.log);
 };
