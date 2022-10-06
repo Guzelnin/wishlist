@@ -33,115 +33,43 @@ export default function DetailWishPage() {
     // setSliced(api?.queries?.slice(0, 3));
   }, []);
   return (
-    <Box sx={{ flexGrow: 1 }} style={{ marginTop: '20px' }}>
-      <Grid container spacing={2}>
-        <Grid item xs={6} md={8}>
-          <Item>
-            <Grid
-              container
-              direction="column"
-              justifyContent="space-around"
-              alignItems="center"
-              spacing={9}
-            >
-              <Grid item>
-                <Typography variant="h3">
-                  {wish?.Wish?.name}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="h5">
-                  <Link href={wish?.Wish?.link}>Ссылка</Link>
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="h5">
-                  {`Описание: ${wish?.description}`}
-                </Typography>
-              </Grid>
-              <Grid item>
-                {wish?.private === true
-                  ? (
-                    <Typography variant="h5">
-                      Приватность: Приватное желание
-                    </Typography>
-                  )
-                  : (
-                    <Typography variant="h5">
-                      Приватность: Публичное желание
-                    </Typography>
-                  )}
+    <div className="infocardContainer">
+      <div id="main">
+        <img src={process.env.REACT_APP_BASEURL + wish?.Wish.photo} alt="wish" width="100%" />
+      </div>
+      <div id="textbois">
+        <h2> 
+          {' '}
+          {wish?.Wish?.name}
+        </h2>
+        <h4>
+          Описание:
+          <br />
+          {`${wish?.description}`}
+        </h4>
+        <Link to={wish?.Wish?.link}>Ссылка на подарок</Link>
+        <div>
+          {wish?.private === true
+            ? (
+              <div>
+                Приватность: Приватное желание
+              </div>
+            )
+            : (
+              <div>
+                Приватность: Публичное желание
+              </div>
+            )}
+        </div>
+        <div id="textbois">
+          <div className="wrap">
+            <button className="button" onClick={() => navigate(`/wishes/${wish.id}/edit`)}>Редактировать</button>
+          </div>
 
-              </Grid>
-            </Grid>
-          </Item>
-        </Grid>
-        <Grid item xs={6} md={4}>
-          <Item>
-            <Grid
-              container
-              direction="column"
-              justifyContent="space-around"
-              alignItems="center"
-            >
-              <img src={process.env.REACT_APP_BASEURL + wish?.Wish.photo} alt="wish" width="100%" />
-              <Button
-                variant="outlined"
-                style={{ width: '100%', marginTop: '10px' }}
-                onClick={() => navigate(`/wishes/${wish.wish_id}/edit`)}
-              >
-                Редактировать
-              </Button>
-            </Grid>
-          </Item>
-        </Grid>
-        {/* <ApiComponent id={id} sliced={sliced} /> */}
-        {/* <Grid item xs={12} md={12}>
-          <Item>
-            <h3 style={{ marginBottom: '10px' }}>Варианты:</h3>
-            <Grid
-              container
-              direction="row"
-              justifyContent="space-around"
-              alignItems="center"
-            >
-              <Grid item>
-                <Grid
-                  container
-                  direction="column"
-                  justifyContent="space-around"
-                  alignItems="center"
-                >
-                  <img src={wish?.Wish.photo} alt="wish" width="200px" />
-                  <h4 style={{ marginTop: '10px' }}>API-1</h4>
-                </Grid>
-              </Grid>
-              <Grid item>
-                <Grid
-                  container
-                  direction="column"
-                  justifyContent="space-around"
-                  alignItems="center"
-                >
-                  <img src={wish?.Wish.photo} alt="wish" width="200px" />
-                  <h4 style={{ marginTop: '10px' }}>API-2</h4>
-                </Grid>
-              </Grid>
-              <Grid item>
-                <Grid
-                  container
-                  direction="column"
-                  justifyContent="space-around"
-                  alignItems="center"
-                >
-                  <img src={wish?.Wish.photo} alt="wish" width="200px" />
-                  <h4 style={{ marginTop: '10px' }}>API-3</h4>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Item> */}
-        {/* </Grid> */}
-      </Grid>
-    </Box>
-  );
-}
+
+        </div>
+      </div>
+     
+    </div>
+  
+
