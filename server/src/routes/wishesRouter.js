@@ -59,6 +59,7 @@ router.get('/mypage/mywishes', async (req, res) => {
         }],
       },
     });
+    console.log(myWishes);
     res.send(myWishes);
   } catch (error) {
     console.log(error);

@@ -29,7 +29,7 @@ function App({ el }) {
     dispatch(getUserAsync());
   }, [user.name]);
   return (
-    <Container>
+    <>
       <MyNavbar />
       <Routes>
         <Route element={<ProtectedRoute redirect="/login" isAllowed={!!user.id} />}>
@@ -55,7 +55,7 @@ function App({ el }) {
       </Routes>
       {/* <Search details={initialDetails} /> */}
       <MyFooter />
-    </Container>
+    </>
   );
 }
 
