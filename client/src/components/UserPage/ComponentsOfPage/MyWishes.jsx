@@ -21,25 +21,31 @@ export default function MyWishes({ myWish }) {
   return (
     <div>
       {myWish && myWish?.map((el) => (
-        <div id="card" className="card">
-          <img className="card_image" src={process.env.REACT_APP_BASEURL + el.Wish.photo} alt={el.Wish.name} />
-          <div className="card__overlay">
-            <div id="content">
+        <Card sx={{ maxWidth: 345 }} key={el.id}>
+          <CardMedia
+            component="img"
+            height="140"
+            image={process.env.REACT_APP_BASEURL + el.Wish.photo}
+            alt={el.Wish.name}
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="div">
               {el.Wish.name}
               {el.private
                 ? <HttpsIcon style={{ marginLeft: '30px' }} />
                 : <SupervisorAccountIcon style={{ marginLeft: '30px' }} />}  
-
-            </div>
-            <div id="add_button">
-              <button onClick={() => navigate(`/wishes/${el.Wish.id}`)}> Открыть</button>
-              {el.Gifts[0].giver_id
-                ? <button disabled onClick={() => navigate(`/wishes/${el.Wish.id}`)}> Забронировано</button>
-                : <button onClick={() => dispatch(deleteMyWishesAsync(el.id))} className="danger">Удалить</button>}
-            </div>
-           
-          </div>
-        </div>
+            </Typography>
+          </CardContent>
+          <CardActions>
+            <Button size="small">
+              <Link to={`/wishes/${el.Wish.id}`}> Открыть</Link>
+            </Button>
+            <Button size="small">Уже подарили</Button>
+            {el.Gifts[0].giver_id
+              ? <Button disabled>Забронировано</Button>
+              : <Button size="small" onClick={() => dispatch(deleteMyWishesAsync(el.id))} className="danger">Удалить</Button>}
+          </CardActions>
+        </Card>
         
       ))}
     </div>
