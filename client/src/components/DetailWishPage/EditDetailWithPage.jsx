@@ -124,6 +124,7 @@ export default function EditDetailWishPage() {
               </Grid>
               <Grid item>
                 <img src={oldWish?.Wish?.photo} alt="wish" width="100%" />
+                {/* <img src={process.env.REACT_APP_BASEURL + el.Owner.Wish.photo} height="100px" alt="myWish" /> */}
               </Grid>
             </Grid>
           </Item>
