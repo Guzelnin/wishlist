@@ -47,3 +47,18 @@ export const API_RANDOM = 'API_RANDOM';
 
 // booking wish
 export const ADD_USER_GIFT = 'ADD_USER_GIFT';
+
+// my page contenttttttttttttt
+
+export const GET_FRIENDS_WISHES_I_BOOKED = 'GET_FRIENDS_WISHES_I_BOOKED';
+export const GET_WISHES_FOR_ME = 'GET_WISHES_FOR_ME';
+export const ADD_WISHES_FOR_ME = 'ADD_WISHES_FOR_ME';
+export const GET_WISHES_FROM_ME = 'GET_WISHES_FROM_ME';
+export const ADD_WISHES_FROM_ME = 'ADD_WISHES_FROM_ME';
+
+// another user page and it's content
+
+export const GET_ANOTHER_USER = 'GET_ANOTHER_USER';
+export const GET_ANOTHER_USER_WISHES = 'GET_ANOTHER_USER_WISHES';
+export const GET_WISHES_FOR_ANOTHER_USER = 'GET_WISHES_FOR_ANOTHER_USER';
+export const GET_WISHES_FROM_ANOTHER_USER = 'GET_WISHES_FROM_ANOTHER_USER';

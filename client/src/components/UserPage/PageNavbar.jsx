@@ -10,7 +10,7 @@ import { getMyWishesAsync, setFriendsWishesAsync } from '../../redux/actions/myW
 import MyWishes from './ComponentsOfPage/MyWishes';
 import FriendsWishes from './ComponentsOfPage/FriendsWishes';
 import GiftsForMe from './ComponentsOfPage/GiftsForMe';
-import GirtsFromMe from './ComponentsOfPage/GirtsFromMe';
+import GirtsFromMe from './ComponentsOfPage/GiftsFromMe';
 import { setGiftsFromMeAsync, setGiftsToMeAsync } from '../../redux/actions/giftsAction';
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -29,7 +29,7 @@ export default function PageNavbar({
   React.useEffect(() => {
     dispatch(getMyWishesAsync());
     dispatch(setFriendsWishesAsync());
-    dispatch(setGiftsToMeAsync());
+    // dispatch(setGiftsToMeAsync());
     dispatch(setGiftsFromMeAsync());
   }, []);
   return (

@@ -103,8 +103,6 @@ router.post('/edit', async (req, res) => {
     const sessionUser = JSON.parse(JSON.stringify(user));
     delete sessionUser.password;
     req.session.user = sessionUser;
-    console.log('lololololololololololo');
-    console.log(sessionUser);
     return res.json(sessionUser);
   } catch (error) {
     console.log(error);
@@ -112,15 +110,14 @@ router.post('/edit', async (req, res) => {
   }
 });
 
-// router.get('/current', async (req, res) => {
-//   try {
-//     const user = await User.findByPk(res.session.user.id);
-//     console.log(user);
-//     res.json(user);
-//   } catch (error) {
-//     console.log(error);
-//     res.sendStatus(500);
-//   }
-// });
+router.get('/current', async (req, res) => {
+  try {
+    const user = await User.findByPk(req.session.user.id);
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
 
 module.exports = router;

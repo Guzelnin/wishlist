@@ -140,11 +140,89 @@ router.post('/book/:id/:wishId', async (req, res) => {
     // });
     // console.log(updatedWish);
     // res.send(updatedWish);
-  
+
     console.log(newGift);
     res.json(newGift);
   } catch (error) {
     console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+// redone '/api/another/v1/'
+
+router.get('/v1/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const myWishes = await Gift.findAll({
+      where: {
+        wish_status: true,
+      },
+      include: [{
+        model: Owner,
+        where: {
+          user_id: id,
+        },
+        include: {
+          model: Wish,
+        },
+      }, {
+        model: User,
+      }],
+    });
+    res.send(myWishes);
+  } catch (error) {
+    console.log(error.message);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/v1/:id/wishesfor', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const wishes = await Gift.findAll({
+      where: {
+        wish_status: false,
+      },
+      include: [{
+        model: Owner,
+        where: {
+          user_id: id,
+        },
+        include: {
+          model: Wish,
+        },
+      }, {
+        model: User,
+      }],
+    });
+    res.send(wishes);
+  } catch (error) {
+    console.log(error.message);
+    res.sendStatus(500);
+  }
+});
+
+router.get('/v1/:id/wishesfrom', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const wishes = await Gift.findAll({
+      where: {
+        giver_id: id,
+        wish_status: false,
+      },
+      include: {
+        model: Owner,
+        include: [{
+          model: Wish,
+        }, {
+          model: User,
+        }],
+      },
+    });
+    res.send(wishes);
+  } catch (error) {
+    console.log(error.message);
     res.sendStatus(500);
   }
 });
