@@ -54,7 +54,6 @@ router.get('/mypage/mywishes', async (req, res) => {
         where: { wish_status: true },
       }],
     });
-    // console.log(myWishes);
     res.send(myWishes);
   } catch (error) {
     console.log(error);
