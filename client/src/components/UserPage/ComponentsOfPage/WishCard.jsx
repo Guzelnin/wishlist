@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import { deleteMyWishesAsync, getMyWishesAsync } from '../../../redux/actions/myWishesAction';
 import { addWishesForMeAsync, getWishesForMe, getWishesForMeAsync } from '../../../redux/actions/wishesForMeActions';
+import Timer from '../../Timer/Timer';
 
 export default function WishCard({ wish }) {
+  // console.log(wish.Owner.date);
   const [gifted, setGifted] = useState(wish?.wish_status === true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -61,7 +63,6 @@ export default function WishCard({ wish }) {
               </button>
             </div>
           )}
-        
       </div>
     </div>
   );
