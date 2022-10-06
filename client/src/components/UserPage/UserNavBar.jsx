@@ -3,7 +3,7 @@ import React from 'react';
 export default function UserNavBar({ setPageComp }) {
   return (
 
-    <div className="multi-button">
+    <div className="multi-button" style={{ marginLeft: '6%' }}>
       <button onClick={() => setPageComp('myWishes')} className="navbtn">
         <i className="fas fa-cut" />
         {' '}
