@@ -25,7 +25,7 @@ function MyNavbar({ userName }) {
       
         <ul className="menu-items">
           <a href="/">
-            <img className="imglogo" src={url} alt="logo" />
+            <img className="imglogo" src="logo192.png" alt="logo" />
           </a>
           {user?.id && (
           <li> 
