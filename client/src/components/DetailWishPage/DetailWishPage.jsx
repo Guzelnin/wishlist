@@ -63,12 +63,13 @@ export default function DetailWishPage() {
         </div>
         <div id="textbois">
           <div className="wrap">
-            <button className="button" onClick={() => navigate(`/wishes/${wish.id}/edit`)}>Редактировать</button>
+            <button className="button" onClick={() => navigate(`/wishes/${wish.wish_id}/edit`)}>Редактировать</button>
           </div>
 
         </div>
       </div>
      
     </div>
+  
   ); 
 }
