@@ -20,9 +20,6 @@ export default function HomePage({ user }) {
   }, [user.id]);
   return (
     <>
-  
-
-      
 
       <div className="video_wrapper">
         <div className="full-screen">
@@ -43,7 +40,6 @@ export default function HomePage({ user }) {
       <div className="home_bottom_all">
         <div className="home_line">
           Желания других пользователей
-
   
         </div>
         <form action="" className="search-bar">

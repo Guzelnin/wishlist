@@ -18,7 +18,6 @@ export default function MyWishes({ myWish }) {
   // const navigate = useNavigate();
   React.useEffect(() => {
     dispatch(getMyWishesAsync());
-    dispatch(deleteMyWishesAsync());
   }, []);
   return (
     <div>
@@ -46,7 +45,7 @@ export default function MyWishes({ myWish }) {
             <Button size="small">Уже подарили</Button>
             {el?.Gifts[0]?.giver_id
               ? <Button disabled>Забронировано</Button>
-              : <Button size="small" onClick={() => dispatch(deleteMyWishesAsync(el?.id))} className="danger">Удалить</Button>}
+              : <Button size="small" onClick={() => dispatch(deleteMyWishesAsync(el?.Wish?.id))} className="danger">Удалить</Button>}
           </CardActions>
         </Card>
       ))}

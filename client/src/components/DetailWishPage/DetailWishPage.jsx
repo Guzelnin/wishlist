@@ -20,9 +20,9 @@ const Item = styled(Paper)(({ theme }) => ({
 export default function DetailWishPage() {
   const { id } = useParams();
   const wish = useSelector((state) => state.oneWish);
-  const api = useSelector((state) => state.api);
-  const [sliced, setSliced] = useState(api?.queries?.slice(0, 3) || []);
-  console.log(api?.queries);
+  // const api = useSelector((state) => state.api);
+  // const [sliced, setSliced] = useState(api?.queries?.slice(0, 3) || []);
+  // console.log(api?.queries);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
@@ -83,9 +83,7 @@ export default function DetailWishPage() {
               alignItems="center"
             >
 
-
               <img src={wish?.Wish?.photo} alt="wish" width="100%" />
-
 
               {/* // {process.env.REACT_APP_BASEURL + */}
               {/* eslint-disable-next-line no-unsafe-optional-chaining */}
