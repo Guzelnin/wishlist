@@ -10,6 +10,7 @@ import HttpsIcon from '@mui/icons-material/Https';
 import { Link, useNavigate } from 'react-router-dom';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import { getMyWishesAsync, deleteMyWishesAsync } from '../../../redux/actions/myWishesAction';
+import Timer from '../../Timer';
 
 export default function MyWishes({ myWish }) {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ export default function MyWishes({ myWish }) {
                 : <SupervisorAccountIcon style={{ marginLeft: '30px' }} />}  
             </Typography>
           </CardContent>
+          <Timer date={el.date} />
           <CardActions>
             <Button size="small">
               <Link to={`/wishes/${el.Wish.id}`}> Открыть</Link>

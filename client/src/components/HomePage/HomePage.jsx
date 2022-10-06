@@ -21,6 +21,9 @@ export default function HomePage({ user }) {
   return (
     <>
   
+
+      
+
       <div className="video_wrapper">
         <div className="full-screen">
           <div className="full-screen__body">
@@ -40,6 +43,7 @@ export default function HomePage({ user }) {
       <div className="home_bottom_all">
         <div className="home_line">
           Желания других пользователей
+
   
         </div>
         <form action="" className="search-bar">
@@ -57,6 +61,7 @@ export default function HomePage({ user }) {
         </div>
        
       </div>
+
     </>
   );
 }
