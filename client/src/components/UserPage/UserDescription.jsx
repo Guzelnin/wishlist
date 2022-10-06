@@ -23,9 +23,19 @@ export default function UserDescription() {
       <div className="col-md-12">
           
         <div className="card p-3 py-4">
-              
+
+          {/* <Avatar
+            alt="Remy Sharp"
+            src={myPage?.photo} 
+            sx={{ width: 56, height: 56 }}
+          /> */}
+                        
           <div className="text-center">
-            <img src={myPage?.photo} width="200" className="rounded-circle" alt="My avatar" />
+            <Avatar
+              alt="Remy Sharp"
+              src={myPage?.photo} 
+              sx={{ width: 56, height: 56 }}
+            />
           </div>
               
           <div className="text-center mt-3">
