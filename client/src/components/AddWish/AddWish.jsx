@@ -84,15 +84,32 @@ export default function AddWish() {
             onChange={changeHandler}
             value={inputs.link}
           />
+          <Button className="buttonFileUpload" variant="contained" component="label">
+            Загрузить фото
+            <input
+              className="buttonFileUpload form-control"
+              name="photo"
+              onChange={inputHandlerPhoto}
+                // eslint-disable-next-line react/jsx-no-duplicate-props
+                // className="form-control"
+              id="outlined-basic"
+                // eslint-disable-next-line react/no-unknown-property
+              variant="outlined"
+              multiple
+              type="file"
+              // onChange={changeHandler}
+              value={inputs.photo}
+            />
+          </Button>
  
-          <input
+          {/* <input
             type="text"
             className="fadeIn fifth"
             placeholder="Фото" 
             name="photo"
             onChange={changeHandler}
             value={inputs.photo}
-          />
+          /> */}
           <input
             type="text"
             className="fadeIn sixth"

@@ -83,9 +83,7 @@ export default function DetailWishPage() {
               alignItems="center"
             >
 
-              {/* // 
-              {' '}
-              <img src={wish?.Wish?.photo} alt="wish" width="100%" /> */}
+              <img src={wish?.Wish?.photo} alt="wish" width="100%" />
 
               {/* // {process.env.REACT_APP_BASEURL + */}
               {/* eslint-disable-next-line no-unsafe-optional-chaining */}

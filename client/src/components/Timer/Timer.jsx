@@ -3,9 +3,9 @@ import dateCountdown from 'date-countdown';
 
 export default function Timer({ date }) {
   //   console.log(date);
-  const year = +date.slice(0, 4);
-  const month = +date.slice(5, 7);
-  const day = +date.slice(8, 10);
+  const year = +date?.slice(0, 4);
+  const month = +date?.slice(5, 7);
+  const day = +date?.slice(8, 10);
   const daysLeft = dateCountdown(year, month, day);
 
   return (
