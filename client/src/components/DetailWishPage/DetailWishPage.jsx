@@ -19,6 +19,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function DetailWishPage() {
   const { id } = useParams();
+  // console.log('===> detail', id);
   const wish = useSelector((state) => state.oneWish);
   // const api = useSelector((state) => state.api);
   // const [sliced, setSliced] = useState(api?.queries?.slice(0, 3) || []);
@@ -27,6 +28,7 @@ export default function DetailWishPage() {
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(getOneWishAsync(id));
+    return dispatch(getOneWishAsync(id));
     // dispatch(getApiAsync(id));
     // setSliced(api?.queries?.slice(0, 3));
   }, []);
@@ -86,7 +88,7 @@ export default function DetailWishPage() {
               <Button
                 variant="outlined"
                 style={{ width: '100%', marginTop: '10px' }}
-                onClick={() => navigate(`/wishes/${wish.id}/edit`)}
+                onClick={() => navigate(`/wishes/${wish.wish_id}/edit`)}
               >
                 Редактировать
               </Button>
