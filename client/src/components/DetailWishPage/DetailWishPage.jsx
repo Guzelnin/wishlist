@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import HttpsIcon from '@mui/icons-material/Https';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import { Button, Link, Typography } from '@mui/material';
+import { Link } from '@mui/material';
 import { getOneWishAsync } from '../../redux/actions/oneWishActions';
 import ApiComponent from './ApiComponent';
 import { getApiAsync } from '../../redux/actions/apiActions';
@@ -52,7 +52,8 @@ export default function DetailWishPage() {
           {wish?.private === true
             ? (
               <div>
-                Приватность: Приватное желание
+                Приватность: Приватное желание 
+                {' '}
               </div>
             )
             : (

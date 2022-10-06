@@ -1404,9 +1404,9 @@ body {
   height: 100vh;
   margin: 0;
   display: grid;
-  place-items: center;
+  /* place-items: center; */
   font-family: 'Poppins', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   /* background: linear-gradient(90deg, #e3ffe7 0%, #fcffd9 100%); */
 }
 
