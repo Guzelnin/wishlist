@@ -1,5 +1,5 @@
 import {
-  ADD_WISH, GET_MY_WISHES, SET_FRIENDS_WISHES, UPDATE_MY_WISHES, DELETE_MY_WISH,
+  ADD_WISH, GET_MY_WISHES, UPDATE_MY_WISHES, DELETE_MY_WISH,
 } from '../types';
 
 export default function myWishesReducer(state = [], action) {
@@ -9,8 +9,6 @@ export default function myWishesReducer(state = [], action) {
       return payload;
     case ADD_WISH:
       return [...state, payload];
-    case SET_FRIENDS_WISHES:
-      return payload;
     case UPDATE_MY_WISHES:
       return state.map((el) => (el.id === payload.id ? payload : el));
     case DELETE_MY_WISH:

@@ -24,7 +24,6 @@ module.exports = {
           key: 'id',
         },
         onDelete: 'cascade',
-        allowNull: false,
       },
       wish_status: {
         type: Sequelize.BOOLEAN,

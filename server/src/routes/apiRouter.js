@@ -1,7 +1,5 @@
 const axios = require('axios');
-
 const express = require('express');
-
 const { Op } = require('sequelize');
 const {
   Category, Friend, User, Owner, Wish,
@@ -201,25 +199,31 @@ router.get('/wishes/details/:id', async (req, res) => {
 
 router.get('/wishes/api/:id', async (req, res) => {
   try {
-    const { id } = req.params;
-    const currOwner = await Owner.findByPk(id);
-    const currWish = await Wish.findOne({
-      where: {
-        id: currOwner.wish_id,
-      },
-    });
-    const options = {
-      method: 'GET',
-      url: `https://amazon-data-scraper58.p.rapidapi.com/search/${currWish.name}`,
-      headers: {
-        'X-RapidAPI-Key': '91f366fe2dmsh222ff350d50ebf8p1a5868jsnf71042f07107',
-        'X-RapidAPI-Host': 'amazon-data-scraper58.p.rapidapi.com',
-      },
-    };
-    const currRes = await axios.request(options);
+    // const { id } = req.params;
+    // const currOwner = await Owner.findByPk(id);
+    // const currWish = await Wish.findOne({
+    //   where: {
+    //     id: currOwner.wish_id,
+    //   },
+    // });
+    // const options = {
+    //   method: 'GET',
+    //   url: 'https://walmart.p.rapidapi.com/v2/auto-complete',
+    //   params: { term: `${currWish.name}` },
+    //   headers: {
+    //     'X-RapidAPI-Key': 'f6ca1c031bmsh46947f3d9a84dd4p1ca312jsnf5a443f37eaf',
+    //     'X-RapidAPI-Host': 'walmart.p.rapidapi.com',
+    //   },
+    // };
+    // try {
+    //   const currRes = await axios.request(options);
+    // } catch (error) {
+    //   console.log(error);
+    // }
     // console.log(currRes.data.results);
-    const sliced = currRes.data.results.slice(0, 3);
-    res.json(sliced);
+    // const sliced = currRes.data.results.slice(0, 3);
+    // res.json(sliced);
+    res.sendStatus(200);
   } catch (error) {
     console.log(error.message);
     res.sendStatus(500);

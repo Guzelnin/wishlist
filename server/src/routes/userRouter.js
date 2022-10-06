@@ -77,25 +77,47 @@ router.get('/logout', (req, res) => {
 });
 
 router.post('/edit', async (req, res) => {
-  const {
-    name, email, password, photo, bday, description,
-  } = req.body;
-  if (name && email && password && photo && bday && description) {
-    try {
-      const user = await User.findByPk(req.session.user.id);
+  try {
+    const {
+      name, email, password, photo, bday, description,
+    } = req.body;
+    const user = await User.findByPk(req.session.user.id);
+    await user.update({
+      name, email, description,
+    });
+    if (password) {
       await user.update({
-        name, email, password: await bcrypt.hash(password, 10), photo, bday, description,
+        password: await bcrypt.hash(password, 10),
       });
-      const sessionUser = JSON.parse(JSON.stringify(user));
-      delete sessionUser.password;
-      req.session.user = sessionUser;
-      return res.json(sessionUser);
-    } catch (e) {
-      console.log(e);
-      return res.sendStatus(500);
     }
+    if (photo) {
+      await user.update({
+        photo,
+      });
+    }
+    if (bday) {
+      await user.update({
+        bday,
+      });
+    }
+    const sessionUser = JSON.parse(JSON.stringify(user));
+    delete sessionUser.password;
+    req.session.user = sessionUser;
+    return res.json(sessionUser);
+  } catch (error) {
+    console.log(error);
+    return res.sendStatus(500);
   }
-  return res.sendStatus(500);
+});
+
+router.get('/current', async (req, res) => {
+  try {
+    const user = await User.findByPk(req.session.user.id);
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
 });
 
 module.exports = router;

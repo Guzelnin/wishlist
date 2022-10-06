@@ -1,4 +1,3 @@
-import Search from '@mui/icons-material/Search';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
@@ -12,16 +11,13 @@ import MyNavbar from './components/MyNavbar';
 import SignUp from './components/SignUp';
 import ProtectedRoute from './components/HOCs/ProtectedRoute';
 import UserPage from './components/UserPage/UserPage';
-import { checkAuth } from './redux/actions/userActions';
+import { checkAuth, getUserAsync } from './redux/actions/userActions';
 import NoPage from './components/NoPage/NoPage';
 import DetailWishPage from './components/DetailWishPage';
 import EditDetailWishPage from './components/DetailWishPage/EditDetailWithPage';
-
 import NewWishCopy from './components/NewWishCopy';
 import UserPageEditing from './components/UserPageEditing';
-import AnotherUserPage from './components/AnotherUserPage/AnotherUserPage';
-
-// import initialDetails from './components/Search/initialDetails';
+import AnotherUserPage2 from './components/AnotherUserPage2';
 
 function App({ el }) {
   const dispatch = useDispatch();
@@ -29,13 +25,12 @@ function App({ el }) {
     dispatch(checkAuth());
   }, []);
   const user = useSelector((state) => state.user);
-  const anoterPage = useSelector((state) => state.anotherPage);
   useEffect(() => {
-    dispatch(checkAuth());
+    dispatch(getUserAsync());
   }, [user.name]);
   return (
-    <Container>
-      <MyNavbar userName={user.name} />
+    <>
+      <MyNavbar />
       <Routes>
         <Route element={<ProtectedRoute redirect="/login" isAllowed={!!user.id} />}>
           <Route path="/mypage" element={<UserPage />} />
@@ -56,11 +51,11 @@ function App({ el }) {
         <Route path="/friends" element={<FriendsPage />} />
         <Route path="/users/:id/edit" element={<UserPageEditing />} />
         <Route path="*" element={<NoPage />} />
-        <Route path="/:id" element={<AnotherUserPage />} />
+        <Route path="/:id" element={<AnotherUserPage2 />} />
       </Routes>
       {/* <Search details={initialDetails} /> */}
       <MyFooter />
-    </Container>
+    </>
   );
 }
 
