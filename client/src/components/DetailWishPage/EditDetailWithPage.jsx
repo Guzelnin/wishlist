@@ -26,6 +26,7 @@ export default function EditDetailWishPage() {
   const categories = useSelector((state) => state.categories);
   const { id } = useParams();
   const oldWish = useSelector((state) => state.oneWish);
+  console.log('oldWish', oldWish);
   const dispatch = useDispatch();
   const [editInputs, setEditInputs] = useState({
     categoryId: '', description: '', date: '', privateWish: false,
@@ -123,8 +124,7 @@ export default function EditDetailWishPage() {
                 <h5>{oldWish?.Wish?.name}</h5>
               </Grid>
               <Grid item>
-                <img src={oldWish?.Wish?.photo} alt="wish" width="100%" />
-                {/* <img src={process.env.REACT_APP_BASEURL + el.Owner.Wish.photo} height="100px" alt="myWish" /> */}
+                <img src={process.env.REACT_APP_BASEURL + oldWish?.Wish?.photo} alt="wish" width="100%" />
               </Grid>
             </Grid>
           </Item>
