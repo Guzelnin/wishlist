@@ -1,12 +1,7 @@
-import {
-  Box,
-  Button, Checkbox, FormControl, Grid,
-  Input,
-  InputLabel, MenuItem, Select, TextField,
-} from '@mui/material';
+import { Checkbox } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getCategoriesAsync } from '../../redux/actions/categoriesActions';
 import { addWishAsync, getMyWishesAsync } from '../../redux/actions/myWishesAction';
 
@@ -42,8 +37,6 @@ export default function AddWish() {
     }));
   };
   const submitHandler = (e) => {
-    // console.log(inputs);
-    // dispatch(addWishAsync(inputs));
     e.preventDefault();
     const data = new FormData();
     data.append('name', inputs.name);
@@ -66,70 +59,40 @@ export default function AddWish() {
           <img src="https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg" id="icon" alt="User Icon" />
         </div>
         <form onSubmit={submitHandler} autoComplete="off">
-  
           <input
-            placeholder="Название"
+            id="outlined-basic"
             type="text"
             className="fadeIn second"
-            label="Название желания"
+            placeholder="Название"
+            required
             name="name"
             onChange={changeHandler}
             value={inputs.name}
           />
-     
           <input
-            placeholder="Ссылка" 
+            id="outlined-basic"
+            placeholder="Ссылка"
             type="text"
-            className="fadeIn fourth"
+            className="fadeIn third"
+            required
             name="link"
             onChange={changeHandler}
             value={inputs.link}
           />
-          <Button className="buttonFileUpload" variant="contained" component="label">
+          <div className="fadeIn fourth">
             Загрузить фото
-            <input
-              className="buttonFileUpload form-control"
-              name="photo"
-              onChange={inputHandlerPhoto}
-                // eslint-disable-next-line react/jsx-no-duplicate-props
-                // className="form-control"
-              id="outlined-basic"
-                // eslint-disable-next-line react/no-unknown-property
-              variant="outlined"
-              multiple
-              type="file"
-              // onChange={changeHandler}
-              value={inputs.photo}
-            />
-          </Button>
- 
-          {/* <input
-            type="text"
-            className="fadeIn fifth"
-            placeholder="Фото" 
-            name="photo"
-            onChange={changeHandler}
-            value={inputs.photo}
-          /> */}
-          <input
-            type="text"
-            className="fadeIn sixth"
-            placeholder="Описание" 
-            name="description"
-            onChange={changeHandler}
-            value={inputs.description}
-          />
-          <div className="fadeIn sixth">
-            Дедлайн желания
+            <button className="buttonFileUpload">
+              <input
+                className="buttonFileUpload form-control"
+                name="photo"
+                onChange={inputHandlerPhoto}
+                id="outlined-basic"
+                multiple
+                type="file"
+                placeholder="Файл"
+              />
+            </button>
           </div>
-          <input
-            type="date"
-            name="date"
-            className="fadeIn seventh"
-            onChange={changeHandler}
-            value={inputs.date}
-          />
-
           <select
             id="selection"
             className="fadeIn seventh"
@@ -137,7 +100,7 @@ export default function AddWish() {
             onChange={changeHandler}
             value={inputs.categoryId}
           >
-            <option value="" selected disabled hidden>Выбрать категорию</option>
+            <option value="" default disabled hidden>Выбрать категорию</option>
             {categories && categories?.map((el) => (
               <option
                 key={el.id}
@@ -147,12 +110,29 @@ export default function AddWish() {
               </option>
             ))}
           </select>
-
+          <input
+            className="fadeIn sixth"
+            id="outlined-basic"
+            placeholder="Описание"
+            required
+            type="text"
+            name="description"
+            onChange={changeHandler}
+            value={inputs.description}
+          />
+          <div className="fadeIn sixth">
+            Дедлайн желания
+            <input
+              className="fadeIn seventh"
+              type="date"
+              name="date"
+              onChange={changeHandler}
+              value={inputs.date}
+            />
+          </div>
           <div className="fadeIn eight">
             <Checkbox
               {...label}
-              className=""
-              id="_checkbox"
               name="privateWish"
               checked={priv === true}
               onChange={changeHandler}
@@ -162,7 +142,6 @@ export default function AddWish() {
             Приватное желание
           </div>
           <input type="submit" className="fadeIn eight" value="Добавить желание" />
-  
         </form>
       </div>
     </div>
