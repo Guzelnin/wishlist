@@ -15,7 +15,7 @@ function MyNavbar({ userName }) {
  
   // }, [user]);
   
-  const url = 'https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg';
+  const url = '/Users/makedonskyy/Desktop/phase-3/project/wishlist/client/public/logo192.png';
 
   return (
 
@@ -27,12 +27,12 @@ function MyNavbar({ userName }) {
           <a href="/">
             <img className="imglogo" src={url} alt="logo" />
           </a>
-          {user.id && (
+          {user?.id && (
           <li> 
             {' '}
             <div className="header_username">
               Hello,
-              {user.name}
+              {user?.name}
               !
 
             </div>
@@ -42,10 +42,10 @@ function MyNavbar({ userName }) {
           <li><Link to="/">Главная</Link></li>
           <li><Link to="/mypage">Мой список</Link></li>
           <li><Link to="/add-wish">Добавить желание</Link></li>
-          {!user.id && <li><Link to="/signup">Регистрация </Link></li>}
-          {!user.id && <li><Link to="/login">Войти</Link></li>} 
+          {!user?.id && <li><Link to="/signup">Регистрация </Link></li>}
+          {!user?.id && <li><Link to="/login">Войти</Link></li>} 
          
-          {user.id && <li><div className="header_logout" role="button" onClick={logOut}><a href="#">Выход</a></div></li>}
+          {user?.id && <li><div className="header_logout" role="button" onClick={logOut}><a href="#">Выход</a></div></li>}
         
         </ul>
 

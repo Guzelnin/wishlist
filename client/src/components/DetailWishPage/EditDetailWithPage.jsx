@@ -26,6 +26,7 @@ export default function EditDetailWishPage() {
   const categories = useSelector((state) => state.categories);
   const { id } = useParams();
   const oldWish = useSelector((state) => state.oneWish);
+  console.log('oldWish', oldWish);
   const dispatch = useDispatch();
   const [editInputs, setEditInputs] = useState({
     categoryId: '', description: '', date: '', privateWish: false,
@@ -97,6 +98,7 @@ export default function EditDetailWishPage() {
               onChange={changeHandler}
               value={editInputs.categoryId}
             >
+
               <option value="" default disabled hidden>Выбрать категорию</option>
               {categories && categories?.map((el) => (
                 <option
@@ -124,5 +126,6 @@ export default function EditDetailWishPage() {
         </div>
       </div>
     </>
+
   );
 }

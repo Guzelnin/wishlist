@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { Container } from 'reactstrap';
 import AddWish from './components/AddWish';
 import FriendsPage from './components/FriendsPage';
 import HomePage from './components/HomePage';
@@ -18,6 +17,7 @@ import EditDetailWishPage from './components/DetailWishPage/EditDetailWithPage';
 import NewWishCopy from './components/NewWishCopy';
 import UserPageEditing from './components/UserPageEditing';
 import AnotherUserPage2 from './components/AnotherUserPage2';
+import Proba from './Proba/Proba';
 
 function App({ el }) {
   const dispatch = useDispatch();
@@ -27,16 +27,16 @@ function App({ el }) {
   const user = useSelector((state) => state.user);
   useEffect(() => {
     dispatch(getUserAsync());
-  }, [user.name]);
+  }, [user?.name]);
   return (
     <>
       <MyNavbar />
       <Routes>
-        <Route element={<ProtectedRoute redirect="/login" isAllowed={!!user.id} />}>
+        <Route element={<ProtectedRoute redirect="/login" isAllowed={!!user?.id} />}>
           <Route path="/mypage" element={<UserPage />} />
           <Route path="/add-wish" element={<AddWish />} />
         </Route>
-        <Route element={<ProtectedRoute redirect="/mypage" isAllowed={!user.id} />}>
+        <Route element={<ProtectedRoute redirect="/mypage" isAllowed={!user?.id} />}>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>
@@ -52,6 +52,7 @@ function App({ el }) {
         <Route path="/users/:id/edit" element={<UserPageEditing />} />
         <Route path="*" element={<NoPage />} />
         <Route path="/:id" element={<AnotherUserPage2 />} />
+        <Route path="/test" element={<Proba />} />
       </Routes>
       {/* <Search details={initialDetails} /> */}
       <MyFooter />
