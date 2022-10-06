@@ -14,45 +14,55 @@ export default function WishCard({ wish }) {
     dispatch(getMyWishesAsync());
   }, [gifted]);
   return (
-    <div key={wish.id}>
-      <img src={process.env.REACT_APP_BASEURL + wish.Owner.Wish.photo} height="100px" alt="myWish" />
-      <h6>{wish?.Owner?.Wish?.name}</h6>
-      <div> 
-        {' '}
-        {wish?.Owner?.private
-          ? <HttpsIcon style={{ marginLeft: '30px' }} />
-          : <SupervisorAccountIcon style={{ marginLeft: '30px' }} />}
-      </div>
-      <button onClick={(e) => navigate(`/wishes/${wish.Owner.Wish.id}`)}>Открыть</button>
-      {wish?.giver_id
-        ? (
-          <>
-            <button disabled>Забронировано</button>
-            {gifted
-              ? (
-                <button onClick={() => {
-                  dispatch(getMyWishesAsync());
-                  dispatch(addWishesForMeAsync(wish?.id));
-                  dispatch(getWishesForMeAsync());
-                  setGifted(false);
-                }}
-                >
-                  Подарено
-                </button>
-              )
-              : <button disabled>Подарено</button>}
-          </>
-        )
+    <div id="card" className="card">
+      <img className="card_image" src={process.env.REACT_APP_BASEURL + wish.Owner.Wish.photo} height="100px" alt="myWish" />
+      <div className="card__overlay">
+        <div id="content">
+          {wish?.Owner?.Wish?.name}
+          {wish?.Owner?.private
+            ? <HttpsIcon style={{ marginLeft: '30px' }} />
+            : <SupervisorAccountIcon style={{ marginLeft: '30px' }} />}
+        </div>
+        <div id="user_page_button">
+          <button onClick={(e) => navigate(`/wishes/${wish.Owner.Wish.id}`)}>Открыть</button>
+        </div>
+        {wish?.giver_id
+          ? (
+            <>
+              <div id="another_user_page_button_booked">
+                <button disabled>Забронировано</button>
+              </div>
+              
+              {gifted
+                ? (
+                  <div id="user_page_button">
+                    <button onClick={() => {
+                      dispatch(getMyWishesAsync());
+                      dispatch(addWishesForMeAsync(wish?.id));
+                      dispatch(getWishesForMeAsync());
+                      setGifted(false);
+                    }}
+                    >
+                      Подарено
+                    </button>
+                  </div>
+                )
+                : <div id="another_user_page_button_booked"><button disabled>Подарено</button></div>}
+            </>
+          )
+          : (
+            <div id="user_page_button">
+              <button
+                size="small" 
+                onClick={() => dispatch(deleteMyWishesAsync(wish.Owner.id))}
+                className="danger"
+              >
+                Удалить
+              </button>
+            </div>
+          )}
         
-        : (
-          <button
-            size="small" 
-            onClick={() => dispatch(deleteMyWishesAsync(wish.Owner.id))}
-            className="danger"
-          >
-            Удалить
-          </button>
-        )}
+      </div>
     </div>
   );
 }
