@@ -25,7 +25,7 @@ export default function UserDescription() {
         <div className="card p-3 py-4">
               
           <div className="text-center">
-            <img src={myPage?.photo} width="200" className="rounded-circle" alt="My avatar" />
+            <img src={myPage?.photo} width="200" height="200" className="rounded-circle" alt="My avatar" />
           </div>
               
           <div className="text-center mt-3">
