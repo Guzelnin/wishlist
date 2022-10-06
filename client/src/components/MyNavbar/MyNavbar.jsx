@@ -23,26 +23,15 @@ function MyNavbar({ userName }) {
     <nav className="navbar">
        
       <div className="navbar-container container">
-        {/* <div className="logo_nav">
-          
-            <a href="/">
-              <img className="imglogo" src={url} alt="logo" />
-              {' '}
-              WishPlace
-            </a>
-
-          </div> */}
+      
         <ul className="menu-items">
-          <li><Link to="/">Главная</Link></li>
-          <li><Link to="/mypage">Мой список</Link></li>
-          <li><Link to="/add-wish">Добавить желание</Link></li>
-          {!user.id && <li><Link to="/signup">Регистрация </Link></li>}
-          {!user.id && <li><Link to="/login">Войти</Link></li>} 
+          <a href="/">
+            <img className="imglogo" src={url} alt="logo" />
+          </a>
           {user.id && (
           <li> 
             {' '}
             <div className="header_username">
-              {/* <a href="#"> */}
               Hello,
               {user.name}
               !
@@ -51,6 +40,12 @@ function MyNavbar({ userName }) {
           </li>
 
           )}
+          <li><Link to="/">Главная</Link></li>
+          <li><Link to="/mypage">Мой список</Link></li>
+          <li><Link to="/add-wish">Добавить желание</Link></li>
+          {!user.id && <li><Link to="/signup">Регистрация </Link></li>}
+          {!user.id && <li><Link to="/login">Войти</Link></li>} 
+         
           {user.id && <li><div className="header_logout" role="button" onClick={logOut}><a href="#">Выход</a></div></li>}
         
         </ul>

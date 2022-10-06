@@ -7,13 +7,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import HttpsIcon from '@mui/icons-material/Https';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import { getMyWishesAsync, deleteMyWishesAsync } from '../../../redux/actions/myWishesAction';
 import Timer from '../../Timer';
 
 export default function MyWishes({ myWish }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   React.useEffect(() => {
     dispatch(getMyWishesAsync());
     dispatch(deleteMyWishesAsync());
@@ -47,6 +48,7 @@ export default function MyWishes({ myWish }) {
               : <Button size="small" onClick={() => dispatch(deleteMyWishesAsync(el.id))} className="danger">Удалить</Button>}
           </CardActions>
         </Card>
+        
       ))}
     </div>
   );

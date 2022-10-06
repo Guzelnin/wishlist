@@ -15,10 +15,11 @@ function PresentCard({ el }) {
               {`Категория: ${el.Wish.Category.title}`}
             </li>
           </ol>
-          <div id="add_button">
-            <button onClick={() => navigate(`/wishes/${el.Wish.id}/copy`)}> Добавить к себе </button>
-          </div>
         </div>
+        <div id="add_button">
+          <button onClick={() => navigate(`/wishes/${el.Wish.id}/copy`)}> Добавить к себе </button>
+        </div>
+        
       </div>
     </div>
 
