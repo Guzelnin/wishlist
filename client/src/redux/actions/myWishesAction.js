@@ -10,8 +10,8 @@ export const deleteMyWishes = (payload) => ({ type: DELETE_MY_WISH, payload });
 
 export const getMyWishesAsync = () => (dispatch) => {
   axios.get('/api/wishes/mypage/mywishes')
-    .then((res) => console.log(res))
-    // .then((res) => dispatch(getMyWishes(res.data)))
+    // .then((res) => console.log(res))
+    .then((res) => dispatch(getMyWishes(res.data)))
     .catch(console.log);
 };
 

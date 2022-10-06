@@ -10,16 +10,15 @@ function PresentCard({ el }) {
       <div className="card__overlay">
         <div id="content">
           {el.Wish.name}
-          +bh
           <ol>
             <li> 
               {' '}
-              {`Категория: ${el.Wish.Category.title}`}
+              {`Категория: ${el?.Wish?.Category?.title}`}
             </li>
           </ol>
         </div>
         <div id="add_button">
-          <button onClick={() => navigate(`/wishes/${el.Wish.id}/copy`)}> Добавить к себе </button>
+          <button onClick={() => navigate(`/wishes/${el?.Wish?.id}/copy`)}> Добавить к себе </button>
         </div>
         
       </div>
