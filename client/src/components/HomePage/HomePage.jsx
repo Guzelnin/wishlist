@@ -51,7 +51,7 @@ export default function HomePage({ user }) {
         <div className="cards">      
           {allWishes && allWishes.length !== 0 && allWishes.filter((value) => value.Wish.name.toLowerCase().includes(data.toLowerCase())).map((el) => (
 
-            <PresentCard el={el} />
+            <PresentCard el={el} key={el.id} />
         
           ))}
         </div>

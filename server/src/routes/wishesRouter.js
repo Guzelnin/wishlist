@@ -202,7 +202,7 @@ router.get('/mypage/giftstome', async (req, res) => {
   try {
     const giftsForMe = await Gift.findAll({
       where: {
-        user_id: req.session.user.id,
+
         wish_status: false,
         giver_id: {
           [Op.not]: null,
@@ -213,6 +213,7 @@ router.get('/mypage/giftstome', async (req, res) => {
           model: Owner,
           include: {
             model: Wish,
+            where: { user_id: req.session.user.id },
           },
         },
         {
