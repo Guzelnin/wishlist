@@ -55,80 +55,74 @@ export default function EditDetailWishPage() {
   }, []);
 
   return (
-    <Box sx={{ flexGrow: 1 }} style={{ marginTop: '20px' }}>
-      <Grid container spacing={2}>
-        <Grid item xs={6} md={8}>
-          <Item>
-            <Grid
-              container
-              direction="column"
-              justifyContent="space-around"
-              alignItems="center"
-            >
-              <Grid item>
-                <form onSubmit={submitHandler} autoComplete="off">
-                  <input type="date" name="date" placeholder="Дата" value={editInputs.date} onChange={changeHandler} />
-                  <input type="text" name="description" placeholder="Описание желания" value={editInputs.description} onChange={changeHandler} />
-                  <Box sx={{ minWidth: 120 }}>
-                    <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">Категория</InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        name="categoryId"
-                        onChange={changeHandler}
-                        value={editInputs.categoryId}
-                        label="Category"
-                      >
-                        {categories && categories?.map((el) => (
-                          <MenuItem
-                            key={el?.id}
-                            value={el?.id}
-                          >
-                            {el?.title}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Box>
-                  <Checkbox
-                    {...label}
-                    name="privateWish"
-                    checked={priv === true}
-                    onChange={changeHandler}
-                    onClick={() => setPriv(!priv)}
-                    value={priv === true}
-                  />
-                  Приватное желание
-                  <div>
+    <>
+      <div>
+        <h5>{oldWish?.Wish?.name}</h5>
+      </div>
+      <div id="rigth">
+        <img src={oldWish?.Wish?.photo} alt="wish" width="100%" />
+      </div>
 
-                    <Button type="submit">Edit</Button>
-                  </div>
-                </form>
-              </Grid>
-              
-            </Grid>
-          </Item>
-        </Grid>
-        <Grid item xs={6} md={4}>
-          <Item>
-            <Grid
-              container
-              direction="column"
-              justifyContent="space-around"
-              alignItems="center"
-              spacing={9}
+      <div className="wrapper_edit fadeInDown">
+        <div id="formContent">
+          <h2 className="active"> Редактирование </h2>
+          <div className="fadeIn first">
+            <img src="https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg" id="icon" alt="User Icon" />
+          </div>
+          <form onSubmit={submitHandler} autoComplete="off">
+            <div className="fadeIn second">
+              Дедлайн подарка
+              <input
+                className="fadeIn second"
+                type="date"
+                name="date"
+                value={editInputs.date}
+                onChange={changeHandler}
+              />
+            </div>
+            <input
+              className="fadeIn third"
+              id="outlined-basic"
+              placeholder="Описание"
+              required
+              type="text"
+              name="description"
+              value={editInputs.description}
+              onChange={changeHandler}
+            />
+            <select
+              id="selection"
+              className="fadeIn fourth"
+              name="categoryId"
+              onChange={changeHandler}
+              value={editInputs.categoryId}
             >
-              <Grid item>
-                <h5>{oldWish?.Wish?.name}</h5>
-              </Grid>
-              <Grid item>
-                <img src={oldWish?.Wish?.photo} alt="wish" width="100%" />
-              </Grid>
-            </Grid>
-          </Item>
-        </Grid>
-      </Grid>
-    </Box>
+              <option value="" default disabled hidden>Выбрать категорию</option>
+              {categories && categories?.map((el) => (
+                <option
+                  key={el.id}
+                  value={el.id}
+                >
+                  {el.title}
+                </option>
+              ))}
+            </select>
+        
+            <div className="fadeIn fifth">
+              <Checkbox
+                {...label}
+                name="privateWish"
+                checked={priv === true}
+                onChange={changeHandler}
+                onClick={() => setPriv(!priv)}
+                value={priv === true}
+              />
+              Приватное желание
+            </div>
+            <input type="submit" className="fadeIn sixth" value="Редактировать" />
+          </form>
+        </div>
+      </div>
+    </>
   );
 }
