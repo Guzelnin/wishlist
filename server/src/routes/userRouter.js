@@ -112,15 +112,15 @@ router.post('/edit', async (req, res) => {
   }
 });
 
-router.get('/current', async (req, res) => {
-  try {
-    const user = await User.findByPk(res.session.user.id);
-    console.log(user);
-    res.json(user);
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
-});
+// router.get('/current', async (req, res) => {
+//   try {
+//     const user = await User.findByPk(req.session.user.id);
+//     console.log(user);
+//     res.json(user);
+//   } catch (error) {
+//     console.log(error);
+//     res.sendStatus(500);
+//   }
+// });
 
 module.exports = router;

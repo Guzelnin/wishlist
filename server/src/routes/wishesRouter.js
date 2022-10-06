@@ -54,6 +54,7 @@ router.get('/mypage/mywishes', async (req, res) => {
         where: { wish_status: true },
       }],
     });
+    console.log(myWishes);
     res.send(myWishes);
   } catch (error) {
     console.log(error);
@@ -103,7 +104,7 @@ router.get('/mypage/giftstome', async (req, res) => {
   try {
     const giftsForMe = await Gift.findAll({
       where: {
-        user_id: req.session.user.id,
+
         wish_status: false,
         giver_id: {
           [Op.not]: null,
@@ -114,6 +115,7 @@ router.get('/mypage/giftstome', async (req, res) => {
           model: Owner,
           include: {
             model: Wish,
+            where: { user_id: req.session.user.id },
           },
         },
         {
@@ -158,9 +160,11 @@ router.get('/mypage/giftsfromme', async (req, res) => {
 router.post('/add', upload.single('photo'), async (req, res) => {
   try {
     const {
+      // eslint-disable-next-line camelcase
       name, link, category_id, description, privateWish, date,
     } = req.body;
     const newWish = await Wish.create({
+      // eslint-disable-next-line camelcase
       name, link, category_id: +category_id, photo: req.file?.path.replace('public/', '') || null,
     });
     const newOwner = await Owner.create({

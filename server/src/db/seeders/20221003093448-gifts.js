@@ -5,14 +5,14 @@ module.exports = {
       'Gifts',
       [
         {
-          owner_id: 5,
+          owner_id: 2,
           giver_id: 1,
           wish_status: true,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          owner_id: 5,
+          owner_id: 2,
           giver_id: 1,
           wish_status: false,
           createdAt: new Date(),
@@ -20,14 +20,14 @@ module.exports = {
         },
         {
           owner_id: 2,
-          giver_id: 5,
+          giver_id: 1,
           wish_status: true,
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
           owner_id: 2,
-          giver_id: 5,
+          giver_id: 1,
           wish_status: false,
           createdAt: new Date(),
           updatedAt: new Date(),

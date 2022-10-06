@@ -42,8 +42,8 @@ export const logoutUserAsync = () => (dispatch) => {
     .catch(console.log);
 };
 
-export const getUserAsync = () => (dispatch) => {
-  axios('/api/user/current')
-    .then((res) => dispatch(getUser(res.data)))
-    .catch(console.log);
-};
+// export const getUserAsync = () => (dispatch) => {
+//   axios('/api/user/current')
+//     .then((res) => dispatch(getUser(res.data)))
+//     .catch(console.log);
+// };
