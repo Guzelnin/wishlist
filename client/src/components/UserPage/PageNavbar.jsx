@@ -12,6 +12,7 @@ import FriendsWishes from './ComponentsOfPage/FriendsWishes';
 import GiftsForMe from './ComponentsOfPage/GiftsForMe';
 import GirtsFromMe from './ComponentsOfPage/GiftsFromMe';
 import { setGiftsFromMeAsync, setGiftsToMeAsync } from '../../redux/actions/giftsAction';
+import NavBarPage from '../NavBarPage/NavBarPage';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -33,6 +34,7 @@ export default function PageNavbar({
     dispatch(setGiftsFromMeAsync());
   }, []);
   return (
+   
     <Box
       sx={{
         display: 'flex',
@@ -65,5 +67,6 @@ export default function PageNavbar({
         </Item>
       </Grid>
     </Box>
+   
   );
 }

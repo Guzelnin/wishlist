@@ -17,7 +17,7 @@ export default function HomePage({ user }) {
   }, []);
   useEffect(() => {
     dispatch(getWishesAsync());
-  }, [user.id]);
+  }, [user?.id]);
   return (
     <>
 
@@ -49,7 +49,7 @@ export default function HomePage({ user }) {
           </button>
         </form>
         <div className="cards">      
-          {allWishes && allWishes.length !== 0 && allWishes.filter((value) => value.Wish.name.toLowerCase().includes(data.toLowerCase())).map((el) => (
+          {allWishes && allWishes.length !== 0 && allWishes.filter((value) => value.Wish?.name?.toLowerCase().includes(data.toLowerCase())).map((el) => (
 
             <PresentCard el={el} />
         

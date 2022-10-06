@@ -20,24 +20,24 @@ export default function UserDescription() {
         <div>
           <Avatar
             alt="My avatar"
-            src={myPage.photo}
+            src={myPage?.photo}
             sx={{ width: 250, height: 250 }}
             style={{ marginTop: '60px' }}
           />
           <div>
             <h3 style={{ marginTop: '60px', marginBottom: '20px' }}>
-              {myPage.name}
+              {myPage?.name}
             </h3>
             <h5>
-              {myPage.description}
+              {myPage?.description}
             </h5>
             <h6>
               День рождения:
               {' '}
-              {myPage.bday}
+              {myPage?.bday}
             </h6>
             <div>
-              <button onClick={() => navigate(`/users/${myPage.id}/edit`)} style={{ marginTop: '20px' }}>Редактировать</button>
+              <button onClick={() => navigate(`/users/${myPage?.id}/edit`)} style={{ marginTop: '20px' }}>Редактировать</button>
               <button onClick={() => navigate('/friends')} style={{ marginTop: '20px' }}>Друзья</button>
             </div>
           </div>
