@@ -10,9 +10,11 @@ export default function WishCard({ wish }) {
   const [gifted, setGifted] = useState(wish?.wish_status === true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   // dispatch(getMyWishesAsync());
-  // }, [gifted]);
+  useEffect(() => {
+    dispatch(getMyWishesAsync());
+  }, [gifted]);
+  // hehe
+  // hehe 2
   return (
     <div key={wish.id}>
       <img src={process.env.REACT_APP_BASEURL + wish.Owner.Wish.photo} height="100px" alt="myWish" />
