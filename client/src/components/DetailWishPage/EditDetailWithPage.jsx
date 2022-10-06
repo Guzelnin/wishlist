@@ -61,7 +61,7 @@ export default function EditDetailWishPage() {
         <h5>{oldWish?.Wish?.name}</h5>
       </div>
       <div id="rigth">
-        <img src={oldWish?.Wish?.photo} alt="wish" width="100%" />
+        <img src={process.env.REACT_APP_BASEURL + oldWish?.Wish?.photo} alt="wish" width="100%" />
       </div>
 
       <div className="wrapper_edit fadeInDown">
