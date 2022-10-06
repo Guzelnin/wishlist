@@ -13,6 +13,7 @@ export default function WishCard({ wish }) {
   useEffect(() => {
     dispatch(getMyWishesAsync());
   }, [gifted]);
+  // hehe
   return (
     <div key={wish.id}>
       <img src={process.env.REACT_APP_BASEURL + wish.Owner.Wish.photo} height="100px" alt="myWish" />
