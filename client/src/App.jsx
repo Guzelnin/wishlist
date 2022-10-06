@@ -17,6 +17,7 @@ import EditDetailWishPage from './components/DetailWishPage/EditDetailWithPage';
 import NewWishCopy from './components/NewWishCopy';
 import UserPageEditing from './components/UserPageEditing';
 import AnotherUserPage2 from './components/AnotherUserPage2';
+import Proba from './Proba/Proba';
 
 function App({ el }) {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ function App({ el }) {
         <Route path="/users/:id/edit" element={<UserPageEditing />} />
         <Route path="*" element={<NoPage />} />
         <Route path="/:id" element={<AnotherUserPage2 />} />
-        {/* <Route path="/test" element={<NavBarPage />} /> */}
+        <Route path="/test" element={<Proba />} />
       </Routes>
       {/* <Search details={initialDetails} /> */}
       <MyFooter />
