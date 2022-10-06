@@ -27,14 +27,16 @@ export default function UserDescription() {
           {/* <Avatar
             alt="Remy Sharp"
             src={myPage?.photo} 
-            sx={{ width: 56, height: 56 }}
+            sx={{ width: 100, height: 100 }}
+            style={{ alignItems: 'center' }}
           /> */}
                         
           <div className="text-center">
             <Avatar
               alt="Remy Sharp"
               src={myPage?.photo} 
-              sx={{ width: 56, height: 56 }}
+              sx={{ width: 200, height: 200 }}
+              style={{ marginLeft: '42%' }}
             />
           </div>
               
