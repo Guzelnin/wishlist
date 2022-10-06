@@ -1,7 +1,7 @@
 import { Checkbox } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import { getCategoriesAsync } from '../../redux/actions/categoriesActions';
 import { addWishAsync, getMyWishesAsync } from '../../redux/actions/myWishesAction';
 

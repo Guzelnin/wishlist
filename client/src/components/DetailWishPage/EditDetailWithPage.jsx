@@ -82,10 +82,10 @@ export default function EditDetailWishPage() {
                       >
                         {categories && categories?.map((el) => (
                           <MenuItem
-                            key={el.id}
-                            value={el.id}
+                            key={el?.id}
+                            value={el?.id}
                           >
-                            {el.title}
+                            {el?.title}
                           </MenuItem>
                         ))}
                       </Select>
@@ -120,10 +120,10 @@ export default function EditDetailWishPage() {
               spacing={9}
             >
               <Grid item>
-                <h5>{oldWish?.Wish.name}</h5>
+                <h5>{oldWish?.Wish?.name}</h5>
               </Grid>
               <Grid item>
-                <img src={oldWish?.Wish.photo} alt="wish" width="100%" />
+                <img src={oldWish?.Wish?.photo} alt="wish" width="100%" />
               </Grid>
             </Grid>
           </Item>
