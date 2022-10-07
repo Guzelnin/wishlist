@@ -2,13 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import HttpsIcon from '@mui/icons-material/Https';
-import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import Paper from '@mui/material/Paper';
-import { Link } from '@mui/material';
-import { getOneWishAsync } from '../../redux/actions/oneWishActions';
-import ApiComponent from './ApiComponent';
-import { getApiAsync } from '../../redux/actions/apiActions';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -17,7 +11,7 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: 'center',
 }));
 
-export default function DetailWishPage() {
+export default function DetailAnotherUserPage() {
   const { id } = useParams();
   // console.log('===> detail', id);
   const wish = useSelector((state) => state.oneWish);
@@ -47,7 +41,7 @@ export default function DetailWishPage() {
           <br />
           {`${wish?.description}`}
         </h4>
-        <Link to={wish?.Wish?.link}>Ссылка на магазин</Link>
+        <Link to={wish?.Wish?.link}>Ссылка на подарок</Link>
         <div>
           {wish?.private === true
             ? (
