@@ -81,17 +81,17 @@ export default function AddWish() {
           />
           <div className="fadeIn fourth">
             Загрузить фото
-            <button className="buttonFileUpload">
-              <input
-                className="buttonFileUpload form-control"
-                name="photo"
-                onChange={inputHandlerPhoto}
-                id="outlined-basic"
-                multiple
-                type="file"
-                placeholder="Файл"
-              />
-            </button>
+            {/* <button className="fadeIn fourth"> */}
+            <input
+              className="fadeIn fourth"
+              name="photo"
+              onChange={inputHandlerPhoto}
+              id="outlined-basic"
+              multiple
+              type="file"
+              placeholder="Файл"
+            />
+            {/* </button> */}
           </div>
           <select
             id="selection"

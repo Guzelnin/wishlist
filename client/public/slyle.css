@@ -113,7 +113,7 @@ h2 {
 
 /* STRUCTURE */
 
-.wrapper {
+.wrapper{
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -121,6 +121,16 @@ h2 {
   width: 100%;
   min-height: 100%;
   padding: 20px;
+}
+.wrapper_edit{
+  display: flex;
+  align-items:flex-end;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px;
+
 }
 
 #formContent {
@@ -1168,6 +1178,150 @@ input {
   transition: 0.3s
 }
 
+
+.infocardContainer * {
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-weight: 300;
+
+}
+h2 {
+  font-weight: 600; font-style: italic; font-family: "Fira Sans Condensed", sans-serif;
+}
+/* header {
+  height: 2em;
+  background-color: #111122;
+  margin: 0 0 0 0;
+  padding: auto;
+  font-size: 2em;
+  text-align: center;
+  line-height: 2em;
+  color: rgb(199, 25, 25);
+} */
+/* a {
+  text-decoration: none;
+}
+a:visited {
+  color: #555566;
+}
+a:hover {
+  text-decoration: underline;
+} */
+.infocardContainer {
+  display: flex;
+  height: 300px;
+  width: 300px;
+  border-radius: 100px;
+  /* background: rgb(113, 140, 118); */
+  background: linear-gradient(121deg, rgba(255,255,255,0) 13%, rgb(113, 140, 118, 1) 100%);
+  transition: all 500ms ease-in;
+  transition-delay: 1s;
+  margin: auto;
+  margin-top: 100px;
+  --margin-top: 100px;
+}
+.infocardContainer:hover {
+  width: 700px;
+  border-radius: 100px 10px 100px 100px;
+  transition: all 1s ease-out;
+}
+
+/* .infocardContainer div {
+  text-color: white;
+  flex-shrink: 1;
+  width: 100%;
+  --background-color: green; */
+/* } */
+
+
+.infocardContainer div * {
+  display: flex;
+  --flex: inherit;
+  overflow: hidden;
+  text-overflow: hidden;
+  color:#314b04;
+  white-space: nowrap;
+  width: 0;
+  height: auto;
+  transition: all 450ms ease-in;
+  transition-delay: 1s;
+  transition-delay: 300ms;
+  margin-left: 20px;
+}
+
+.infocardContainer:hover div *{
+  display: flex;
+  visibility: visible;
+  transition: all 1s ease-out;
+  transition-delay: 500ms;
+  width: 100%;
+  height: auto;
+}
+
+.infocardContainer #main, .infocardContainer #main img{
+  height: 280px;
+  width: 280px;
+  padding-right: 10px;
+  border-radius: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.infocardContainer #main img{
+  height: 280px;
+  width: 280px;
+  transition: none;
+  display: float;
+  position: relative;
+  border: 10px solid white;
+  margin: 0 0 0 0; padding: 0 0 0 0;
+}
+
+#textbois {
+  position: relative;
+  color: #314b04;
+  font-weight: 400;
+}
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  width: 80px;
+  height: 45px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin-top: 20px;
+  }
+
+.button:hover {
+  background-color: #314b04;;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+
+/* #rigth{
+  border: #000;
+  height: 250px;  
+ width: 250px;  
+  text-align: right;  
+} */
+
+
 #another_user_page_button_booked button:hover {
   transition: 0.3s;
   margin-left: 2vw;
@@ -1250,9 +1404,9 @@ body {
   height: 100vh;
   margin: 0;
   display: grid;
-  place-items: center;
+  /* place-items: center; */
   font-family: 'Poppins', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   /* background: linear-gradient(90deg, #e3ffe7 0%, #fcffd9 100%); */
 }
 
@@ -1380,20 +1534,4 @@ button i {
   background-color: #577451;
   color: #fff;
   height: 40px;
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  margin-right: 10px;
-  /* width: 100px; */
-  /* margin: 10em; */
-  /* display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px;
-  padding: 10px;
-  align-items: center;
-  margin: auto; */
 }

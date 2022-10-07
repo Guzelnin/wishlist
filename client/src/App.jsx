@@ -17,7 +17,6 @@ import EditDetailWishPage from './components/DetailWishPage/EditDetailWithPage';
 import NewWishCopy from './components/NewWishCopy';
 import UserPageEditing from './components/UserPageEditing';
 import AnotherUserPage2 from './components/AnotherUserPage2';
-import Proba from './Proba/Proba';
 
 function App({ el }) {
   const dispatch = useDispatch();
@@ -39,22 +38,21 @@ function App({ el }) {
         <Route element={<ProtectedRoute redirect="/mypage" isAllowed={!user?.id} />}>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          {/* <Route path="/users/:id/edit" element={<UserPageEditing />} />
+          <Route path="/:id" element={<AnotherUserPage2 />} />
+          <Route path="/friends" element={<FriendsPage />} /> */}
         </Route>
-        <Route path="/wishes/:id" element={<DetailWishPage />} />
-
-        <Route path="/wishes/:id/edit" element={<EditDetailWishPage />} />
-
-        <Route path="/wishes/:id/copy" element={<NewWishCopy />} />
-
-        {/* ЗАЩИТИТЬ ПУТЬ К ПОДРОБНОЙ ИНФЕ ПО ПОДАРКУ */}
-        <Route path="/" element={<HomePage user={user} />} />
-        <Route path="/friends" element={<FriendsPage />} />
-        <Route path="/users/:id/edit" element={<UserPageEditing />} />
-        <Route path="*" element={<NoPage />} />
+        <Route element={<ProtectedRoute redirect="/mypage" isAllowed={!!user?.id} />}>
+          <Route path="/users/:id/edit" element={<UserPageEditing />} />
+          <Route path="/friends" element={<FriendsPage />} />
+          <Route path="/wishes/:id/edit" element={<EditDetailWishPage />} />
+          <Route path="/wishes/:id/copy" element={<NewWishCopy />} />
+        </Route>
         <Route path="/:id" element={<AnotherUserPage2 />} />
-        <Route path="/test" element={<Proba />} />
+        <Route path="/wishes/:id" element={<DetailWishPage />} />
+        <Route path="/" element={<HomePage user={user} />} />
+        <Route path="*" element={<NoPage />} />
       </Routes>
-      {/* <Search details={initialDetails} /> */}
       <MyFooter />
     </>
   );

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import HttpsIcon from '@mui/icons-material/Https';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import { Button, Link, Typography } from '@mui/material';
+import { Link } from '@mui/material';
 import { getOneWishAsync } from '../../redux/actions/oneWishActions';
 import ApiComponent from './ApiComponent';
 import { getApiAsync } from '../../redux/actions/apiActions';
@@ -33,46 +33,40 @@ export default function DetailWishPage() {
     // setSliced(api?.queries?.slice(0, 3));
   }, []);
   return (
-    <Box sx={{ flexGrow: 1 }} style={{ marginTop: '20px' }}>
-      <Grid container spacing={2}>
-        <Grid item xs={6} md={8}>
-          <Item>
-            <Grid
-              container
-              direction="column"
-              justifyContent="space-around"
-              alignItems="center"
-              spacing={9}
-            >
-              <Grid item>
-                <Typography variant="h3">
-                  {wish?.Wish?.name}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="h5">
-                  <Link href={wish?.Wish?.link}>Ссылка</Link>
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="h5">
-                  {`Описание: ${wish?.description}`}
-                </Typography>
-              </Grid>
-              <Grid item>
-                {wish?.private === true
-                  ? (
-                    <Typography variant="h5">
-                      Приватность: Приватное желание
-                    </Typography>
-                  )
-                  : (
-                    <Typography variant="h5">
-                      Приватность: Публичное желание
-                    </Typography>
-                  )}
-
-              </Grid>
+    <div className="infocardContainer">
+      <div id="main">
+        <img src={process.env.REACT_APP_BASEURL + wish?.Wish.photo} alt="wish" width="100%" />
+      </div>
+      <div id="textbois">
+        <h2> 
+          {' '}
+          {wish?.Wish?.name}
+        </h2>
+        <h4>
+          Описание:
+          <br />
+          {`${wish?.description}`}
+        </h4>
+        <Link to={wish?.Wish?.link}>Ссылка на подарок</Link>
+        <div>
+          {wish?.private === true
+            ? (
+              <div>
+                Приватность: Приватное желание 
+                {' '}
+              </div>
+            )
+            : (
+              <div>
+                Приватность: Публичное желание
+              </div>
+            )}
+        </div>
+        <div id="textbois">
+          <div className="wrap">
+            <button className="button" onClick={() => navigate(`/wishes/${wish.wish_id}/edit`)}>Редактировать</button>
+          </div>
+              {/* </Grid>
             </Grid>
           </Item>
         </Grid>
@@ -143,5 +137,9 @@ export default function DetailWishPage() {
         {/* </Grid> */}
       </Grid>
     </Box>
+  ); */}
+        </div>
+      </div>
+    </div>
   );
 }
