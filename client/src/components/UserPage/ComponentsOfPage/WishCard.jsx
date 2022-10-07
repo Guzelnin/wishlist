@@ -19,14 +19,14 @@ export default function WishCard({ wish }) {
     <div id="card" className="card">
       <img className="card_image" src={process.env.REACT_APP_BASEURL + wish.Owner.Wish.photo} height="100px" alt="myWish" />
       <div className="card__overlay">
-        <div id="content">
+        <div id="content" style={{ textAlign: 'center' }}>
           {wish?.Owner?.Wish?.name}
           {wish?.Owner?.private
-            ? <HttpsIcon style={{ marginLeft: '30px' }} />
-            : <SupervisorAccountIcon style={{ marginLeft: '30px' }} />}
+            ? <HttpsIcon style={{ marginLeft: '10px' }} />
+            : <SupervisorAccountIcon style={{ marginLeft: '10px' }} />}
         </div>
         <div id="user_page_button">
-          <button onClick={(e) => navigate(`/wishes/${wish.Owner.Wish.id}`)}>Открыть</button>
+          <button onClick={() => navigate(`/wishes/${wish.Owner.Wish.id}`)}>Открыть</button>
         </div>
         {wish?.giver_id
           ? (
