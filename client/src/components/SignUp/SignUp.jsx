@@ -12,7 +12,7 @@ export default function SignUp() {
       <div id="formContent">
         <h2 className="active"> Регистрация </h2>
         <div className="fadeIn first">
-          <img src="https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg" id="icon" alt="User Icon" />
+          <img src="logo192.png" id="icon" alt="User Icon" />
         </div>
         <Form
           autoComplete="off"

@@ -25,7 +25,7 @@ export default function WishCard({ wish }) {
             ? <HttpsIcon style={{ marginLeft: '10px' }} />
             : <SupervisorAccountIcon style={{ marginLeft: '10px' }} />}
         </div>
-        <Timer date={wish.Owner.date} />
+        {/* <Timer date={wish.Owner.date} /> */}
         <div id="user_page_button">
           <button onClick={() => navigate(`/wishes/${wish.Owner.Wish.id}`)}>Открыть</button>
         </div>
