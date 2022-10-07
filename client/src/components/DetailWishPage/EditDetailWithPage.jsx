@@ -26,6 +26,7 @@ export default function EditDetailWishPage() {
   const categories = useSelector((state) => state.categories);
   const { id } = useParams();
   const oldWish = useSelector((state) => state.oneWish);
+  console.log('oldWish', oldWish);
   const dispatch = useDispatch();
   const [editInputs, setEditInputs] = useState({
     categoryId: '', description: '', date: '', privateWish: false,

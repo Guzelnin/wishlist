@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import UserDescription from './UserDescription';
-import PageNavbar from './PageNavbar';
 import UserNavBar from './UserNavBar';
 import FriendsWishes from './ComponentsOfPage/FriendsWishes';
 import MyWishes from './ComponentsOfPage/MyWishes';

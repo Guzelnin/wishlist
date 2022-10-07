@@ -62,7 +62,7 @@ export default function NewWishCopy() {
               alignItems="center"
             >
               <Typography variant="h5">{wish?.name}</Typography>
-              <img src={wish?.photo} alt="wish" width="100%" />
+              <img src={process.env.REACT_APP_BASEURL + wish?.photo} alt="wish" width="100%" />
               <Link href={wish?.link}>
                 <Typography variant="h6">
                   Ссылка на желание
