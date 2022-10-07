@@ -49,6 +49,7 @@ export default function FutureFriend({
             variant="outlined"
             startIcon={<PersonIcon />}
             style={{ marginRight: '10px' }}
+            color="success"
           >
             Уже в друзьях
           </Button>
@@ -59,6 +60,7 @@ export default function FutureFriend({
                 variant="outlined"
                 startIcon={<PersonIcon />}
                 style={{ marginRight: '10px' }}
+                color="success"
               >
                 Заявка отправлена
               </Button>
@@ -69,6 +71,7 @@ export default function FutureFriend({
                 startIcon={<PersonAddIcon />}
                 style={{ marginRight: '10px' }}
                 onClick={clickHandler}
+                color="success"
               >
                 Добавить
               </Button>

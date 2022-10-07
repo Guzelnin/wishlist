@@ -22,6 +22,7 @@ export default function Requests({ friendRequests }) {
                 startIcon={<PersonAddIcon />}
                 style={{ marginRight: '10px' }}
                 onClick={() => dispatch(acceptRequest(el.id))}
+                color="success"
               >
                 Добавить
               </Button>
@@ -29,6 +30,7 @@ export default function Requests({ friendRequests }) {
                 variant="outlined"
                 startIcon={<DeleteIcon />}
                 onClick={() => dispatch(declineRequest(el.id))}
+                color="success"
               >
                 Отклонить
               </Button>

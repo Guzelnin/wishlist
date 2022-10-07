@@ -7,6 +7,7 @@ import { Badge, Button, ButtonGroup } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { red } from '@mui/material/colors';
 import { getFriendsAsync } from '../../redux/actions/friendsActions';
 import FriendsList from './FriendsList';
 import Requests from './Requests';
@@ -42,11 +43,12 @@ export default function FriendsPage() {
               aria-label="vertical contained button group"
               variant="text"
             >
-              <Button key="one" variant={pageComp === 'friends' ? 'contained' : ''} onClick={() => setPageComp('friends')}>Мои друзья</Button>
+              <Button key="one" variant={pageComp === 'friends' ? 'contained' : 'text'} onClick={() => setPageComp('friends')} color="success">Мои друзья</Button>
               <Button
                 key="two"
-                variant={pageComp === 'requests' ? 'contained' : ''}
+                variant={pageComp === 'requests' ? 'contained' : 'text'}
                 onClick={() => setPageComp('requests')}
+                color="success"
               >
                 <Badge
                   // anchorOrigin={{
@@ -59,7 +61,7 @@ export default function FriendsPage() {
                   Заявки в друзья
                 </Badge>
               </Button>
-              <Button key="three" variant={pageComp === 'search' ? 'contained' : ''} onClick={() => setPageComp('search')}>Добавить в друзья</Button>
+              <Button key="three" variant={pageComp === 'search' ? 'contained' : 'text'} onClick={() => setPageComp('search')} color="success">Добавить в друзья</Button>
             </ButtonGroup>
           </Item>
         </Grid>
