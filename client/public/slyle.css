@@ -1537,3 +1537,24 @@ button i {
   height: 40px;
 }
 
+.MyCardEditDiv{
+  display: flex;
+justify-content: center;
+}
+.MyCardEdit {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+}
+.MyCardEditName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+
+}
+#rigth {
+  display: flex;
+  justify-content: center;
+  
+}
