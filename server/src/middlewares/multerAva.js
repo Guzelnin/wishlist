@@ -9,7 +9,7 @@
 //     cb(null, `${file.fieldname}-${uniqueSuffix}.jpeg`);
 //   },
 // });
-// const uploadAva = multer({ storageAva });
+// const uplogfdadAva = multer({ storageAva });
 // kik
 // lol
 // moduledfsc.exports = uploadAva;

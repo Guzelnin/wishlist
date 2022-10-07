@@ -56,14 +56,15 @@ export default function EditDetailWishPage() {
   }, []);
 
   return (
-    <>
-      <div>
-        <h5>{oldWish?.Wish?.name}</h5>
+    <div className="MyCardEditDiv">
+      <div className="MyCardEdit">
+        <div className="MyCardEditName">
+          <h5>{oldWish?.Wish?.name}</h5>
+        </div>
+        <div id="rigth">
+          <img src={process.env.REACT_APP_BASEURL + oldWish?.Wish?.photo} alt="wish" width="75%" />
+        </div>
       </div>
-      <div id="rigth">
-        <img src={process.env.REACT_APP_BASEURL + oldWish?.Wish?.photo} alt="wish" width="100%" />
-      </div>
-
       <div className="wrapper_edit fadeInDown">
         <div id="formContent">
           <h2 className="active"> Редактирование </h2>
@@ -125,7 +126,7 @@ export default function EditDetailWishPage() {
           </form>
         </div>
       </div>
-    </>
+    </div>
 
   );
 }
