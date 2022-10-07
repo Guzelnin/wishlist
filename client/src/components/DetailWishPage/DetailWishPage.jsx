@@ -66,7 +66,7 @@ export default function DetailWishPage() {
           <div className="wrap">
             <button className="button" onClick={() => navigate(`/wishes/${wish.wish_id}/edit`)}>Редактировать</button>
           </div>
-              {/* </Grid>
+          {/* </Grid>
             </Grid>
           </Item>
         </Grid>
@@ -86,11 +86,11 @@ export default function DetailWishPage() {
               >
                 Редактировать
               </Button> */}
-            </Grid>
+          {/* </Grid>
           </Item>
-        </Grid>
-        {/* <ApiComponent id={id} sliced={sliced} /> */}
-        {/* <Grid item xs={12} md={12}>
+        </Grid> */}
+          {/* <ApiComponent id={id} sliced={sliced} /> */}
+          {/* <Grid item xs={12} md={12}>
           <Item>
             <h3 style={{ marginBottom: '10px' }}>Варианты:</h3>
             <Grid
@@ -134,8 +134,8 @@ export default function DetailWishPage() {
               </Grid>
             </Grid>
           </Item> */}
-        {/* </Grid> */}
-      </Grid>
+          {/* </Grid> */}
+          {/* </Grid>
     </Box>
   ); */}
         </div>
