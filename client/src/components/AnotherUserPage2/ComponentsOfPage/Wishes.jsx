@@ -7,10 +7,12 @@ import WishesCard from './WishesCard';
 export default function Wishes({ wishes, userId }) {
   const dispatch = useDispatch();
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '50px' }}>
-      {wishes && wishes.length !== 0 && wishes?.map((el) => (
-        <WishesCard key={el.id} wish={el} userId={userId} />
-      ))}
+    <div className="home_bottom_all">
+      <div className="cards">
+        {wishes && wishes.length !== 0 && wishes?.map((el) => (
+          <WishesCard key={el.id} wish={el} userId={userId} />
+        ))}
+      </div>
     </div>
   );
 }

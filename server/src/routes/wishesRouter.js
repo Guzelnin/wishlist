@@ -9,17 +9,6 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   try {
-    // const allPublicWishes = await Wish.findAll({
-    //   order: [['id', 'DESC']],
-    //   include: [{ model: Owner, where: { private: false } }, { model: Category }],
-    // });
-    // const userWishes = await Owner.findAll({
-    //   where: { user_id: req.session.user.id },
-    // });
-    // const filtered = allPublicWishes.filter((el) => {
-    //   const result = userWishes.find((elem) => elem.wish_id === el.id);
-    //   return result === undefined;
-    // });
     const allPublicWishes = await Owner.findAll({
       where: {
         private: false,
@@ -59,7 +48,6 @@ router.get('/mypage/mywishes', async (req, res) => {
         }],
       },
     });
-    console.log(myWishes);
     res.send(myWishes);
   } catch (error) {
     console.log(error);
@@ -307,7 +295,6 @@ router.post('/add/copy/:id', async (req, res) => {
     const {
       description, privateWish, date,
     } = req.body;
-    // categoryId!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     const newOwner = await Owner.create({
       wish_id: id,
       user_id: req.session.user.id,
@@ -320,14 +307,18 @@ router.post('/add/copy/:id', async (req, res) => {
       giver_id: null,
       wish_status: true,
     });
-    const myNewWish = await Owner.findOne({
-      where: { id: newOwner.id },
-      include: [{
-        model: Wish,
+    const myNewWish = await Gift.findOne({
+      where: {
+        owner_id: newOwner.id,
       },
-      {
-        model: Gift,
-      }],
+      include: {
+        model: Owner,
+        include: [{
+          model: User,
+        }, {
+          model: Wish,
+        }],
+      },
     });
     res.json(myNewWish);
   } catch (error) {

@@ -20,7 +20,6 @@ export default function HomePage({ user }) {
   }, [user?.id]);
   return (
     <>
-
       <div className="video_wrapper">
         <div className="full-screen">
           <div className="full-screen__body">
@@ -43,21 +42,17 @@ export default function HomePage({ user }) {
   
         </div>
         <form action="" className="search-bar">
-          <input type="search" name="search" pattern=".*\S.*" required onChange={(e) => setData(e.target.value)} />
+          <input autoSave="off" autoComplete="off" autoCorrect="off" type="search" name="search" pattern=".*\S.*" required onChange={(e) => setData(e.target.value)} />
           <button className="search-btn">
             <span>Search</span>
           </button>
         </form>
         <div className="cards">      
           {allWishes && allWishes.length !== 0 && allWishes.filter((value) => value.Wish?.name?.toLowerCase().includes(data.toLowerCase())).map((el) => (
-
             <PresentCard el={el} key={el.id} />
-        
           ))}
         </div>
-       
       </div>
-
     </>
   );
 }
