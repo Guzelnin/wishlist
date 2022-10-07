@@ -52,98 +52,77 @@ export default function NewWishCopy() {
     navigate('/mypage');
   };
   return (
-    <Box sx={{ flexGrow: 1 }} style={{ marginTop: '20px' }}>
-      <Grid container spacing={2}>
-        <Grid item xs={6} md={4}>
-          <Item>
-            <Grid
-              container
-              direction="column"
-              alignItems="center"
+    <div className="MyCardEditDiv">
+      <div className="MyCardEdit">
+        <div className="MyCardEditName">
+          <h5>{wish?.name}</h5>
+        </div>
+        <div id="rigth">
+          <img src={process.env.REACT_APP_BASEURL + wish?.photo} alt="wish" width="75%" />
+        </div>
+      </div>
+      <div className="wrapper_edit fadeInDown">
+        <div id="formContent">
+          <h2 className="active"> Редактирование </h2>
+          <div className="fadeIn first">
+            {/* <img src="logo192.png" id="icon" alt="User Icon" /> */}
+          </div>
+          <form onSubmit={submitHandler} autoComplete="off">
+            <div className="fadeIn second">
+              Дедлайн подарка
+              <input
+                className="fadeIn second"
+                type="date"
+                name="date"
+                onChange={changeHandler}
+                value={inputs.date}
+              />
+            </div>
+            <input
+              autoComplete="off"
+              className="fadeIn third"
+              id="outlined-basic"
+              placeholder="Описание"
+              required
+              type="text"
+              name="description"
+              onChange={changeHandler}
+              value={inputs.description}
+            />
+            <select
+              id="selection"
+              className="fadeIn fourth"
+              name="categoryId"
+              onChange={changeHandler}
+              value={inputs.categoryId}
             >
-              <Typography variant="h5">{wish?.name}</Typography>
-              <img src={process.env.REACT_APP_BASEURL + wish?.photo} alt="wish" width="100%" />
-              <Link href={wish?.link}>
-                <Typography variant="h6">
-                  Ссылка на желание
-                </Typography>
-              </Link>
-            </Grid>
-          </Item>
-        </Grid>
-        <Grid item xs={6} md={8}>
-          <Item>
-            <form onSubmit={submitHandler} autoComplete="off">
-              <Grid
-                container
-                direction="column"
-                justifyContent="space-around"
-                alignItems="center"
-                spacing="8"
-              >
-                <Box sx={{ minWidth: 120 }}>
-                  <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Категория</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      name="categoryId"
-                      onChange={changeHandler}
-                      value={inputs.categoryId}
-                      label="Category"
-                    >
-                      {categories && categories?.map((el) => (
-                        <MenuItem
-                          key={el.id}
-                          value={el.id}
-                        >
-                          {el.title}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                </Box>
-                <Grid item>
-                  <TextField
-                    id="outlined-basic"
-                    label="Описание"
-                    variant="outlined"
-                    autoComplete="off"
-                    name="description"
-                    onChange={changeHandler}
-                    value={inputs.description}
-                  />
-                </Grid>
-                <Grid item>
-                  <div>
-                    Дедлайн желания
-                  </div>
-                  <Input
-                    type="date"
-                    name="date"
-                    onChange={changeHandler}
-                    value={inputs.date}
-                  />
-                </Grid>
-                <Grid item>
-                  <Checkbox
-                    {...label}
-                    name="privateWish"
-                    checked={priv === true}
-                    onChange={changeHandler}
-                    onClick={() => setPriv(!priv)}
-                    value={priv === true}
-                  />
-                  Приватное желание
-                </Grid>
-                <Grid item>
-                  <Button variant="contained" type="submit">Добавить желание</Button>
-                </Grid>
-              </Grid>
-            </form>
-          </Item>
-        </Grid>
-      </Grid>
-    </Box>
+
+              <option value="" default disabled hidden>Выбрать категорию</option>
+              {categories && categories?.map((el) => (
+                <option
+                  key={el.id}
+                  value={el.id}
+                >
+                  {el.title}
+                </option>
+              ))}
+            </select>
+        
+            <div className="fadeIn fifth">
+              <Checkbox
+                {...label}
+                name="privateWish"
+                checked={priv === true}
+                onChange={changeHandler}
+                onClick={() => setPriv(!priv)}
+                value={priv === true}
+              />
+              Приватное желание
+            </div>
+            <input type="submit" className="fadeIn sixth" value="Добавить желание" />
+          </form>
+        </div>
+      </div>
+    </div>
   );
 }

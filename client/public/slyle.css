@@ -113,7 +113,7 @@ h2 {
 
 /* STRUCTURE */
 
-.wrapper{
+.wrapper {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -122,9 +122,10 @@ h2 {
   min-height: 100%;
   padding: 20px;
 }
-.wrapper_edit{
+
+.wrapper_edit {
   display: flex;
-  align-items:flex-end;
+  align-items: flex-end;
   flex-direction: column;
   justify-content: center;
   width: 100%;
@@ -136,7 +137,7 @@ h2 {
 #formContent {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
-  background: #fff;
+  background:#9eb6aa;
   padding: 30px;
   width: 90%;
   max-width: 450px;
@@ -238,7 +239,7 @@ input[type=file] {
 
 input[type=text]:focus,
 input[type=file]:focus {
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   border-bottom: 2px solid #5fbae9;
 }
 
@@ -597,7 +598,7 @@ input[type=date]:placeholder {
 
 .logo {
   width: 30%;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   margin-bottom: 40px;
 }
 
@@ -1106,6 +1107,7 @@ input {
   align-items: center;
   justify-content: center;
 }
+
 /* top ri b l */
 #user_page_button button {
   margin: 0vw 0vw 1vw 0vh;
@@ -1134,6 +1136,7 @@ input {
   align-items: center;
   justify-content: center;
 }
+
 /* top ri b l */
 #another_user_page_button button {
   margin: 0vw 0vw 1vw 0vh;
@@ -1184,9 +1187,13 @@ input {
   font-weight: 300;
 
 }
+
 h2 {
-  font-weight: 600; font-style: italic; font-family: "Fira Sans Condensed", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  font-family: "Fira Sans Condensed", sans-serif;
 }
+
 /* header {
   height: 2em;
   background-color: #111122;
@@ -1212,13 +1219,14 @@ a:hover {
   width: 300px;
   border-radius: 100px;
   /* background: rgb(113, 140, 118); */
-  background: linear-gradient(121deg, rgba(255,255,255,0) 13%, rgb(113, 140, 118, 1) 100%);
+  background: linear-gradient(121deg, rgba(255, 255, 255, 0) 13%, rgb(113, 140, 118, 1) 100%);
   transition: all 500ms ease-in;
   transition-delay: 1s;
   margin: auto;
   margin-top: 100px;
   --margin-top: 100px;
 }
+
 .infocardContainer:hover {
   width: 700px;
   border-radius: 100px 10px 100px 100px;
@@ -1238,7 +1246,7 @@ a:hover {
   --flex: inherit;
   overflow: hidden;
   text-overflow: hidden;
-  color:#314b04;
+  color: #314b04;
   white-space: nowrap;
   width: 0;
   height: auto;
@@ -1248,7 +1256,7 @@ a:hover {
   margin-left: 20px;
 }
 
-.infocardContainer:hover div *{
+.infocardContainer:hover div * {
   display: flex;
   visibility: visible;
   transition: all 1s ease-out;
@@ -1257,7 +1265,8 @@ a:hover {
   height: auto;
 }
 
-.infocardContainer #main, .infocardContainer #main img{
+.infocardContainer #main,
+.infocardContainer #main img {
   height: 280px;
   width: 280px;
   padding-right: 10px;
@@ -1265,14 +1274,16 @@ a:hover {
   flex-shrink: 0;
   object-fit: cover;
 }
-.infocardContainer #main img{
+
+.infocardContainer #main img {
   height: 280px;
   width: 280px;
   transition: none;
   display: float;
   position: relative;
   border: 10px solid white;
-  margin: 0 0 0 0; padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
 }
 
 #textbois {
@@ -1280,6 +1291,7 @@ a:hover {
   color: #314b04;
   font-weight: 400;
 }
+
 .wrap {
   height: 100%;
   display: flex;
@@ -1297,6 +1309,35 @@ a:hover {
   font-weight: 500;
   color: #000;
   background-color: #fff;
+<<<<<<< HEAD
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background-color: #314b04;
+  ;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+
+/* top ri b l */
+#another_user_page_button_booked button {
+  margin: 0vw 0vw 1vw 0vh;
+  height: 2rem;
+  /* width: 9rem; */
+  font-size: 3vh;
+  font-family: Arial;
+  background-color: rgb(194, 193, 193);
+=======
+>>>>>>> addf60215419f88ea72f8194fdb13292ef608b55
   border: none;
   border-radius: 45px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -1400,14 +1441,20 @@ a:hover {
 
 /* page buttons */
 
-body {
-  height: 100vh;
+
+.multi_button {
+  display: flex;
+  align-items: center;
   margin: 0;
   display: grid;
   /* place-items: center; */
   font-family: 'Poppins', sans-serif;
+<<<<<<< HEAD
+  font-weight: 600;
+=======
   font-weight: 500;
   /* background: linear-gradient(90deg, #e3ffe7 0%, #fcffd9 100%); */
+>>>>>>> addf60215419f88ea72f8194fdb13292ef608b55
 }
 
 .navbtn {
@@ -1534,4 +1581,32 @@ button i {
   background-color: #577451;
   color: #fff;
   height: 40px;
+}
+
+
+.MyCardEditDiv{
+  display: flex;
+justify-content: center;
+}
+.MyCardEdit {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+}
+.MyCardEditName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+
+}
+#rigth {
+  display: flex;
+  justify-content: center;
+  
+  border-radius: 50px;
+  
+}
+.friendbutton {
+  background-color: #577451;
 }

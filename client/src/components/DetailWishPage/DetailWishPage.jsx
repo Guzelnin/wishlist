@@ -47,7 +47,7 @@ export default function DetailWishPage() {
           <br />
           {`${wish?.description}`}
         </h4>
-        <Link to={wish?.Wish?.link}>Ссылка на подарок</Link>
+        <Link to={wish?.Wish?.link}>Ссылка на магазин</Link>
         <div>
           {wish?.private === true
             ? (
