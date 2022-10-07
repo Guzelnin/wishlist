@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+import HttpsIcon from '@mui/icons-material/Https';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import { Button, Link, Typography } from '@mui/material';
+import { Link } from '@mui/material';
 import { getOneWishAsync } from '../../redux/actions/oneWishActions';
 import ApiComponent from './ApiComponent';
 import { getApiAsync } from '../../redux/actions/apiActions';
@@ -52,7 +52,8 @@ export default function DetailWishPage() {
           {wish?.private === true
             ? (
               <div>
-                Приватность: Приватное желание
+                Приватность: Приватное желание 
+                {' '}
               </div>
             )
             : (
@@ -65,11 +66,80 @@ export default function DetailWishPage() {
           <div className="wrap">
             <button className="button" onClick={() => navigate(`/wishes/${wish.wish_id}/edit`)}>Редактировать</button>
           </div>
-
+          {/* </Grid>
+            </Grid>
+          </Item>
+        </Grid>
+        <Grid item xs={6} md={4}>
+          <Item>
+            <Grid
+              container
+              direction="column"
+              justifyContent="space-around"
+              alignItems="center"
+            >
+              <img src={process.env.REACT_APP_BASEURL + wish?.Wish.photo} alt="wish" width="100%" />
+              {/* <Button
+                variant="outlined"
+                style={{ width: '100%', marginTop: '10px' }}
+                onClick={() => navigate(`/wishes/${wish.wish_id}/edit`)}
+              >
+                Редактировать
+              </Button> */}
+          {/* </Grid>
+          </Item>
+        </Grid> */}
+          {/* <ApiComponent id={id} sliced={sliced} /> */}
+          {/* <Grid item xs={12} md={12}>
+          <Item>
+            <h3 style={{ marginBottom: '10px' }}>Варианты:</h3>
+            <Grid
+              container
+              direction="row"
+              justifyContent="space-around"
+              alignItems="center"
+            >
+              <Grid item>
+                <Grid
+                  container
+                  direction="column"
+                  justifyContent="space-around"
+                  alignItems="center"
+                >
+                  <img src={wish?.Wish.photo} alt="wish" width="200px" />
+                  <h4 style={{ marginTop: '10px' }}>API-1</h4>
+                </Grid>
+              </Grid>
+              <Grid item>
+                <Grid
+                  container
+                  direction="column"
+                  justifyContent="space-around"
+                  alignItems="center"
+                >
+                  <img src={wish?.Wish.photo} alt="wish" width="200px" />
+                  <h4 style={{ marginTop: '10px' }}>API-2</h4>
+                </Grid>
+              </Grid>
+              <Grid item>
+                <Grid
+                  container
+                  direction="column"
+                  justifyContent="space-around"
+                  alignItems="center"
+                >
+                  <img src={wish?.Wish.photo} alt="wish" width="200px" />
+                  <h4 style={{ marginTop: '10px' }}>API-3</h4>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Item> */}
+          {/* </Grid> */}
+          {/* </Grid>
+    </Box>
+  ); */}
         </div>
       </div>
-     
     </div>
-  
-  ); 
+  );
 }

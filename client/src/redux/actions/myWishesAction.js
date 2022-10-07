@@ -10,7 +10,7 @@ export const deleteMyWishes = (payload) => ({ type: DELETE_MY_WISH, payload });
 
 export const getMyWishesAsync = () => (dispatch) => {
   axios.get('/api/wishes/mypage/mywishes')
-   .then((res) => dispatch(getMyWishes(res.data)))
+    .then((res) => dispatch(getMyWishes(res.data)))
     .catch(console.log);
 };
 
@@ -28,7 +28,6 @@ export const addCopyWishAsync = (input, id) => (dispatch) => {
 
 export const setFriendsWishesAsync = () => (dispatch) => {
   axios('/api/wishes/mypage/friendswishes')
-    // .then((data) => console.log(data))
     .then((data) => dispatch(setFriendsWishes(data.data)))
     .catch(console.log);
 };
