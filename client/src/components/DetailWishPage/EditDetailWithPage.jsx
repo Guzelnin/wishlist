@@ -55,20 +55,22 @@ export default function EditDetailWishPage() {
     dispatch(getCategoriesAsync());
   }, []);
 
+  const url = '/Users/makedonskyy/Desktop/phase-3/project/wishlist/client/public/logo192.png';
   return (
-    <>
-      <div>
-        <h5>{oldWish?.Wish?.name}</h5>
+    <div className="MyCardEditDiv">
+      <div className="MyCardEdit">
+        <div className="MyCardEditName">
+          <h5>{oldWish?.Wish?.name}</h5>
+        </div>
+        <div id="rigth">
+          <img src={process.env.REACT_APP_BASEURL + oldWish?.Wish?.photo} alt="wish" width="75%" />
+        </div>
       </div>
-      <div id="rigth">
-        <img src={oldWish?.Wish?.photo} alt="wish" width="100%" />
-      </div>
-
       <div className="wrapper_edit fadeInDown">
         <div id="formContent">
           <h2 className="active"> Редактирование </h2>
           <div className="fadeIn first">
-            <img src="https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg" id="icon" alt="User Icon" />
+            {/* <img src="logo192.png" id="icon" alt="User Icon" /> */}
           </div>
           <form onSubmit={submitHandler} autoComplete="off">
             <div className="fadeIn second">
@@ -98,6 +100,7 @@ export default function EditDetailWishPage() {
               onChange={changeHandler}
               value={editInputs.categoryId}
             >
+
               <option value="" default disabled hidden>Выбрать категорию</option>
               {categories && categories?.map((el) => (
                 <option
@@ -124,6 +127,7 @@ export default function EditDetailWishPage() {
           </form>
         </div>
       </div>
-    </>
+    </div>
+
   );
 }

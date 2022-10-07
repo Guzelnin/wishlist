@@ -1,13 +1,12 @@
 import React from 'react';
 import Social from './Social';
 
-const url = 'https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg';
-
+const url = '/Users/makedonskyy/Desktop/phase-3/project/wishlist/client/public/logo192.png';
 export default function MyFooter() {
   return (
     <footer className="footer-distributed">
       <div className="footer-left">
-        <img src={url} alt="logo" className="logo" />
+        <img src="logo192.png" alt="logo" className="logo" />
 
         {/* <p className="footer-links">
           <a href="#" className="link-1">Home</a>

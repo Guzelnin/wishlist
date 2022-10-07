@@ -56,7 +56,7 @@ export default function AddWish() {
       <div id="formContent">
         <h2 className="active">Добавление подарка </h2>
         <div className="fadeIn first">
-          <img src="https://thumbs.dreamstime.com/b/литерность-вектора-руки-wishlist-вычерченная-145269082.jpg" id="icon" alt="User Icon" />
+          <img src="logo192.png" id="icon" alt="User Icon" />
         </div>
         <form onSubmit={submitHandler} autoComplete="off">
           <input

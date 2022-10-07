@@ -86,12 +86,14 @@ export default function UserPageEditing() {
               justifyContent="space-around"
               alignItems="center"
             >
-              <Typography variant="h5">{myPage?.name}</Typography>
+              
               <Avatar
                 alt="My avatar"
                 src={myPage.photo}
-                sx={{ width: '150px', height: '150px' }}
+                sx={{ width: '300px', height: '300px' }}
+                
               />
+              <Typography variant="h5">{myPage?.name}</Typography>
             </Grid>
           </Item>
         </Grid>

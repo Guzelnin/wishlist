@@ -5,8 +5,8 @@ import RedeemIcon from '@mui/icons-material/Redeem';
 
 export default function FriendsWishes({ wishes }) {
   return (
-    <div>
-      <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '50px' }}>
+    <div className="home_bottom_all">
+      <div className="cards">
         {wishes && wishes.length !== 0 && wishes?.map((el) => (
           <div id="card" className="card" key={el.id}>
             <img src={process.env.REACT_APP_BASEURL + el.Owner.Wish.photo} height="100px" alt="myWish" />
